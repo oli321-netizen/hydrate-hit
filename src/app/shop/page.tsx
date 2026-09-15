@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { ProductLine } from "@/components/ProductLine";
 
+export const dynamic =
+  process.env.GITHUB_PAGES === "true" ? "force-static" : "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Shop nicotine-free pouches",
   description:

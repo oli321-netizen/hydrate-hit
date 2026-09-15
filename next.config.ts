@@ -14,6 +14,20 @@ const nextConfig: NextConfig = {
     ? { unoptimized: true }
     : { formats: ["image/avif", "image/webp"] },
   transpilePackages: ["three", "@react-three/fiber", "@react-three/drei"],
+  async headers() {
+    if (isPages) return [];
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=0, s-maxage=0, must-revalidate",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
