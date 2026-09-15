@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { CrystalMark } from "@/components/Brand";
 
@@ -10,6 +11,11 @@ const SplashCanvas = dynamic(
 );
 
 const KEY = "hh-splash-seen";
+
+function isHomePath(path: string) {
+  const p = path.replace(/\/$/, "") || "/";
+  return p === "/";
+}
 
 function hasWebGL() {
   try {
@@ -31,10 +37,13 @@ function isLowEnd() {
 }
 
 export function Splash() {
-  const [visible, setVisible] = useState(true);
+  const path = usePathname();
+  const landedHome = isHomePath(path ?? "/");
+  const landOnHome = useRef(landedHome);
+  const [visible, setVisible] = useState(landedHome);
   const [fading, setFading] = useState(false);
   const [use3d, setUse3d] = useState(false);
-  const closed = useRef(false);
+  const closed = useRef(!landedHome);
   const ready = useRef(false);
   const started = useRef(0);
 
@@ -58,6 +67,12 @@ export function Splash() {
   }, []);
 
   useEffect(() => {
+    if (!landOnHome.current) {
+      closed.current = true;
+      document.documentElement.classList.remove("hh-splash");
+      return;
+    }
+
     try {
       if (sessionStorage.getItem(KEY)) {
         closed.current = true;

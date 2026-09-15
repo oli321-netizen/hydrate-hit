@@ -18,7 +18,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!flavour) return { title: "Flavour" };
   return {
     title: flavour.name,
-    description: `${flavour.name} Hydrate Hit. ${flavour.blurb} ${CAN_LINE}. ${gbp(PRICE.single)} a can.`,
+    description: `${flavour.name} Hydrate Hit. ${flavour.blurb} ${CAN_LINE}. ${gbp(PRICE.single)} a can. No nicotine.`,
+    alternates: { canonical: `/flavours/${flavour.slug}` },
+    openGraph: {
+      url: `/flavours/${flavour.slug}`,
+      title: `${flavour.name} · Hydrate Hit`,
+    },
   };
 }
 

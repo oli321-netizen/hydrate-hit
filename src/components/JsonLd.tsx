@@ -12,6 +12,12 @@ export function JsonLd() {
         description: TAGLINE,
       },
       {
+        "@type": "WebSite",
+        name: SITE_NAME,
+        url: SITE_URL,
+        description: TAGLINE,
+      },
+      {
         "@type": "Product",
         name: `${SITE_NAME} pouch can`,
         description: `${TAGLINE} ${CAN_LINE}.`,

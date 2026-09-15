@@ -1,10 +1,25 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+
+const LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/#stack", label: "Stack" },
+  { href: "/shop", label: "Shop" },
+  { href: "/#waitlist", label: "Waitlist" },
+] as const;
+
+function isCurrent(href: string, path: string) {
+  if (href === "/") return path === "/";
+  if (href === "/shop") return path === "/shop" || path.startsWith("/flavours");
+  return false;
+}
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const path = usePathname();
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 h-16 border-b border-line/70 bg-[color-mix(in_srgb,var(--bg)_88%,white)] backdrop-blur-md md:h-[72px]">
@@ -13,18 +28,15 @@ export function Nav() {
           HYDRATE HIT
         </Link>
         <nav className="hidden items-center gap-7 text-sm font-medium text-ink-soft md:flex">
-          <Link href="/#stack" className="hover:text-ink">
-            Stack
-          </Link>
-          <Link href="/#shop" className="hover:text-ink">
-            Flavours
-          </Link>
-          <Link href="/#faq" className="hover:text-ink">
-            FAQ
-          </Link>
-          <Link href="/#waitlist" className="text-ink">
-            Waitlist
-          </Link>
+          {LINKS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={isCurrent(item.href, path) ? "text-ink" : "hover:text-ink"}
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
         <button
           type="button"
@@ -40,18 +52,11 @@ export function Nav() {
       {open ? (
         <div className="border-b border-line bg-bg px-4 py-4 md:hidden">
           <div className="flex flex-col gap-3 text-sm font-medium">
-            <Link href="/#stack" onClick={() => setOpen(false)}>
-              Stack
-            </Link>
-            <Link href="/#shop" onClick={() => setOpen(false)}>
-              Flavours
-            </Link>
-            <Link href="/#faq" onClick={() => setOpen(false)}>
-              FAQ
-            </Link>
-            <Link href="/#waitlist" onClick={() => setOpen(false)}>
-              Waitlist
-            </Link>
+            {LINKS.map((item) => (
+              <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
       ) : null}

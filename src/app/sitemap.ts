@@ -5,7 +5,7 @@ export const dynamic = "force-static";
 
 export default function sitemap() {
   const now = new Date();
-  const staticPaths = ["", "/shop", "/waitlist", "/cart"].map((path) => ({
+  const staticPaths = ["", "/shop", "/flavours", "/waitlist", "/cart"].map((path) => ({
     url: `${SITE_URL}${path || "/"}`,
     lastModified: now,
   }));
