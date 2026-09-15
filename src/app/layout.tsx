@@ -70,7 +70,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-GB" className={`${outfit.variable} ${ibm.variable} h-full antialiased`}>
+    <html lang="en-GB" suppressHydrationWarning className={`${outfit.variable} ${ibm.variable} h-full antialiased`}>
       <body className="crystal-cursor min-h-full bg-bg text-ink">
         <script
           dangerouslySetInnerHTML={{
