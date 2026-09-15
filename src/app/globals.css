@@ -124,6 +124,32 @@ html.hh-splash-skip .hh-splash-overlay {
   display: none !important;
 }
 
+html.hh-maintenance {
+  --hh-banner-h: 2.75rem;
+}
+
+html.hh-maintenance body {
+  padding-top: var(--hh-banner-h);
+}
+
+html.hh-maintenance .hh-nav {
+  top: var(--hh-banner-h);
+}
+
+html.hh-maintenance-lockdown main,
+html.hh-maintenance-lockdown footer {
+  opacity: 0.42;
+  pointer-events: none;
+  filter: saturate(0.65);
+}
+
+html.hh-maintenance-lockdown #waitlist,
+html.hh-maintenance-lockdown [data-waitlist-page] {
+  opacity: 1;
+  pointer-events: auto;
+  filter: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hh-splash-overlay {
     transition: opacity 80ms linear;

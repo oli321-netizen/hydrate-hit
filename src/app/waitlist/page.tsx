@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function WaitlistPage() {
   return (
-    <main className="px-4 pb-28 pt-24 md:px-8">
+    <main data-waitlist-page className="px-4 pb-28 pt-24 md:px-8">
       <div className="mx-auto max-w-xl">
         <h1 className="text-4xl font-semibold tracking-tighter md:text-6xl">
           Register interest

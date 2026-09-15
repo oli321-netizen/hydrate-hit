@@ -20,6 +20,15 @@ const nextConfig: NextConfig = {
     if (isPages) return [];
     return [
       {
+        source: "/api/maintenance",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "private, no-store, max-age=0, must-revalidate",
+          },
+        ],
+      },
+      {
         source: "/:path*",
         headers: [
           {

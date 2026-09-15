@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { BuyBar } from "@/components/BuyBar";
 import { JsonLd } from "@/components/JsonLd";
 import { Splash } from "@/components/Splash";
+import { MaintenanceBanner } from "@/components/MaintenanceBanner";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Providers>
           <InterestProvider>
             <Splash />
+            <MaintenanceBanner />
             <Nav />
             {children}
             <Footer />

@@ -22,7 +22,7 @@ export function Nav() {
   const path = usePathname();
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 h-16 border-b border-line/70 bg-[color-mix(in_srgb,var(--bg)_88%,white)] backdrop-blur-md md:h-[72px]">
+    <header className="hh-nav fixed inset-x-0 top-0 z-40 h-16 border-b border-line/70 bg-[color-mix(in_srgb,var(--bg)_88%,white)] backdrop-blur-md md:h-[72px]">
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-4 md:px-8">
         <Link href="/" className="text-[15px] font-extrabold tracking-tight text-ink">
           HYDRATE HIT

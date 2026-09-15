@@ -53,8 +53,16 @@ Do **not** set `GITHUB_PAGES=true` on Railway.
 | `WAITLIST_EXPORT_SECRET` | yes for export | Bearer / `?key=` for CSV download |
 | `WAITLIST_FORWARD_ENDPOINT` | no | Extra POST (Formspree/Getform) after local store |
 | `PORT` | set by Railway | Listen port |
+| `MAINTENANCE_BANNER` | no | `1` / `true` shows a site-wide “we’re updating” bar (server env, request-time — not `NEXT_PUBLIC_`) |
+| `MAINTENANCE_ETA` | no | Text after “back in …”, e.g. `about 15 minutes` |
+| `MAINTENANCE_MESSAGE` | no | Optional full banner copy override |
+| `MAINTENANCE_LOCKDOWN` | no | Optional: dim the site, waitlist still usable |
 
 Do **not** set `GITHUB_PAGES=true` on Railway.
+
+### Maintenance banner
+
+On Railway → web service → **Variables**: set `MAINTENANCE_BANNER=1` and `MAINTENANCE_ETA=about 15 minutes`. Optional `MAINTENANCE_MESSAGE` replaces the whole sentence; `MAINTENANCE_LOCKDOWN=1` dims shop/content but leaves the waitlist usable. Redeploy or restart the service so the new env is picked up (`GET /api/maintenance` should then show `"enabled":true`). Remove `MAINTENANCE_BANNER` or set it to `0` to hide the bar — no code change.
 
 ### Export the list (mass email)
 
