@@ -33,7 +33,7 @@ export function Footer() {
             Nicotine-free pouches
           </Link>
           <Link href="/snus-alternative" className="hover:underline">
-            Snus-format alternative
+            Snus alternative
           </Link>
           <Link href="/electrolyte-pouches" className="hover:underline">
             Electrolyte pouches

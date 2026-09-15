@@ -1,17 +1,20 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { faqPageLd, type SeoFaq } from "@/lib/seo";
 import { ShopCta, WaitlistCta } from "@/components/Ctas";
 
 export function SeoDoc({
   title,
   lede,
   crumbs,
+  faqs,
   children,
 }: {
   title: string;
   lede: string;
   crumbs: Array<{ href: string; label: string }>;
+  faqs?: readonly SeoFaq[];
   children: ReactNode;
 }) {
   const breadcrumb = {
@@ -39,6 +42,12 @@ export function SeoDoc({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
+      {faqs?.length ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageLd(faqs)) }}
+        />
+      ) : null}
       <article className="mx-auto max-w-3xl">
         <nav className="flex flex-wrap gap-x-2 text-sm text-muted" aria-label="Breadcrumb">
           {[{ href: "/", label: "Home" }, ...crumbs].map((crumb, i, all) => (
@@ -59,8 +68,29 @@ export function SeoDoc({
         </p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tighter md:text-6xl">{title}</h1>
         <p className="mt-5 max-w-[52ch] text-lg leading-relaxed text-ink-soft">{lede}</p>
-        <div className="mt-10 space-y-8 text-base leading-relaxed text-ink-soft [&_h2]:mt-12 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-ink [&_p]:max-w-[60ch] [&_ul]:max-w-[60ch] [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5 [&_a]:font-semibold [&_a]:underline">
+        <div className="mt-10 space-y-8 text-base leading-relaxed text-ink-soft [&_h2]:mt-12 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-ink [&_h3]:mt-8 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:tracking-tight [&_h3]:text-ink [&_p]:max-w-[60ch] [&_ul]:max-w-[60ch] [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5 [&_a]:font-semibold [&_a]:underline [&_strong]:text-ink [&_table]:w-full [&_table]:max-w-[60ch] [&_table]:text-left [&_table]:text-sm [&_th]:border-b [&_th]:border-line [&_th]:py-2 [&_th]:pr-4 [&_th]:font-semibold [&_th]:text-ink [&_td]:border-b [&_td]:border-line [&_td]:py-2 [&_td]:pr-4">
           {children}
+          {faqs?.length ? (
+            <>
+              <h2>FAQ</h2>
+              <div className="divide-y divide-line border-y border-line">
+                {faqs.map((item) => (
+                  <details key={item.q} className="group py-5">
+                    <summary className="cursor-pointer list-none text-lg font-semibold tracking-tight text-ink marker:content-none">
+                      <span className="flex items-start justify-between gap-4">
+                        {item.q}
+                        <span className="font-mono text-muted group-open:hidden">+</span>
+                        <span className="hidden font-mono text-muted group-open:inline">x</span>
+                      </span>
+                    </summary>
+                    <p className="mt-3 max-w-[60ch] text-base leading-relaxed text-ink-soft">
+                      {item.a}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </>
+          ) : null}
         </div>
         <div className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-3">
           <ShopCta href="/shop">See flavours</ShopCta>

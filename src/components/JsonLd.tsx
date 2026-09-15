@@ -1,7 +1,6 @@
 import { CAN_LINE, SITE_NAME, SITE_URL, TAGLINE } from "@/lib/site";
 import { OG_IMAGE_URL } from "@/lib/seo";
 import { DOSE, FLAVOURS, PRICE } from "@/lib/products";
-import { FAQS } from "@/components/FAQ";
 
 export function JsonLd() {
   const data = {
@@ -75,14 +74,6 @@ export function JsonLd() {
           name: flavour.name,
           url: `${SITE_URL}/flavours/${flavour.slug}`,
           image: `${SITE_URL}${flavour.heroSrc}`,
-        })),
-      },
-      {
-        "@type": "FAQPage",
-        mainEntity: FAQS.map((item) => ({
-          "@type": "Question",
-          name: item.q,
-          acceptedAnswer: { "@type": "Answer", text: item.a },
         })),
       },
     ],

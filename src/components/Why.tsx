@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CAN_LINE } from "@/lib/site";
 import { DOSE } from "@/lib/products";
 
@@ -39,6 +40,25 @@ export function Why() {
       </div>
       <p className="mx-auto mt-10 max-w-6xl font-mono text-xs uppercase tracking-[0.16em] text-muted">
         {CAN_LINE}
+      </p>
+      <p className="mx-auto mt-4 max-w-6xl text-sm leading-relaxed text-ink-soft">
+        Same pouch, three ways in:{" "}
+        <Link href="/snus-alternative" className="font-semibold underline">
+          snus alternative
+        </Link>
+        ,{" "}
+        <Link href="/nicotine-free-pouches" className="font-semibold underline">
+          nicotine-free pouches
+        </Link>
+        ,{" "}
+        <Link href="/electrolyte-pouches" className="font-semibold underline">
+          electrolyte pouches
+        </Link>
+        . Or the{" "}
+        <Link href="/guides/caffeine-pouch-vs-energy-drink" className="font-semibold underline">
+          caffeine pouch vs energy drink
+        </Link>{" "}
+        note.
       </p>
     </section>
   );
