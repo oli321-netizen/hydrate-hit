@@ -32,8 +32,8 @@ export function BuyBar() {
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-[color-mix(in_srgb,var(--bg)_92%,white)] px-3 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur-md md:hidden">
         <Link
           href="/#waitlist"
-          className="flex h-11 w-full items-center justify-center rounded-2xl text-sm font-semibold"
-          style={{ backgroundColor: "#18181b", color: "#fafafa" }}
+          className="flex h-11 w-full items-center justify-center rounded-2xl border border-[#d4d4d8] text-sm font-semibold"
+          style={{ backgroundColor: "#fafafa", color: "#18181b" }}
         >
           Register interest
         </Link>

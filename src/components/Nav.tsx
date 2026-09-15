@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const LINKS = [
@@ -10,8 +11,15 @@ const LINKS = [
   { href: "/#waitlist", label: "Waitlist" },
 ] as const;
 
+function isCurrent(href: string, path: string) {
+  if (href === "/") return path === "/";
+  if (href === "/shop") return path === "/shop" || path.startsWith("/flavours");
+  return false;
+}
+
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const path = usePathname();
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 h-16 border-b border-line/70 bg-[color-mix(in_srgb,var(--bg)_88%,white)] backdrop-blur-md md:h-[72px]">
@@ -24,7 +32,7 @@ export function Nav() {
             <Link
               key={item.href}
               href={item.href}
-              className={item.label === "Waitlist" ? "text-ink" : "hover:text-ink"}
+              className={isCurrent(item.href, path) ? "text-ink" : "hover:text-ink"}
             >
               {item.label}
             </Link>

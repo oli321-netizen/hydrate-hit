@@ -115,7 +115,7 @@ npm start
 ## Site map
 
 - `/` brand home: splash, hero, why, stack, how to use, light flavour preview, FAQ, waitlist
-- `/shop` five tins, bundles, register-interest modals
+- `/shop` (also `/flavours`) five tins, bundles, register-interest modals
 - `/flavours/[slug]` flavour detail
 - `/waitlist` priority-delivery list
 - Nav: Home · Stack · Shop · Waitlist
