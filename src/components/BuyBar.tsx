@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FLAVOURS, PRICE, gbp } from "@/lib/products";
 import { useFlavour } from "@/components/Providers";
@@ -51,13 +50,16 @@ export function BuyBar() {
             Get priority delivery
           </button>
         ) : (
-          <Link
-            href="/#waitlist"
+          <button
+            type="button"
+            onClick={() =>
+              openInterest({ intent: "waitlist", source: "buy-bar-home" })
+            }
             className="flex h-11 w-full items-center justify-center rounded-2xl border border-[#d4d4d8] text-sm font-semibold"
             style={{ backgroundColor: "#fafafa", color: "#18181b" }}
           >
             Register interest
-          </Link>
+          </button>
         )}
       </div>
     );
