@@ -20,72 +20,89 @@ Mobile-first marketing and shop site for **Hydrate Hit**, the pouch that hydrate
 
 Shop CTAs register interest. They do not add to cart. Joining now gets **priority delivery** when the first drop ships.
 
-## Live site
+## Production
 
-**https://hydrationhit.com**
+**Host: Railway** (Next.js Node server + waitlist API)  
+**DNS: Cloudflare** → Railway  
+**Canonical URL: https://hydrationhit.com**  
+**Backup: GitHub Pages** at https://oli321-netizen.github.io/hydrate-hit/ (static, no waitlist store)
 
-`www.hydrationhit.com` should resolve too (GitHub Pages redirects www → apex once DNS is in). Fallback while DNS propagates: https://oli321-netizen.github.io/hydrate-hit/
+## Deploy on Railway
 
-## DNS records (registrar)
+1. New project → **Deploy from GitHub** → `oli321-netizen/hydrate-hit` → branch `main`.
+2. Railway builds `Dockerfile` (`railway.toml`). No Railway token belongs in this repo.
+3. Optional: add a **PostgreSQL** plugin. Railway injects `DATABASE_URL`. Without it, emails append to `data/waitlist.jsonl` (add a Volume mounted at `/app/data` so they survive deploys).
+4. Set env vars (below).
+5. Copy the public hostname, e.g. `hydrate-hit-production.up.railway.app`.
 
-Point the domain at GitHub Pages. Use **either** the four A records **or** an ALIAS/ANAME for the apex — not both overlapping in a way that fights.
+### Env vars
 
-### Apex `hydrationhit.com`
+| Name | Required | Purpose |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | yes | `https://hydrationhit.com` |
+| `NEXT_PUBLIC_CUSTOM_DOMAIN` | yes | `hydrationhit.com` |
+| `DATABASE_URL` | recommended | Postgres URL from the Railway plugin |
+| `WAITLIST_PATH` | no | JSONL path if no Postgres. Default `data/waitlist.jsonl` |
+| `WAITLIST_EXPORT_SECRET` | yes for export | Bearer / `?key=` for CSV download |
+| `WAITLIST_FORWARD_ENDPOINT` | no | Extra POST (Formspree/Getform) after local store |
+| `PORT` | set by Railway | Listen port |
 
-**Option A — A records**
+Do **not** set `GITHUB_PAGES=true` on Railway.
 
-| Type | Host / Name | Value | TTL |
+### Export the list (mass email)
+
+```bash
+curl -L -H "Authorization: Bearer $WAITLIST_EXPORT_SECRET" \
+  https://hydrationhit.com/api/waitlist/export \
+  -o waitlist.csv
+```
+
+CSV columns: `email,flavour,sku,intent,source,created_at` (unique emails, first signup wins).
+
+## Cloudflare DNS
+
+Point the zone at Railway. Use the hostname Railway shows (`*.up.railway.app`). Placeholder until the service exists:
+
+`hydrate-hit-production.up.railway.app`
+
+| Type | Name | Target | Proxy |
 | --- | --- | --- | --- |
-| A | `@` | `185.199.108.153` | 3600 or Auto |
-| A | `@` | `185.199.109.153` | 3600 or Auto |
-| A | `@` | `185.199.110.153` | 3600 or Auto |
-| A | `@` | `185.199.111.153` | 3600 or Auto |
+| CNAME | `@` | `hydrate-hit-production.up.railway.app` | **Proxied** (orange cloud) |
+| CNAME | `www` | `hydrationhit.com` | **Proxied** |
 
-Optional IPv6 (AAAA), same host `@`:
+Cloudflare flattens the apex CNAME. Do not keep GitHub Pages A records on `@` once this is live.
 
-- `2606:50c0:8000::153`
-- `2606:50c0:8001::153`
-- `2606:50c0:8002::153`
-- `2606:50c0:8003::153`
+**SSL/TLS** (Cloudflare → Railway): **Full (strict)**. Railway already serves HTTPS.
 
-**Option B — ALIAS / ANAME** (if the registrar supports it, instead of the A records)
+Optional: Cloudflare Redirect Rule `www.hydrationhit.com` → `https://hydrationhit.com` if you prefer apex-only.
 
-| Type | Host / Name | Value |
-| --- | --- | --- |
-| ALIAS or ANAME | `@` | `oli321-netizen.github.io` |
+After DNS is green, in Railway: **Settings → Networking → Custom domain** → `hydrationhit.com` and `www.hydrationhit.com`.
 
-### `www.hydrationhit.com`
+## GitHub Pages backup
 
-| Type | Host / Name | Value |
-| --- | --- | --- |
-| CNAME | `www` | `oli321-netizen.github.io` |
+The `GitHub Pages` workflow still static-exports the marketing site (API routes stripped). It is **not** production.
 
-Do **not** CNAME the apex `@` unless the registrar’s ALIAS/ANAME product is explicitly that.
+- Live backup: https://oli321-netizen.github.io/hydrate-hit/
+- Waitlist on Pages only works if you set GitHub secret `WAITLIST_ENDPOINT` to a Formspree/Getform URL.
+- Do not attach `hydrationhit.com` to Pages while Cloudflare points at Railway.
 
-Then in GitHub: **Settings → Pages → Custom domain** = `hydrationhit.com` (the deploy workflow also writes the `CNAME` file and tries to enforce HTTPS). Wait for the DNS check to go green, then **Enforce HTTPS**.
+## Local
 
-## Waitlist email (Formspree / Getform)
+```bash
+npm install
+cp .env.example .env.local
+npm run dev
+```
 
-Static Pages cannot run `/api/waitlist`. Point the client at a form endpoint so emails land in your Formspree/Getform inbox for the launch mailer.
-
-1. Create a form at [Formspree](https://formspree.io/) or [Getform](https://getform.io/).
-2. Copy the form URL (`https://formspree.io/f/xxxxxxxx` or `https://getform.io/f/xxxxxxxx`).
-3. Local: put it in `.env.local` as `NEXT_PUBLIC_WAITLIST_ENDPOINT`.
-4. GitHub Pages: **Settings → Secrets and variables → Actions → New repository secret** named `WAITLIST_ENDPOINT`, paste the same URL.
-5. Redeploy (push to `main` or **Actions → GitHub Pages → Run workflow**).
-
-You can also set `FORMSPREE_ID` or `GETFORM_ID` (id only). The workflow maps those to `NEXT_PUBLIC_FORMSPREE_ID` / `NEXT_PUBLIC_GETFORM_ID`.
-
-Until a secret is set, local `npm run dev` needs `WAITLIST_ENDPOINT` or `NEXT_PUBLIC_WAITLIST_ENDPOINT` to actually store emails. The live site needs the GitHub secret for real capture.
+Waitlist POSTs to `/api/waitlist` and writes `data/waitlist.jsonl` unless `DATABASE_URL` is set.
 
 ## Stack
 
 Next.js App Router, TypeScript, Tailwind CSS v4, React Three Fiber (3D tin + flavour switcher).
 
 ```bash
-npm install
-npm run dev
 npm run build
+npm start
 ```
 
 ## Site map
@@ -95,5 +112,3 @@ npm run build
 - `/flavours/[slug]` flavour detail
 - `/waitlist` priority-delivery list
 - Sticky mobile bar opens the same waitlist modal
-
-Checkout is not live. Emails go to the waitlist endpoint for the first-drop campaign.

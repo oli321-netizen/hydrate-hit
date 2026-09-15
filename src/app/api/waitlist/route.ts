@@ -1,12 +1,35 @@
 import { NextResponse } from "next/server";
-import { isEmail, waitlistEndpoint } from "@/lib/waitlist";
+import { isEmail, waitlistEndpoint, type WaitlistPayload } from "@/lib/waitlist";
+import { storeWaitlist } from "@/lib/waitlist-store";
+
+export const runtime = "nodejs";
+
+async function forwardOptional(payload: WaitlistPayload) {
+  const dest = process.env.WAITLIST_FORWARD_ENDPOINT || waitlistEndpoint();
+  if (!dest) return;
+  await fetch(dest, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: payload.email,
+      flavour: payload.flavour ?? "",
+      sku: payload.sku ?? "",
+      intent: payload.intent ?? "waitlist",
+      source: payload.source ?? "api",
+      _subject: "Hydrate Hit waitlist",
+    }),
+  }).catch(() => undefined);
+}
 
 export async function POST(request: Request) {
   let body: {
     email?: string;
     flavour?: string;
     sku?: string;
-    intent?: string;
+    intent?: WaitlistPayload["intent"];
     source?: string;
   } = {};
   try {
@@ -20,32 +43,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "That does not look like an email." }, { status: 400 });
   }
 
-  const dest = process.env.WAITLIST_ENDPOINT || waitlistEndpoint();
-  if (!dest) {
-    return NextResponse.json(
-      { ok: false, error: "Waitlist endpoint is not configured." },
-      { status: 503 },
-    );
-  }
+  const payload: WaitlistPayload = {
+    email,
+    flavour: body.flavour,
+    sku: body.sku,
+    intent: body.intent ?? "waitlist",
+    source: body.source ?? "api",
+  };
 
-  const res = await fetch(dest, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email,
-      flavour: body.flavour ?? "",
-      sku: body.sku ?? "",
-      intent: body.intent ?? "waitlist",
-      source: body.source ?? "api",
-      _subject: "Hydrate Hit waitlist",
-    }),
-  });
-  if (!res.ok) {
-    return NextResponse.json({ ok: false, error: "Waitlist provider dropped it." }, { status: 502 });
-  }
+  await storeWaitlist(payload);
+  await forwardOptional(payload);
 
   return NextResponse.json({ ok: true });
 }

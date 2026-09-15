@@ -1,8 +1,8 @@
-name: GitHub Pages
+name: GitHub Pages backup
 
 on:
   push:
-    branches: [main, cursor/hydrate-hit-site-c823]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -30,24 +30,20 @@ jobs:
         run: npm run build
         env:
           GITHUB_PAGES: "true"
-          NEXT_PUBLIC_CUSTOM_DOMAIN: hydrationhit.com
-          CUSTOM_DOMAIN: hydrationhit.com
-          NEXT_PUBLIC_SITE_URL: https://hydrationhit.com
+          NEXT_PUBLIC_BASE_PATH: /hydrate-hit
+          NEXT_PUBLIC_SITE_URL: https://oli321-netizen.github.io/hydrate-hit
           NEXT_PUBLIC_WAITLIST_ENDPOINT: ${{ secrets.WAITLIST_ENDPOINT }}
           NEXT_PUBLIC_FORMSPREE_ID: ${{ secrets.FORMSPREE_ID }}
           NEXT_PUBLIC_GETFORM_ID: ${{ secrets.GETFORM_ID }}
       - name: Add .nojekyll
         run: touch out/.nojekyll
-      - name: Publish custom domain CNAME
-        run: echo "hydrationhit.com" > out/CNAME
-      - name: Guard custom-domain asset paths
+      - name: Guard backup asset basePath
         run: |
-          if grep -R --include='*.html' -E 'src="/hydrate-hit/|href="/hydrate-hit/' out; then
-            echo "Project basePath leaked into custom-domain export."
+          if grep -R --include='*.html' -E 'src="/tins/|src="/og\.jpg|href="/tins/' out; then
+            echo "Bare /tins or /og paths found. Prefix with basePath via asset()."
             exit 1
           fi
-          grep -q 'tins/blue-razz.jpg' out/index.html
-          grep -q 'hydrationhit.com' out/CNAME
+          grep -q '/hydrate-hit/tins/blue-razz.jpg' out/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
@@ -58,7 +54,6 @@ jobs:
           publish_dir: ./out
           force_orphan: true
           enable_jekyll: false
-          cname: hydrationhit.com
 
   deploy:
     needs: build
@@ -78,18 +73,14 @@ jobs:
         if: steps.pages.outcome == 'success'
         id: deployment
         uses: actions/deploy-pages@v4
-      - name: Attach hydrationhit.com and HTTPS
+      - name: Keep Pages on gh-pages (no custom domain)
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh api -X PUT "repos/${GITHUB_REPOSITORY}/pages" \
-            -f cname='hydrationhit.com' \
             -f build_type='legacy' \
+            -F 'cname=' \
             -f source[branch]='gh-pages' \
             -f source[path]='/' \
-            || true
-          gh api -X PUT "repos/${GITHUB_REPOSITORY}/pages" \
-            -f cname='hydrationhit.com' \
-            -F https_enforced=true \
             || true

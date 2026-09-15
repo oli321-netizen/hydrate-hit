@@ -58,7 +58,7 @@ export async function submitWaitlist(payload: WaitlistPayload) {
     if (res.status === 404 && !endpoint) {
       return {
         ok: false as const,
-        error: "Waitlist endpoint is not configured. Add WAITLIST_ENDPOINT — see README.",
+        error: "Waitlist API is not on this host. Use the Railway app, not the Pages backup.",
       };
     }
     const data = (await res.json().catch(() => ({}))) as { error?: string };

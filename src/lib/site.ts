@@ -2,7 +2,7 @@ export const SITE_NAME = "Hydrate Hit";
 export const TAGLINE = "The pouch that hydrates and hits.";
 export const CAN_LINE = "80mg caffeine · 300mg electrolytes · B6 + B12";
 
-/** Apex custom domain for GitHub Pages. */
+/** Apex custom domain (Railway + Cloudflare). */
 export const CUSTOM_DOMAIN = (
   process.env.NEXT_PUBLIC_CUSTOM_DOMAIN ??
   process.env.CUSTOM_DOMAIN ??
