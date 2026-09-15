@@ -20,11 +20,9 @@ Mobile-first marketing and shop site for **Hydrate Hit**, the pouch that hydrate
 
 ## Live site
 
-HTTPS preview (Vercel): **https://temporary-turbo-alder-9hz0yq0.vercel.app**
+**https://oli321-netizen.github.io/hydrate-hit/**
 
-Claim that deployment to keep it: https://vercel.com/claim-deployment?code=a3b926da-ce3b-48d4-bcdd-b2d977dd54d5
-
-GitHub Pages (after Pages is enabled on the repo): https://oli321-netizen.github.io/hydrate-hit/
+Public assets are prefixed with `/hydrate-hit` (GitHub project Pages `basePath`).
 
 ## Stack
 
