@@ -38,7 +38,7 @@ export function Flavours() {
                 <div className="relative aspect-square overflow-hidden rounded-2xl bg-bg">
                   <AssetImage
                     src={flavour.heroSrc}
-                    alt={`${flavour.name} tin`}
+                    alt={`${flavour.name} Hydrate Hit tin`}
                     fill
                     className="object-contain"
                   />

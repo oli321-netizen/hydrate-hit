@@ -74,6 +74,12 @@ export function Splash() {
     }
 
     try {
+      if (/googlebot|bingbot|yandex|baiduspider|duckduckbot|slurp|crawler|spider|bot/i.test(navigator.userAgent)) {
+        closed.current = true;
+        setVisible(false);
+        document.documentElement.classList.remove("hh-splash");
+        return;
+      }
       if (sessionStorage.getItem(KEY)) {
         closed.current = true;
         setVisible(false);

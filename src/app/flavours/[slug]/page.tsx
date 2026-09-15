@@ -17,12 +17,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const flavour = flavourBySlug(slug);
   if (!flavour) return { title: "Flavour" };
   return {
-    title: flavour.name,
-    description: `${flavour.name} Hydrate Hit. ${flavour.blurb} ${CAN_LINE}. ${gbp(PRICE.single)} a can. No nicotine.`,
+    title: `${flavour.name} nicotine-free pouch`,
+    description: `${flavour.name} Hydrate Hit. Nicotine-free caffeine and electrolyte oral pouch. ${flavour.blurb} ${CAN_LINE}. ${gbp(PRICE.single)} a can.`,
     alternates: { canonical: `/flavours/${flavour.slug}` },
     openGraph: {
       url: `/flavours/${flavour.slug}`,
       title: `${flavour.name} · Hydrate Hit`,
+      description: `${flavour.name} nicotine-free pouch. ${flavour.blurb}`,
+      images: [
+        {
+          url: `${flavour.heroSrc}`,
+          alt: `${flavour.name} Hydrate Hit tin`,
+        },
+      ],
     },
   };
 }
@@ -38,7 +45,7 @@ export default async function FlavourPage({ params }: Props) {
         <div className="relative aspect-square overflow-hidden rounded-2xl bg-bg-2">
           <AssetImage
             src={flavour.heroSrc}
-            alt={`${flavour.name} tin`}
+            alt={`${flavour.name} Hydrate Hit tin`}
             fill
             className="object-contain"
           />

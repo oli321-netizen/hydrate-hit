@@ -1,5 +1,6 @@
 import { SITE_URL } from "@/lib/site";
 import { FLAVOURS } from "@/lib/products";
+import { SEO_PAGES } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
@@ -13,5 +14,9 @@ export default function sitemap() {
     url: `${SITE_URL}/flavours/${flavour.slug}`,
     lastModified: now,
   }));
-  return [...staticPaths, ...flavours];
+  const seo = SEO_PAGES.map((page) => ({
+    url: `${SITE_URL}${page.path}`,
+    lastModified: now,
+  }));
+  return [...staticPaths, ...flavours, ...seo];
 }

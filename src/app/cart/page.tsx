@@ -3,7 +3,9 @@ import { WaitlistForm } from "@/components/WaitlistForm";
 
 export const metadata: Metadata = {
   title: "Priority delivery",
-  description: "Register interest for Hydrate Hit. Join now and get priority delivery when the first drop ships.",
+  description:
+    "Register interest for Hydrate Hit nicotine-free pouches. Priority delivery when the first drop ships. UK. Pounds.",
+  alternates: { canonical: "/waitlist" },
 };
 
 export default function CartPage() {

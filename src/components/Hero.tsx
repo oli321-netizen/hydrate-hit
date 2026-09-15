@@ -77,7 +77,7 @@ export function Hero() {
                       boxShadow: active ? `0 0 0 2px ${item.toneA}` : undefined,
                     }}
                   >
-                    <AssetImage src={item.lidSrc} alt="" fill className="object-cover" />
+                    <AssetImage src={item.lidSrc} alt={`${item.name} lid`} fill className="object-cover" />
                   </button>
                 );
               })}

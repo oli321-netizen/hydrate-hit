@@ -1,11 +1,15 @@
-const FAQS = [
+export const FAQS = [
   {
     q: "What is in a pouch?",
     a: "80 mg caffeine, 150 mg sodium, 100 mg potassium, 50 mg magnesium (about 300 mg electrolytes), vitamin B6 1.7 mg, vitamin B12 2.4 µg.",
   },
   {
     q: "Is there nicotine?",
-    a: "No. Hydrate Hit is a caffeine and electrolyte pouch. No nicotine.",
+    a: "No. Hydrate Hit is a caffeine and electrolyte pouch. No nicotine. No tobacco.",
+  },
+  {
+    q: "Is this snus or a nicotine pouch?",
+    a: "No. Same lip-pouch format, different contents. Hydrate Hit is a nicotine-free oral pouch, not snus and not a nicotine pouch.",
   },
   {
     q: "How many pouches in a can?",
@@ -21,7 +25,7 @@ const FAQS = [
   },
   {
     q: "When do you ship?",
-    a: "First drop is waitlist only. Register interest now and you get priority delivery when we ship. We email the list. Nothing is for sale on this page.",
+    a: "First drop is waitlist only. Register interest now and you get priority delivery when we ship. We email the list.",
   },
 ];
 

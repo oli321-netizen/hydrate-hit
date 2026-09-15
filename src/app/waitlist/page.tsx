@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { WaitlistForm } from "@/components/WaitlistForm";
 
 export const metadata: Metadata = {
-  title: "Waitlist",
-  description: "Register interest for Hydrate Hit. Priority delivery on the first drop. UK. Pounds only.",
+  title: "Waitlist for priority delivery",
+  description:
+    "Join the Hydrate Hit waitlist. Nicotine-free caffeine pouches. Priority delivery on the first UK drop. Pounds only.",
   alternates: { canonical: "/waitlist" },
   openGraph: { url: "/waitlist", title: "Waitlist · Hydrate Hit" },
 };
