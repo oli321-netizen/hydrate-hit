@@ -62,6 +62,9 @@ export const metadata: Metadata = {
     images: [OG_IMAGE_URL],
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: "rEylspFVWx6Bm1dmixQ5pW9s65bFkcrJu0V8mAyxD5M",
+  },
   icons: {
     icon: [{ url: asset("/favicon.svg"), type: "image/svg+xml" }, { url: asset("/icon.png") }],
     apple: asset("/icon.png"),
