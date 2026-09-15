@@ -43,7 +43,16 @@ jobs:
             echo "Bare /tins or /og paths found. Prefix with basePath via asset()."
             exit 1
           fi
-          grep -q '/hydrate-hit/tins/blue-razz.jpg' out/index.html
+          # Home is brand-first and may not embed a tin jpg. Assert basePath
+          # against assets that exist on home (og) or shop/flavour pages (tins).
+          if grep -R --include='*.html' -q '/hydrate-hit/og.jpg' out; then
+            echo "basePath ok: /hydrate-hit/og.jpg in HTML"
+          elif grep -R -q '/hydrate-hit/tins/' out; then
+            echo "basePath ok: /hydrate-hit/tins/ in export"
+          else
+            echo "basePath missing: expected /hydrate-hit/og.jpg in HTML or /hydrate-hit/tins/ under out/"
+            exit 1
+          fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
