@@ -13,29 +13,49 @@ export const OG_IMAGE = {
 export const SEO_PAGES = [
   {
     path: "/nicotine-free-pouches",
-    title: "Nicotine-free oral pouches",
+    title: "Nicotine-free pouches with caffeine",
     description:
-      "Hydrate Hit is a nicotine-free oral pouch: caffeine, electrolytes, B6 and B12 in a lip pouch. Tobacco-free. From £12.99. UK.",
+      "Nicotine-free pouches from Hydrate Hit: 80 mg caffeine, named electrolytes, B6 and B12. Tobacco-free lip pouches. UK waitlist. From £12.99.",
   },
   {
     path: "/snus-alternative",
-    title: "A snus-format alternative without nicotine",
+    title: "Snus alternative without nicotine",
     description:
-      "Want the pouch ritual without nicotine or tobacco? Hydrate Hit is a caffeine and electrolyte lip pouch, not snus and not a nicotine pouch.",
+      "A snus alternative without nicotine or tobacco. Hydrate Hit is a UK caffeine and electrolyte lip pouch — same ritual, named doses, waitlist only.",
   },
   {
     path: "/electrolyte-pouches",
-    title: "Electrolyte pouches for hydration",
+    title: "Electrolyte pouches with named salts",
     description:
-      "Hydrate Hit electrolyte pouches: 150 mg sodium, 100 mg potassium, 50 mg magnesium (~300 mg) plus 80 mg caffeine. Named doses. GBP.",
+      "Electrolyte pouches with 150 mg sodium, 100 mg potassium, 50 mg magnesium plus 80 mg caffeine. Nicotine-free. Hydrate Hit, UK.",
   },
   {
     path: "/guides/caffeine-pouch-vs-energy-drink",
     title: "Caffeine pouch vs energy drink",
     description:
-      "How a nicotine-free caffeine pouch compares with an energy drink: 80 mg caffeine, no cup, named electrolytes. Hydrate Hit, UK, pounds.",
+      "Caffeine pouches vs energy drinks: Hydrate Hit is 80 mg caffeine in a lip pouch, named electrolytes, no nicotine, no cup. UK.",
   },
 ] as const;
+
+export type SeoFaq = { q: string; a: string };
+
+export function faqPageLd(faqs: readonly SeoFaq[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+}
+
+export function seoPageMeta(path: (typeof SEO_PAGES)[number]["path"]) {
+  const page = SEO_PAGES.find((entry) => entry.path === path);
+  if (!page) throw new Error(`Unknown SEO page ${path}`);
+  return routeMeta(page.path, page.title, page.description);
+}
 
 export function routeMeta(
   path: string,

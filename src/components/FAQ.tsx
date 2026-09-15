@@ -1,3 +1,5 @@
+import { faqPageLd } from "@/lib/seo";
+
 export const FAQS = [
   {
     q: "What is in a pouch?",
@@ -32,6 +34,10 @@ export const FAQS = [
 export function FAQ() {
   return (
     <section id="faq" className="border-t border-line px-4 py-16 md:px-8 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageLd(FAQS)) }}
+      />
       <div className="mx-auto max-w-3xl">
         <h2 className="text-4xl font-semibold tracking-tighter md:text-6xl">FAQ</h2>
         <div className="mt-10 divide-y divide-line border-y border-line">
