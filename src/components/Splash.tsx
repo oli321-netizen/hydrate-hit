@@ -2,7 +2,14 @@
 
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  Component,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import { CrystalMark } from "@/components/Brand";
 
 const SplashCanvas = dynamic(
@@ -36,6 +43,26 @@ function isLowEnd() {
   return false;
 }
 
+class CanvasGuard extends Component<
+  { children: ReactNode; onError: () => void },
+  { failed: boolean }
+> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  componentDidCatch() {
+    this.props.onError();
+  }
+
+  render() {
+    if (this.state.failed) return null;
+    return this.props.children;
+  }
+}
+
 export function Splash() {
   const path = usePathname();
   const landedHome = isHomePath(path ?? "/");
@@ -63,6 +90,11 @@ export function Splash() {
   }, []);
 
   const markReady = useCallback(() => {
+    ready.current = true;
+  }, []);
+
+  const fail3d = useCallback(() => {
+    setUse3d(false);
     ready.current = true;
   }, []);
 
@@ -94,10 +126,6 @@ export function Splash() {
     started.current = Date.now();
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const low = reduced || isLowEnd() || !hasWebGL();
-    setUse3d(!low);
-    if (low) ready.current = true;
-
     const min = reduced ? 1200 : 1700;
     const max = reduced ? 1500 : 2400;
 
@@ -109,8 +137,17 @@ export function Splash() {
       const elapsed = Date.now() - started.current;
       if (elapsed >= max || (ready.current && elapsed >= min)) close();
     }, 80);
+    const hard = window.setTimeout(close, max);
 
-    return () => window.clearInterval(tick);
+    // WebGL after the timer so a stuck context cannot pin the overlay.
+    const low = reduced || isLowEnd() || !hasWebGL();
+    setUse3d(!low);
+    if (low) ready.current = true;
+
+    return () => {
+      window.clearInterval(tick);
+      window.clearTimeout(hard);
+    };
   }, [close]);
 
   if (!visible) return null;
@@ -121,11 +158,14 @@ export function Splash() {
       role="status"
       aria-live="polite"
       aria-hidden={fading}
+      onClick={close}
     >
       <div className="flex w-full max-w-sm flex-col items-center px-6">
-        <div className="relative mb-6 h-44 w-44 sm:h-52 sm:w-52">
+        <div className="relative mb-5 h-52 w-52 sm:h-60 sm:w-60">
           {use3d ? (
-            <SplashCanvas onReady={markReady} onFail={markReady} />
+            <CanvasGuard onError={fail3d}>
+              <SplashCanvas onReady={markReady} onFail={fail3d} />
+            </CanvasGuard>
           ) : (
             <div className="flex h-full w-full items-center justify-center">
               <CrystalMark a="#1f6fe5" b="#d63d8c" className="h-20 w-20" />
