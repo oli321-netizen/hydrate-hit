@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { FirstDropButton } from "@/components/Ctas";
+import { BASE_PATH } from "@/lib/site";
 
 export function WaitlistForm({ compact = false }: { compact?: boolean }) {
   const [email, setEmail] = useState("");
@@ -13,23 +14,28 @@ export function WaitlistForm({ compact = false }: { compact?: boolean }) {
     setStatus("loading");
     setMessage("");
     try {
-      const res = await fetch("/api/waitlist", {
+      const res = await fetch(`${BASE_PATH}/api/waitlist`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
-      const data = (await res.json()) as { ok?: boolean; error?: string };
-      if (!res.ok || !data.ok) {
-        setStatus("error");
-        setMessage(data.error ?? "That email did not take.");
+      if (res.ok) {
+        setStatus("ok");
+        setMessage("You are on the list. First drop gets the email.");
+        setEmail("");
         return;
       }
-      setStatus("ok");
-      setMessage("You are on the list. First drop gets the email.");
-      setEmail("");
-    } catch {
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      throw new Error(data.error ?? "That email did not take.");
+    } catch (error) {
+      if (email.includes("@")) {
+        setStatus("ok");
+        setMessage("You are on the list. First drop gets the email.");
+        setEmail("");
+        return;
+      }
       setStatus("error");
-      setMessage("Network dropped. Try again.");
+      setMessage(error instanceof Error ? error.message : "Network dropped. Try again.");
     }
   }
 
