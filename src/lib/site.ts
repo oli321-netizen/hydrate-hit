@@ -2,32 +2,23 @@ export const SITE_NAME = "Hydrate Hit";
 export const TAGLINE = "The pouch that hydrates and hits.";
 export const CAN_LINE = "80mg caffeine · 300mg electrolytes · B6 + B12";
 
-/** Apex domain for GitHub Pages, no protocol. Empty until DNS cutover. */
+/** Apex custom domain for GitHub Pages. */
 export const CUSTOM_DOMAIN = (
   process.env.NEXT_PUBLIC_CUSTOM_DOMAIN ??
   process.env.CUSTOM_DOMAIN ??
-  ""
+  "hydrationhit.com"
 )
   .replace(/^https?:\/\//, "")
   .replace(/\/$/, "");
 
-export const BASE_PATH = CUSTOM_DOMAIN
-  ? ""
-  : (process.env.NEXT_PUBLIC_BASE_PATH ??
-    (process.env.GITHUB_PAGES === "true" ? "/hydrate-hit" : ""));
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-export const SITE_URL = CUSTOM_DOMAIN
-  ? `https://${CUSTOM_DOMAIN}`
-  : (process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.GITHUB_PAGES === "true"
-      ? "https://oli321-netizen.github.io/hydrate-hit"
-      : process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : "https://oli321-netizen.github.io/hydrate-hit"));
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? `https://${CUSTOM_DOMAIN}`;
 export const LOCALE = "en-GB";
 export const CURRENCY = "GBP";
 
-/** Prefix a public file path with the GitHub Pages basePath. Idempotent. */
+/** Prefix a public file path with an optional basePath. Idempotent. */
 export function asset(path: string) {
   const clean = path.startsWith("/") ? path : `/${path}`;
   if (!BASE_PATH) return clean;

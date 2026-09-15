@@ -22,11 +22,47 @@ Shop CTAs register interest. They do not add to cart. Joining now gets **priorit
 
 ## Live site
 
-**https://oli321-netizen.github.io/hydrate-hit/**
+**https://hydrationhit.com**
 
-Custom domain (ready, DNS may still be pending): **hydrationhit.com**
+`www.hydrationhit.com` should resolve too (GitHub Pages redirects www → apex once DNS is in). Fallback while DNS propagates: https://oli321-netizen.github.io/hydrate-hit/
 
-Public assets on the GitHub project URL are prefixed with `/hydrate-hit`.
+## DNS records (registrar)
+
+Point the domain at GitHub Pages. Use **either** the four A records **or** an ALIAS/ANAME for the apex — not both overlapping in a way that fights.
+
+### Apex `hydrationhit.com`
+
+**Option A — A records**
+
+| Type | Host / Name | Value | TTL |
+| --- | --- | --- | --- |
+| A | `@` | `185.199.108.153` | 3600 or Auto |
+| A | `@` | `185.199.109.153` | 3600 or Auto |
+| A | `@` | `185.199.110.153` | 3600 or Auto |
+| A | `@` | `185.199.111.153` | 3600 or Auto |
+
+Optional IPv6 (AAAA), same host `@`:
+
+- `2606:50c0:8000::153`
+- `2606:50c0:8001::153`
+- `2606:50c0:8002::153`
+- `2606:50c0:8003::153`
+
+**Option B — ALIAS / ANAME** (if the registrar supports it, instead of the A records)
+
+| Type | Host / Name | Value |
+| --- | --- | --- |
+| ALIAS or ANAME | `@` | `oli321-netizen.github.io` |
+
+### `www.hydrationhit.com`
+
+| Type | Host / Name | Value |
+| --- | --- | --- |
+| CNAME | `www` | `oli321-netizen.github.io` |
+
+Do **not** CNAME the apex `@` unless the registrar’s ALIAS/ANAME product is explicitly that.
+
+Then in GitHub: **Settings → Pages → Custom domain** = `hydrationhit.com` (the deploy workflow also writes the `CNAME` file and tries to enforce HTTPS). Wait for the DNS check to go green, then **Enforce HTTPS**.
 
 ## Waitlist email (Formspree / Getform)
 
@@ -40,37 +76,7 @@ Static Pages cannot run `/api/waitlist`. Point the client at a form endpoint so 
 
 You can also set `FORMSPREE_ID` or `GETFORM_ID` (id only). The workflow maps those to `NEXT_PUBLIC_FORMSPREE_ID` / `NEXT_PUBLIC_GETFORM_ID`.
 
-Until a secret is set, local `npm run dev` still posts to `/api/waitlist` (stores nothing; use it only to test the UI). The live site needs the secret for real capture.
-
-## Custom domain (GitHub Pages)
-
-Target apex: `hydrationhit.com`. The build writes `CNAME` into the Pages output.
-
-### DNS (at your registrar)
-
-**Apex `hydrationhit.com`** — A records to GitHub Pages:
-
-| Type | Name | Value |
-| --- | --- | --- |
-| A | `@` | `185.199.108.153` |
-| A | `@` | `185.199.109.153` |
-| A | `@` | `185.199.110.153` |
-| A | `@` | `185.199.111.153` |
-
-**`www.hydrationhit.com`** — CNAME to `oli321-netizen.github.io`.
-
-Then in GitHub: **Settings → Pages → Custom domain** → `hydrationhit.com` → wait for DNS check → enable HTTPS.
-
-### Cut over paths (after DNS is green)
-
-The project URL uses `basePath` `/hydrate-hit`. A custom domain serves from the root, so once DNS works:
-
-1. Repo **Settings → Secrets and variables → Actions → Variables** → `CUSTOM_DOMAIN` = `hydrationhit.com`
-2. Push or re-run the Pages workflow.
-
-That drops `/hydrate-hit` from asset URLs and sets the canonical site URL to `https://hydrationhit.com`.
-
-If the domain changes, edit `CNAME`, `public/CNAME`, and the `CUSTOM_DOMAIN` variable.
+Until a secret is set, local `npm run dev` needs `WAITLIST_ENDPOINT` or `NEXT_PUBLIC_WAITLIST_ENDPOINT` to actually store emails. The live site needs the GitHub secret for real capture.
 
 ## Stack
 
