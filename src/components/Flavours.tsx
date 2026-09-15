@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FLAVOURS, PRICE, gbp, subscribePrice } from "@/lib/products";
 import { useCart, useFlavour } from "@/components/Providers";
 import { AccentLine, CrystalMark, FlavourName, ProofStrip } from "@/components/Brand";
-import { AddCanButton, PackCta, SubscribeButton } from "@/components/Ctas";
+import { AddCanButton, SubscribeButton } from "@/components/Ctas";
 import { AssetImage } from "@/components/AssetImage";
 
 export function Flavours() {
@@ -86,20 +86,39 @@ export function Flavours() {
               <li>5-pack, all five: {gbp(PRICE.pack5)}</li>
               <li>Subscribe and save 20% on any of the above.</li>
             </ul>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <AddCanButton
-                accent="#d63d8c"
-                className="bg-white"
-                onClick={() => add("variety-3")}
-              >
-                Add 3-can · {gbp(PRICE.variety3)}
-              </AddCanButton>
-              <SubscribeButton
-                className="border-white/30 text-zinc-200 hover:border-white hover:text-white"
-                onClick={() => add("variety-3", 1, true)}
-              >
-                Subscribe 3-can · {gbp(subscribePrice(PRICE.variety3))}
-              </SubscribeButton>
+            <div className="mt-6 flex flex-col gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <AddCanButton
+                  accent="#d63d8c"
+                  className="w-full sm:w-auto"
+                  onClick={() => add("variety-3")}
+                >
+                  Add 3-can · {gbp(PRICE.variety3)}
+                </AddCanButton>
+                <SubscribeButton
+                  onDark
+                  className="w-full sm:w-auto"
+                  onClick={() => add("variety-3", 1, true)}
+                >
+                  Subscribe 3-can · {gbp(subscribePrice(PRICE.variety3))}
+                </SubscribeButton>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <AddCanButton
+                  accent="#1f6fe5"
+                  className="w-full sm:w-auto"
+                  onClick={() => add("pack-5")}
+                >
+                  Add 5-pack · {gbp(PRICE.pack5)}
+                </AddCanButton>
+                <SubscribeButton
+                  onDark
+                  className="w-full sm:w-auto"
+                  onClick={() => add("pack-5", 1, true)}
+                >
+                  Subscribe 5-pack · {gbp(subscribePrice(PRICE.pack5))}
+                </SubscribeButton>
+              </div>
             </div>
           </div>
           <div className="relative min-h-52 overflow-hidden rounded-2xl bg-zinc-800">
@@ -109,16 +128,6 @@ export function Flavours() {
               fill
               className="object-cover"
             />
-          </div>
-          <div className="md:col-span-2">
-            <PackCta href="/shop">Shop the 5-pack</PackCta>
-            <button
-              type="button"
-              onClick={() => add("pack-5")}
-              className="ml-4 text-sm font-medium text-zinc-300 underline-offset-4 hover:text-white hover:underline"
-            >
-              Add 5-pack · {gbp(PRICE.pack5)}
-            </button>
           </div>
         </div>
       </div>

@@ -32,8 +32,8 @@ export function Hero() {
             {CAN_LINE}. Twenty pouches. No nicotine.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <ShopCta href="/#shop" />
-            <WaitlistCta />
+            <ShopCta href="/#shop">Shop the line</ShopCta>
+            <WaitlistCta>Join waitlist</WaitlistCta>
           </div>
           <p className="mt-6 font-mono text-xs text-muted">
             From {gbp(subscribePrice(PRICE.single))} on subscribe, or {gbp(PRICE.single)} a can.
