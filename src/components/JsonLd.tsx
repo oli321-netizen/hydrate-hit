@@ -74,6 +74,7 @@ export function JsonLd() {
           position: i + 1,
           name: flavour.name,
           url: `${SITE_URL}/flavours/${flavour.slug}`,
+          image: `${SITE_URL}${flavour.heroSrc}`,
         })),
       },
       {
