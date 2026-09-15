@@ -1,6 +1,6 @@
 import { mkdir, appendFile, readFile } from "node:fs/promises";
 import path from "node:path";
-import { Client } from "pg";
+import { Pool } from "pg";
 import type { WaitlistPayload } from "@/lib/waitlist";
 
 export type WaitlistRow = {
@@ -11,6 +11,8 @@ export type WaitlistRow = {
   source: string;
   createdAt: string;
 };
+
+export type StorageKind = "postgres" | "file";
 
 const CREATE_SQL = `
   CREATE TABLE IF NOT EXISTS waitlist (
@@ -24,17 +26,49 @@ const CREATE_SQL = `
   )
 `;
 
+let pool: Pool | null = null;
+
 function filePath() {
   return process.env.WAITLIST_PATH || path.join(process.cwd(), "data", "waitlist.jsonl");
 }
 
-function pgClient() {
-  return new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: process.env.DATABASE_URL?.includes("localhost")
-      ? false
-      : { rejectUnauthorized: false },
-  });
+export function configuredBackend(): StorageKind {
+  return process.env.DATABASE_URL?.trim() ? "postgres" : "file";
+}
+
+/** Railway private host does not speak TLS. Public proxy / sslmode=require does. */
+export function pgSsl(connectionString: string) {
+  const value = connectionString.toLowerCase();
+  if (value.includes("sslmode=disable")) return false;
+  if (value.includes("localhost") || value.includes("127.0.0.1")) return false;
+  if (value.includes(".railway.internal") || value.includes("railway.internal")) return false;
+  if (
+    value.includes("sslmode=require") ||
+    value.includes("sslmode=verify") ||
+    value.includes("proxy.rlwy.net") ||
+    value.includes(".rlwy.net")
+  ) {
+    return { rejectUnauthorized: false };
+  }
+  return { rejectUnauthorized: false };
+}
+
+function getPool() {
+  const connectionString = process.env.DATABASE_URL?.trim();
+  if (!connectionString) return null;
+  if (!pool) {
+    pool = new Pool({
+      connectionString,
+      ssl: pgSsl(connectionString),
+      max: 4,
+      idleTimeoutMillis: 10_000,
+      connectionTimeoutMillis: 8_000,
+    });
+    pool.on("error", (error) => {
+      console.error("waitlist postgres pool", error);
+    });
+  }
+  return pool;
 }
 
 function rowFromPayload(payload: WaitlistPayload): WaitlistRow {
@@ -46,6 +80,11 @@ function rowFromPayload(payload: WaitlistPayload): WaitlistRow {
     source: payload.source ?? "site",
     createdAt: new Date().toISOString(),
   };
+}
+
+function asErrorMessage(error: unknown) {
+  if (error instanceof Error && error.message) return error.message;
+  return "Waitlist store failed.";
 }
 
 async function insertFile(row: WaitlistRow) {
@@ -68,64 +107,98 @@ async function listFile(): Promise<WaitlistRow[]> {
 }
 
 async function insertPostgres(row: WaitlistRow) {
-  const client = pgClient();
-  await client.connect();
-  try {
-    await client.query(CREATE_SQL);
-    await client.query(
-      `INSERT INTO waitlist (email, flavour, sku, intent, source, created_at)
-       VALUES ($1, $2, $3, $4, $5, $6)`,
-      [row.email, row.flavour, row.sku, row.intent, row.source, row.createdAt],
-    );
-  } finally {
-    await client.end();
-  }
+  const db = getPool();
+  if (!db) throw new Error("DATABASE_URL is not set.");
+  await db.query(CREATE_SQL);
+  await db.query(
+    `INSERT INTO waitlist (email, flavour, sku, intent, source, created_at)
+     VALUES ($1, $2, $3, $4, $5, $6)`,
+    [row.email, row.flavour, row.sku, row.intent, row.source, row.createdAt],
+  );
 }
 
 async function listPostgres(): Promise<WaitlistRow[]> {
-  const client = pgClient();
-  await client.connect();
-  try {
-    await client.query(CREATE_SQL);
-    const result = await client.query<{
-      email: string;
-      flavour: string | null;
-      sku: string | null;
-      intent: string | null;
-      source: string | null;
-      created_at: Date;
-    }>(
-      `SELECT email, flavour, sku, intent, source, created_at
-       FROM waitlist
-       ORDER BY created_at ASC`,
-    );
-    return result.rows.map((item) => ({
-      email: item.email,
-      flavour: item.flavour ?? "",
-      sku: item.sku ?? "",
-      intent: item.intent ?? "",
-      source: item.source ?? "",
-      createdAt: new Date(item.created_at).toISOString(),
-    }));
-  } finally {
-    await client.end();
-  }
-}
-
-export function storageBackend(): "postgres" | "file" {
-  return process.env.DATABASE_URL ? "postgres" : "file";
+  const db = getPool();
+  if (!db) throw new Error("DATABASE_URL is not set.");
+  await db.query(CREATE_SQL);
+  const result = await db.query<{
+    email: string;
+    flavour: string | null;
+    sku: string | null;
+    intent: string | null;
+    source: string | null;
+    created_at: Date;
+  }>(
+    `SELECT email, flavour, sku, intent, source, created_at
+     FROM waitlist
+     ORDER BY created_at ASC`,
+  );
+  return result.rows.map((item) => ({
+    email: item.email,
+    flavour: item.flavour ?? "",
+    sku: item.sku ?? "",
+    intent: item.intent ?? "",
+    source: item.source ?? "",
+    createdAt: new Date(item.created_at).toISOString(),
+  }));
 }
 
 export async function storeWaitlist(payload: WaitlistPayload) {
   const row = rowFromPayload(payload);
-  if (storageBackend() === "postgres") await insertPostgres(row);
-  else await insertFile(row);
-  return row;
+  if (configuredBackend() === "postgres") {
+    try {
+      await insertPostgres(row);
+      return { row, storage: "postgres" as const };
+    } catch (error) {
+      console.error("waitlist postgres insert failed; falling back to file", error);
+      try {
+        await insertFile(row);
+        return {
+          row,
+          storage: "file" as const,
+          warning: `postgres unavailable (${asErrorMessage(error)}); wrote to file`,
+        };
+      } catch (fileError) {
+        throw new Error(
+          `Waitlist could not save (${asErrorMessage(error)}; file: ${asErrorMessage(fileError)}).`,
+        );
+      }
+    }
+  }
+  await insertFile(row);
+  return { row, storage: "file" as const };
 }
 
 export async function listWaitlist() {
-  if (storageBackend() === "postgres") return listPostgres();
+  if (configuredBackend() === "postgres") {
+    try {
+      return await listPostgres();
+    } catch (error) {
+      console.error("waitlist postgres list failed; falling back to file", error);
+      return listFile();
+    }
+  }
   return listFile();
+}
+
+export async function probeStorage() {
+  const configured = configuredBackend();
+  if (configured !== "postgres") {
+    return { storage: "file" as const, configured: "file" as const };
+  }
+  try {
+    const db = getPool();
+    if (!db) throw new Error("DATABASE_URL is not set.");
+    await db.query("SELECT 1");
+    return { storage: "postgres" as const, configured: "postgres" as const };
+  } catch (error) {
+    console.error("waitlist postgres probe failed", error);
+    return {
+      storage: "file" as const,
+      configured: "postgres" as const,
+      warning: asErrorMessage(error),
+    };
+  }
 }
 
 /** Unique emails, first-seen row wins — for the launch mailer. */

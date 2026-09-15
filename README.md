@@ -31,16 +31,16 @@ Shop CTAs register interest. They do not add to cart. Joining now gets **priorit
 
 1. New project → **Deploy from GitHub** → `oli321-netizen/hydrate-hit` → branch `main`.
 2. Railway builds `Dockerfile` (`railway.toml`). No Railway token belongs in this repo.
-3. Optional but recommended: **Add PostgreSQL** in the same Railway project.
-4. **Link Postgres to the web service** (Railway does **not** auto-inject `DATABASE_URL` into the Next.js service):
-   - Open the **web / Next.js** service → **Variables**
-   - **Add Variable** → Name: `DATABASE_URL` → Value: `${{Postgres.DATABASE_URL}}`
-   - If the DB service is not named `Postgres`, use that exact service name, e.g. `${{PostgreSQL.DATABASE_URL}}`
-   - Save (Railway redeploys). Without this reference, signups still return `200` but write to ephemeral `data/waitlist.jsonl` inside the container — **no tables appear in Railway Data**.
-5. Set remaining env vars (below).
-6. Copy the public hostname, e.g. `hydrate-hit-production.up.railway.app`.
+3. Add **PostgreSQL** in the same Railway project.
+4. **Link Postgres to the web service** (Railway does **not** auto-inject `DATABASE_URL`):
+   - Web service → **Variables** → **Add Variable**
+   - Name: `DATABASE_URL`
+   - Value: `${{Postgres.DATABASE_URL}}` (use the **exact** Postgres service name if it is not `Postgres`, e.g. `${{PostgreSQL.DATABASE_URL}}`)
+   - Save and **redeploy** the web service.
+5. Confirm `GET https://hydrationhit.com/api/waitlist` returns `"storage":"postgres"`. If you see `"file"` plus a `warning`, the URL is present but connect/SSL failed — the app falls back to JSONL so signups still work.
+6. Set remaining env vars (below).
 
-**Verify storage:** `GET https://hydrationhit.com/api/waitlist` returns `{"ok":true,"storage":"postgres"}` when linked (or `"file"` when not). First successful POST with `storage":"postgres"` creates table `waitlist`.
+Do **not** set `GITHUB_PAGES=true` on Railway.
 
 ### Env vars
 
@@ -48,7 +48,7 @@ Shop CTAs register interest. They do not add to cart. Joining now gets **priorit
 | --- | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | yes | `https://hydrationhit.com` |
 | `NEXT_PUBLIC_CUSTOM_DOMAIN` | yes | `hydrationhit.com` |
-| `DATABASE_URL` | recommended | Postgres URL from the Railway plugin |
+| `DATABASE_URL` | yes on Railway | `${{Postgres.DATABASE_URL}}` on the **web** service, then redeploy |
 | `WAITLIST_PATH` | no | JSONL path if no Postgres. Default `data/waitlist.jsonl` |
 | `WAITLIST_EXPORT_SECRET` | yes for export | Bearer / `?key=` for CSV download |
 | `WAITLIST_FORWARD_ENDPOINT` | no | Extra POST (Formspree/Getform) after local store |

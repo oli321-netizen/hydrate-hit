@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isEmail, waitlistEndpoint, type WaitlistPayload } from "@/lib/waitlist";
-import { storageBackend, storeWaitlist } from "@/lib/waitlist-store";
+import { probeStorage, storeWaitlist } from "@/lib/waitlist-store";
 
 export const runtime = "nodejs";
 
@@ -26,7 +26,13 @@ async function forwardOptional(payload: WaitlistPayload) {
 
 /** Probe which store the live service will use (no writes). */
 export async function GET() {
-  return NextResponse.json({ ok: true, storage: storageBackend() });
+  try {
+    const probe = await probeStorage();
+    return NextResponse.json({ ok: true, ...probe });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Waitlist probe failed.";
+    return NextResponse.json({ ok: false, error: message }, { status: 500 });
+  }
 }
 
 export async function POST(request: Request) {
@@ -56,8 +62,17 @@ export async function POST(request: Request) {
     source: body.source ?? "api",
   };
 
-  await storeWaitlist(payload);
-  await forwardOptional(payload);
-
-  return NextResponse.json({ ok: true, storage: storageBackend() });
+  try {
+    const result = await storeWaitlist(payload);
+    await forwardOptional(payload);
+    return NextResponse.json({
+      ok: true,
+      storage: result.storage,
+      ...(result.warning ? { warning: result.warning } : {}),
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "That email did not take. Try again.";
+    console.error("waitlist POST", error);
+    return NextResponse.json({ ok: false, error: message }, { status: 500 });
+  }
 }
