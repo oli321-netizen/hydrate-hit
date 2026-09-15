@@ -10,8 +10,8 @@ export function Why() {
             Hydration first. Then the hit.
           </h2>
           <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-ink-soft">
-            Most pouches pick a vice and dress it up. This one carries water-salt
-            minerals and a measured caffeine dose you can actually name.
+            Caffeine for the hit. Sodium, potassium and magnesium for the water
+            work. Named doses, not a mystery blend.
           </p>
         </div>
         <ul className="divide-y divide-line text-sm">

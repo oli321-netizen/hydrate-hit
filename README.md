@@ -36,7 +36,7 @@ npm run build
 
 ## Site map
 
-- `/` hero with 3D tin, why, stack, shop, how to use, review placeholders, compare vs Range / ZALT / energy pouches, FAQ, waitlist
+- `/` hero with 3D tin, why, stack, shop, how to use, review placeholders, FAQ, waitlist
 - `/shop` cans and packs
 - `/flavours/[slug]` flavour detail
 - `/cart` stub cart

@@ -5,7 +5,7 @@ const FAQS = [
   },
   {
     q: "Is there nicotine?",
-    a: "No. Hydrate Hit is a caffeine and electrolyte pouch. Range and ZALT it is not.",
+    a: "No. Hydrate Hit is a caffeine and electrolyte pouch. No nicotine.",
   },
   {
     q: "How many pouches in a can?",
