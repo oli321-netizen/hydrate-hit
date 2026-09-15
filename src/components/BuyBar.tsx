@@ -1,16 +1,19 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { FLAVOURS, PRICE, gbp, subscribePrice } from "@/lib/products";
-import { useCart, useFlavour } from "@/components/Providers";
+import { FLAVOURS, PRICE, gbp } from "@/lib/products";
+import { useFlavour } from "@/components/Providers";
+import { useInterest } from "@/components/InterestModal";
 import { StickyAddButton } from "@/components/Ctas";
 
 export function BuyBar() {
   const path = usePathname();
   const { flavour, setSlug } = useFlavour();
-  const { add, count } = useCart();
+  const { openInterest } = useInterest();
 
-  if (path === "/cart") return null;
+  if (path === "/cart" || path === "/waitlist" || path === "/cart/" || path === "/waitlist/") {
+    return null;
+  }
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-[color-mix(in_srgb,var(--bg)_92%,white)] px-3 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur-md md:hidden">
@@ -30,13 +33,21 @@ export function BuyBar() {
             </option>
           ))}
         </select>
-        <StickyAddButton onClick={() => add(flavour.slug)}>
-          Add {gbp(PRICE.single)}
+        <StickyAddButton
+          onClick={() =>
+            openInterest({
+              flavour: flavour.slug,
+              sku: flavour.slug,
+              intent: "add",
+              source: "buy-bar",
+            })
+          }
+        >
+          Get priority
         </StickyAddButton>
       </div>
       <p className="mt-1 text-center font-mono text-[10px] uppercase tracking-wider text-muted">
-        Subscribe {gbp(subscribePrice(PRICE.single))}
-        {count > 0 ? ` · Cart ${count}` : ""}
+        From {gbp(PRICE.single)} · priority delivery on first drop
       </p>
     </div>
   );

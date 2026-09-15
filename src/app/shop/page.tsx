@@ -18,7 +18,8 @@ export default function ShopPage() {
         <h1 className="text-4xl font-semibold tracking-tighter md:text-6xl">Shop</h1>
         <p className="mt-3 max-w-[50ch] text-base leading-relaxed text-ink-soft">
           Single can {gbp(PRICE.single)}. 3-can variety {gbp(PRICE.variety3)}. 5-pack{" "}
-          {gbp(PRICE.pack5)}. Subscribe and save 20%.
+          {gbp(PRICE.pack5)}. Register interest for priority delivery — this is
+          not checkout.
         </p>
         <h2 className="mt-12 text-2xl font-semibold tracking-tight">Cans</h2>
         <ShopGrid products={singles} />

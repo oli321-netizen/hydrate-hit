@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, IBM_Plex_Mono } from "next/font/google";
 import { CAN_LINE, SITE_NAME, SITE_URL, TAGLINE, asset } from "@/lib/site";
 import { Providers } from "@/components/Providers";
+import { InterestProvider } from "@/components/InterestModal";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { BuyBar } from "@/components/BuyBar";
@@ -67,10 +68,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="crystal-cursor min-h-full bg-bg text-ink">
         <JsonLd />
         <Providers>
-          <Nav />
-          {children}
-          <Footer />
-          <BuyBar />
+          <InterestProvider>
+            <Nav />
+            {children}
+            <Footer />
+            <BuyBar />
+          </InterestProvider>
         </Providers>
       </body>
     </html>

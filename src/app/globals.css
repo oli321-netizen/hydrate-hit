@@ -84,8 +84,23 @@ select {
     pointer;
 }
 
-@media (pointer: coarse) {
-  .crystal-cursor {
-    cursor: auto;
+@keyframes interest-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.interest-in {
+  animation: interest-in 220ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interest-in {
+    animation: none;
   }
 }

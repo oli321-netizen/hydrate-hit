@@ -1,12 +1,12 @@
 "use client";
 
 import { PRODUCTS, gbp, subscribePrice, type Product } from "@/lib/products";
-import { useCart } from "@/components/Providers";
+import { useInterest } from "@/components/InterestModal";
 import { AddCanButton, SubscribeButton } from "@/components/Ctas";
 import { AssetImage } from "@/components/AssetImage";
 
 export function ShopGrid({ products }: { products: Product[] }) {
-  const { add } = useCart();
+  const { openInterest } = useInterest();
   const list = products.length ? products : PRODUCTS;
 
   return (
@@ -25,10 +25,28 @@ export function ShopGrid({ products }: { products: Product[] }) {
           <p className="text-sm text-ink-soft">{product.detail}</p>
           <p className="mt-2 font-medium">{gbp(product.priceGbp)}</p>
           <div className="mt-4 flex flex-col gap-2">
-            <AddCanButton onClick={() => add(product.sku)}>
+            <AddCanButton
+              onClick={() =>
+                openInterest({
+                  sku: product.sku,
+                  flavour: product.flavours.length === 1 ? product.flavours[0] : undefined,
+                  intent: "add",
+                  source: "shop-grid",
+                })
+              }
+            >
               Add · {gbp(product.priceGbp)}
             </AddCanButton>
-            <SubscribeButton onClick={() => add(product.sku, 1, true)}>
+            <SubscribeButton
+              onClick={() =>
+                openInterest({
+                  sku: product.sku,
+                  flavour: product.flavours.length === 1 ? product.flavours[0] : undefined,
+                  intent: "subscribe",
+                  source: "shop-grid",
+                })
+              }
+            >
               Subscribe · {gbp(subscribePrice(product.priceGbp))}
             </SubscribeButton>
           </div>

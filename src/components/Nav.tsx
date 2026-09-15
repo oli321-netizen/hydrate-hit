@@ -2,10 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { useCart } from "@/components/Providers";
 
 export function Nav() {
-  const { count } = useCart();
   const [open, setOpen] = useState(false);
 
   return (
@@ -24,11 +22,8 @@ export function Nav() {
           <Link href="/#faq" className="hover:text-ink">
             FAQ
           </Link>
-          <Link href="/#waitlist" className="hover:text-ink">
+          <Link href="/#waitlist" className="text-ink">
             Waitlist
-          </Link>
-          <Link href="/cart" className="text-ink">
-            Cart{count > 0 ? ` (${count})` : ""}
           </Link>
         </nav>
         <button
@@ -56,9 +51,6 @@ export function Nav() {
             </Link>
             <Link href="/#waitlist" onClick={() => setOpen(false)}>
               Waitlist
-            </Link>
-            <Link href="/cart" onClick={() => setOpen(false)}>
-              Cart{count > 0 ? ` (${count})` : ""}
             </Link>
           </div>
         </div>

@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     q: "When do you ship?",
-    a: "First drop is waitlist only. Join it. We email when cans are real, not when a landing page is lonely.",
+    a: "First drop is waitlist only. Register interest now and you get priority delivery when we ship. We email the list. Nothing is for sale on this page.",
   },
 ];
 

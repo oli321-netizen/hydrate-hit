@@ -2,14 +2,15 @@
 
 import Link from "next/link";
 import { FLAVOURS, PRICE, gbp, subscribePrice } from "@/lib/products";
-import { useCart, useFlavour } from "@/components/Providers";
+import { useFlavour } from "@/components/Providers";
+import { useInterest } from "@/components/InterestModal";
 import { AccentLine, CrystalMark, FlavourName, ProofStrip } from "@/components/Brand";
 import { AddCanButton, SubscribeButton } from "@/components/Ctas";
 import { AssetImage } from "@/components/AssetImage";
 
 export function Flavours() {
-  const { add } = useCart();
   const { setSlug } = useFlavour();
+  const { openInterest } = useInterest();
 
   return (
     <section id="shop" className="px-4 py-16 md:px-8 md:py-24">
@@ -19,7 +20,8 @@ export function Flavours() {
         </h2>
         <p className="mt-4 max-w-[52ch] text-base leading-relaxed text-ink-soft">
           Dual-tone names, crystal mark, accent-lined tagline. The Blue Razz
-          system, applied across the line.
+          system, applied across the line. Register interest for priority
+          delivery on the first drop.
         </p>
 
         <div className="-mx-4 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-5 md:overflow-visible md:px-0">
@@ -59,7 +61,12 @@ export function Flavours() {
                   accent={flavour.toneA}
                   onClick={() => {
                     setSlug(flavour.slug);
-                    add(flavour.slug);
+                    openInterest({
+                      flavour: flavour.slug,
+                      sku: flavour.slug,
+                      intent: "add",
+                      source: "flavour-card",
+                    });
                   }}
                 >
                   Add can · {gbp(PRICE.single)}
@@ -67,7 +74,12 @@ export function Flavours() {
                 <SubscribeButton
                   onClick={() => {
                     setSlug(flavour.slug);
-                    add(flavour.slug, 1, true);
+                    openInterest({
+                      flavour: flavour.slug,
+                      sku: flavour.slug,
+                      intent: "subscribe",
+                      source: "flavour-card",
+                    });
                   }}
                 >
                   Subscribe · {gbp(subscribePrice(PRICE.single))}
@@ -91,14 +103,26 @@ export function Flavours() {
                 <AddCanButton
                   accent="#d63d8c"
                   className="w-full sm:w-auto"
-                  onClick={() => add("variety-3")}
+                  onClick={() =>
+                    openInterest({
+                      sku: "variety-3",
+                      intent: "add",
+                      source: "bundle",
+                    })
+                  }
                 >
                   Add 3-can · {gbp(PRICE.variety3)}
                 </AddCanButton>
                 <SubscribeButton
                   onDark
                   className="w-full sm:w-auto"
-                  onClick={() => add("variety-3", 1, true)}
+                  onClick={() =>
+                    openInterest({
+                      sku: "variety-3",
+                      intent: "subscribe",
+                      source: "bundle",
+                    })
+                  }
                 >
                   Subscribe 3-can · {gbp(subscribePrice(PRICE.variety3))}
                 </SubscribeButton>
@@ -107,14 +131,26 @@ export function Flavours() {
                 <AddCanButton
                   accent="#1f6fe5"
                   className="w-full sm:w-auto"
-                  onClick={() => add("pack-5")}
+                  onClick={() =>
+                    openInterest({
+                      sku: "pack-5",
+                      intent: "add",
+                      source: "bundle",
+                    })
+                  }
                 >
                   Add 5-pack · {gbp(PRICE.pack5)}
                 </AddCanButton>
                 <SubscribeButton
                   onDark
                   className="w-full sm:w-auto"
-                  onClick={() => add("pack-5", 1, true)}
+                  onClick={() =>
+                    openInterest({
+                      sku: "pack-5",
+                      intent: "subscribe",
+                      source: "bundle",
+                    })
+                  }
                 >
                   Subscribe 5-pack · {gbp(subscribePrice(PRICE.pack5))}
                 </SubscribeButton>

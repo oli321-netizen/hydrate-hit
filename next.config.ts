@@ -1,8 +1,16 @@
 import type { NextConfig } from "next";
 
 const isPages = process.env.GITHUB_PAGES === "true";
-const basePath =
-  process.env.NEXT_PUBLIC_BASE_PATH ?? (isPages ? "/hydrate-hit" : "");
+const customDomain = (
+  process.env.NEXT_PUBLIC_CUSTOM_DOMAIN ??
+  process.env.CUSTOM_DOMAIN ??
+  ""
+)
+  .replace(/^https?:\/\//, "")
+  .replace(/\/$/, "");
+const basePath = customDomain
+  ? ""
+  : (process.env.NEXT_PUBLIC_BASE_PATH ?? (isPages ? "/hydrate-hit" : ""));
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,

@@ -32,15 +32,31 @@ jobs:
           GITHUB_PAGES: "true"
           NEXT_PUBLIC_BASE_PATH: /hydrate-hit
           NEXT_PUBLIC_SITE_URL: https://oli321-netizen.github.io/hydrate-hit
+          NEXT_PUBLIC_WAITLIST_ENDPOINT: ${{ secrets.WAITLIST_ENDPOINT }}
+          NEXT_PUBLIC_FORMSPREE_ID: ${{ secrets.FORMSPREE_ID }}
+          NEXT_PUBLIC_GETFORM_ID: ${{ secrets.GETFORM_ID }}
+          NEXT_PUBLIC_CUSTOM_DOMAIN: ${{ vars.CUSTOM_DOMAIN }}
+          CUSTOM_DOMAIN: ${{ vars.CUSTOM_DOMAIN }}
       - name: Add .nojekyll
         run: touch out/.nojekyll
+      - name: Publish custom domain CNAME
+        run: |
+          DOMAIN="${CUSTOM_DOMAIN:-hydrationhit.com}"
+          echo "$DOMAIN" > out/CNAME
+          echo "CNAME $DOMAIN"
+        env:
+          CUSTOM_DOMAIN: ${{ vars.CUSTOM_DOMAIN }}
       - name: Guard public asset basePath
         run: |
-          if grep -R --include='*.html' -E 'src="/tins/|src="/og\.jpg|href="/tins/' out; then
-            echo "Bare /tins or /og paths found. Prefix with basePath via asset()."
-            exit 1
+          if [ -n "${{ vars.CUSTOM_DOMAIN }}" ]; then
+            grep -q 'tins/blue-razz.jpg' out/index.html
+          else
+            if grep -R --include='*.html' -E 'src="/tins/|src="/og\.jpg|href="/tins/' out; then
+              echo "Bare /tins or /og paths found. Prefix with basePath via asset()."
+              exit 1
+            fi
+            grep -q '/hydrate-hit/tins/blue-razz.jpg' out/index.html
           fi
-          grep -q '/hydrate-hit/tins/blue-razz.jpg' out/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
