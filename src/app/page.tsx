@@ -9,9 +9,6 @@ import { FAQ } from "@/components/FAQ";
 import { WaitlistBand } from "@/components/WaitlistForm";
 import { Hero } from "@/components/Hero";
 
-export const dynamic =
-  process.env.GITHUB_PAGES === "true" ? "force-static" : "force-dynamic";
-
 export const metadata: Metadata = {
   title: { absolute: `${SITE_NAME} · ${TAGLINE}` },
   description: `${TAGLINE} Nicotine-free caffeine and electrolyte pouches. ${CAN_LINE}. Five flavours. From £12.99. UK.`,
