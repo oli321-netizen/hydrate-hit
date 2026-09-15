@@ -31,9 +31,16 @@ Shop CTAs register interest. They do not add to cart. Joining now gets **priorit
 
 1. New project → **Deploy from GitHub** → `oli321-netizen/hydrate-hit` → branch `main`.
 2. Railway builds `Dockerfile` (`railway.toml`). No Railway token belongs in this repo.
-3. Optional: add a **PostgreSQL** plugin. Railway injects `DATABASE_URL`. Without it, emails append to `data/waitlist.jsonl` (add a Volume mounted at `/app/data` so they survive deploys).
-4. Set env vars (below).
-5. Copy the public hostname, e.g. `hydrate-hit-production.up.railway.app`.
+3. Optional but recommended: **Add PostgreSQL** in the same Railway project.
+4. **Link Postgres to the web service** (Railway does **not** auto-inject `DATABASE_URL` into the Next.js service):
+   - Open the **web / Next.js** service → **Variables**
+   - **Add Variable** → Name: `DATABASE_URL` → Value: `${{Postgres.DATABASE_URL}}`
+   - If the DB service is not named `Postgres`, use that exact service name, e.g. `${{PostgreSQL.DATABASE_URL}}`
+   - Save (Railway redeploys). Without this reference, signups still return `200` but write to ephemeral `data/waitlist.jsonl` inside the container — **no tables appear in Railway Data**.
+5. Set remaining env vars (below).
+6. Copy the public hostname, e.g. `hydrate-hit-production.up.railway.app`.
+
+**Verify storage:** `GET https://hydrationhit.com/api/waitlist` returns `{"ok":true,"storage":"postgres"}` when linked (or `"file"` when not). First successful POST with `storage":"postgres"` creates table `waitlist`.
 
 ### Env vars
 
