@@ -99,8 +99,33 @@ select {
   animation: interest-in 220ms ease-out;
 }
 
+.hh-splash-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  transition: opacity 400ms ease;
+}
+
+.hh-splash-overlay--out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+html.hh-splash,
+html.hh-splash body {
+  overflow: hidden;
+}
+
+html.hh-splash-skip .hh-splash-overlay {
+  display: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .interest-in {
-    animation: none;
+  .hh-splash-overlay {
+    transition: opacity 80ms linear;
   }
 }

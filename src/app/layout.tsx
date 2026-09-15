@@ -7,6 +7,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { BuyBar } from "@/components/BuyBar";
 import { JsonLd } from "@/components/JsonLd";
+import { Splash } from "@/components/Splash";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -66,9 +67,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en-GB" className={`${outfit.variable} ${ibm.variable} h-full antialiased`}>
       <body className="crystal-cursor min-h-full bg-bg text-ink">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem("hh-splash-seen"))document.documentElement.classList.add("hh-splash-skip");else document.documentElement.classList.add("hh-splash")}catch(e){}`,
+          }}
+        />
         <JsonLd />
         <Providers>
           <InterestProvider>
+            <Splash />
             <Nav />
             {children}
             <Footer />
