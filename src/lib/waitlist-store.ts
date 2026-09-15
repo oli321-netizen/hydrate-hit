@@ -112,15 +112,19 @@ async function listPostgres(): Promise<WaitlistRow[]> {
   }
 }
 
+export function storageBackend(): "postgres" | "file" {
+  return process.env.DATABASE_URL ? "postgres" : "file";
+}
+
 export async function storeWaitlist(payload: WaitlistPayload) {
   const row = rowFromPayload(payload);
-  if (process.env.DATABASE_URL) await insertPostgres(row);
+  if (storageBackend() === "postgres") await insertPostgres(row);
   else await insertFile(row);
   return row;
 }
 
 export async function listWaitlist() {
-  if (process.env.DATABASE_URL) return listPostgres();
+  if (storageBackend() === "postgres") return listPostgres();
   return listFile();
 }
 

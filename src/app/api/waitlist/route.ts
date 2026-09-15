@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isEmail, waitlistEndpoint, type WaitlistPayload } from "@/lib/waitlist";
-import { storeWaitlist } from "@/lib/waitlist-store";
+import { storageBackend, storeWaitlist } from "@/lib/waitlist-store";
 
 export const runtime = "nodejs";
 
@@ -22,6 +22,11 @@ async function forwardOptional(payload: WaitlistPayload) {
       _subject: "Hydrate Hit waitlist",
     }),
   }).catch(() => undefined);
+}
+
+/** Probe which store the live service will use (no writes). */
+export async function GET() {
+  return NextResponse.json({ ok: true, storage: storageBackend() });
 }
 
 export async function POST(request: Request) {
@@ -54,5 +59,5 @@ export async function POST(request: Request) {
   await storeWaitlist(payload);
   await forwardOptional(payload);
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, storage: storageBackend() });
 }
