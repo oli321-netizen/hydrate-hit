@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_NAME } from "@/lib/site";
 
-export const OG_IMAGE_URL = `${SITE_URL.replace(/\/$/, "")}/og.jpg`;
+/** Canonical share image. Always the apex URL — never prefix with /hydrate-hit. */
+export const OG_IMAGE_URL = "https://hydrationhit.com/og.jpg";
 export const OG_IMAGE = {
   url: OG_IMAGE_URL,
   width: 1200,
   height: 630,
-  alt: "Hydrate Hit — the pouch that hydrates and hits",
+  alt: "Hydrate Hit — the pouch that hydrates and hits. Blue Razz tin.",
 };
 
 export const SEO_PAGES = [
