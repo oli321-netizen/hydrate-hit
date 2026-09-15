@@ -1,5 +1,8 @@
+"use client";
+
 import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
+import { useInterest } from "@/components/InterestModal";
 
 type Base = {
   children?: ReactNode;
@@ -51,22 +54,35 @@ export function ShopCta({
 }
 
 export function WaitlistCta({
-  href = "/#waitlist",
+  href,
   children = "Join waitlist",
   className,
 }: Base & { href?: string }) {
+  const { openInterest } = useInterest();
+  const classNameResolved = cx(
+    "inline-flex min-h-11 items-center justify-center px-1 text-sm font-semibold tracking-tight",
+    "bg-[linear-gradient(90deg,var(--accent),var(--accent-2))] bg-bottom bg-no-repeat [background-size:100%_2px] hover:[background-size:100%_4px] active:translate-y-px",
+    className,
+  );
+  const style = { color: INK };
+
+  if (href && href !== "/#waitlist" && href !== "#waitlist") {
+    return (
+      <Link href={href} className={classNameResolved} style={style}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    <Link
-      href={href}
-      className={cx(
-        "inline-flex min-h-11 items-center justify-center px-1 text-sm font-semibold tracking-tight",
-        "bg-[linear-gradient(90deg,var(--accent),var(--accent-2))] bg-bottom bg-no-repeat [background-size:100%_2px] hover:[background-size:100%_4px] active:translate-y-px",
-        className,
-      )}
-      style={{ color: INK }}
+    <button
+      type="button"
+      className={classNameResolved}
+      style={style}
+      onClick={() => openInterest({ intent: "waitlist", source: "waitlist-cta" })}
     >
       {children}
-    </Link>
+    </button>
   );
 }
 
