@@ -18,6 +18,14 @@ Mobile-first marketing and shop site for **Hydrate Hit**, the pouch that hydrate
 | 3-can variety (Frost Mint + Citrus Ice + Blue Razz) | £34.99 | £27.99 |
 | 5-pack (all five) | £54.99 | £43.99 |
 
+## Live site
+
+HTTPS preview (Vercel): **https://temporary-turbo-alder-9hz0yq0.vercel.app**
+
+Claim that deployment to keep it: https://vercel.com/claim-deployment?code=a3b926da-ce3b-48d4-bcdd-b2d977dd54d5
+
+GitHub Pages (after Pages is enabled on the repo): https://oli321-netizen.github.io/hydrate-hit/
+
 ## Stack
 
 Next.js App Router, TypeScript, Tailwind CSS v4, React Three Fiber (3D tin + flavour switcher).

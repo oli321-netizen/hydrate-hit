@@ -1,6 +1,8 @@
 import { SITE_URL } from "@/lib/site";
 import { FLAVOURS } from "@/lib/products";
 
+export const dynamic = "force-static";
+
 export default function sitemap() {
   const now = new Date();
   const staticPaths = ["", "/shop", "/waitlist", "/cart"].map((path) => ({
