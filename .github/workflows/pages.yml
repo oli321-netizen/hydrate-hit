@@ -6,19 +6,16 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,14 +26,56 @@ jobs:
       - run: npm ci
       - name: Drop API routes for static export
         run: rm -rf src/app/api
-      - run: npm run build
+      - name: Build
+        run: npm run build
         env:
           GITHUB_PAGES: "true"
           NEXT_PUBLIC_BASE_PATH: /hydrate-hit
           NEXT_PUBLIC_SITE_URL: https://oli321-netizen.github.io/hydrate-hit
-      - uses: actions/configure-pages@v5
+      - name: Add .nojekyll
+        run: touch out/.nojekyll
+      - name: Guard public asset basePath
+        run: |
+          if grep -R --include='*.html' -E 'src="/tins/|src="/og\.jpg|href="/tins/' out; then
+            echo "Bare /tins or /og paths found. Prefix with basePath via asset()."
+            exit 1
+          fi
+          grep -q '/hydrate-hit/tins/blue-razz.jpg' out/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
-      - id: deployment
+      - name: Publish gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          force_orphan: true
+          enable_jekyll: false
+
+  deploy:
+    needs: build
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Enable and configure Pages
+        id: pages
+        continue-on-error: true
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Deploy to GitHub Pages
+        if: steps.pages.outcome == 'success'
+        id: deployment
         uses: actions/deploy-pages@v4
+      - name: Try enabling Pages from gh-pages branch
+        if: steps.pages.outcome != 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/pages" -f build_type=legacy -f source[branch]=gh-pages -f source[path]='/' \
+          || gh api -X PUT "repos/${GITHUB_REPOSITORY}/pages" -f source[branch]=gh-pages -f source[path]='/' \
+          || true

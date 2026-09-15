@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Image from "next/image";
+import { AssetImage } from "@/components/AssetImage";
 import { CAN_LINE, TAGLINE } from "@/lib/site";
 import { FLAVOURS, PRICE, gbp, subscribePrice } from "@/lib/products";
 import { useFlavour } from "@/components/Providers";
@@ -42,13 +42,11 @@ export function Hero() {
 
         <div className="order-1 md:order-2">
           <div className="relative mx-auto aspect-square w-full max-w-[34rem] md:max-w-none">
-            <Image
+            <AssetImage
               src={flavour.heroSrc}
               alt={`${flavour.name} Hydrate Hit tin`}
               fill
-              priority
               className="object-contain"
-              sizes="(max-width: 768px) 100vw, 50vw"
             />
             {reduced ? null : (
               <div className="absolute inset-0">
@@ -78,7 +76,7 @@ export function Hero() {
                       boxShadow: active ? `0 0 0 2px ${item.toneA}` : undefined,
                     }}
                   >
-                    <Image src={item.lidSrc} alt="" fill className="object-cover" sizes="48px" />
+                    <AssetImage src={item.lidSrc} alt="" fill className="object-cover" />
                   </button>
                 );
               })}

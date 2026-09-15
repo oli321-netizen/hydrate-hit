@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, IBM_Plex_Mono } from "next/font/google";
-import { CAN_LINE, SITE_NAME, SITE_URL, TAGLINE } from "@/lib/site";
+import { CAN_LINE, SITE_NAME, SITE_URL, TAGLINE, asset } from "@/lib/site";
 import { Providers } from "@/components/Providers";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -45,19 +45,19 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `${SITE_NAME} · ${TAGLINE}`,
     description: CAN_LINE,
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Hydrate Hit 5-pack" }],
+    images: [{ url: asset("/og.jpg"), width: 1200, height: 630, alt: "Hydrate Hit 5-pack" }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} · ${TAGLINE}`,
     description: CAN_LINE,
-    images: ["/og.jpg"],
+    images: [asset("/og.jpg")],
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "/" },
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }, { url: "/icon.png" }],
-    apple: "/icon.png",
+    icon: [{ url: asset("/favicon.svg"), type: "image/svg+xml" }, { url: asset("/icon.png") }],
+    apple: asset("/icon.png"),
   },
 };
 
