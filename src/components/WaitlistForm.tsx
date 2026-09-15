@@ -84,7 +84,7 @@ export function WaitlistForm({
 
 export function WaitlistBand() {
   return (
-    <section id="waitlist" className="bg-bg-2 px-4 py-16 md:px-8 md:py-24">
+    <section id="waitlist" className="relative z-[35] bg-bg-2 px-4 py-16 md:px-8 md:py-24">
       <div className="mx-auto max-w-xl">
         <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
           First drop
