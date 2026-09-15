@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { ContactShadows, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { FLAVOURS, type Flavour } from "@/lib/products";
-import { BASE_PATH } from "@/lib/site";
+import { asset } from "@/lib/site";
 
 function Crystal({ flavour }: { flavour: Flavour }) {
   const mesh = useRef<THREE.Mesh>(null);
@@ -35,7 +35,7 @@ function Crystal({ flavour }: { flavour: Flavour }) {
 
 function Tin({ flavour }: { flavour: Flavour }) {
   const group = useRef<THREE.Group>(null);
-  const urls = useMemo(() => FLAVOURS.map((item) => `${BASE_PATH}${item.lidSrc}`), []);
+  const urls = useMemo(() => FLAVOURS.map((item) => asset(item.lidSrc)), []);
   const textures = useTexture(urls) as THREE.Texture[];
 
   textures.forEach((texture) => {

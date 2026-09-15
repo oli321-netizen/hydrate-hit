@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { FirstDropButton } from "@/components/Ctas";
-import { BASE_PATH } from "@/lib/site";
+import { asset } from "@/lib/site";
 
 export function WaitlistForm({ compact = false }: { compact?: boolean }) {
   const [email, setEmail] = useState("");
@@ -14,7 +14,7 @@ export function WaitlistForm({ compact = false }: { compact?: boolean }) {
     setStatus("loading");
     setMessage("");
     try {
-      const res = await fetch(`${BASE_PATH}/api/waitlist`, {
+      const res = await fetch(asset("/api/waitlist"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

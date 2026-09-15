@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { PRODUCTS, gbp, subscribePrice, type Product } from "@/lib/products";
 import { useCart } from "@/components/Providers";
 import { AddCanButton, SubscribeButton } from "@/components/Ctas";
+import { AssetImage } from "@/components/AssetImage";
 
 export function ShopGrid({ products }: { products: Product[] }) {
   const { add } = useCart();
@@ -14,12 +14,11 @@ export function ShopGrid({ products }: { products: Product[] }) {
       {list.map((product) => (
         <article key={product.sku} className="rounded-2xl border border-line bg-paper p-4">
           <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-bg">
-            <Image
+            <AssetImage
               src={product.image}
               alt={product.name}
               fill
               className="object-contain"
-              sizes="(max-width: 768px) 100vw, 33vw"
             />
           </div>
           <h3 className="mt-4 text-lg font-semibold tracking-tight">{product.name}</h3>

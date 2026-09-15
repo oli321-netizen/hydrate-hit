@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { CAN_LINE } from "@/lib/site";
 import { DOSE, FLAVOURS, PRICE, flavourBySlug, gbp, subscribePrice } from "@/lib/products";
 import { AccentLine, CrystalMark, FlavourName, ProofStrip } from "@/components/Brand";
 import { FlavourBuy } from "@/components/FlavourBuy";
+import { AssetImage } from "@/components/AssetImage";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -31,13 +31,11 @@ export default async function FlavourPage({ params }: Props) {
     <main className="px-4 pb-28 pt-24 md:px-8">
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-center">
         <div className="relative aspect-square overflow-hidden rounded-2xl bg-bg-2">
-          <Image
+          <AssetImage
             src={flavour.heroSrc}
             alt={`${flavour.name} tin`}
             fill
-            priority
             className="object-contain"
-            sizes="(max-width: 768px) 100vw, 50vw"
           />
           <CrystalMark
             a={flavour.crystal[0]}

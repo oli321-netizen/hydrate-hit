@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { FLAVOURS, PRICE, PRODUCTS, gbp, subscribePrice } from "@/lib/products";
 import { ShopGrid } from "@/components/ShopGrid";
+import { AssetImage } from "@/components/AssetImage";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -25,12 +25,11 @@ export default function ShopPage() {
         <h2 className="mt-14 text-2xl font-semibold tracking-tight">Packs</h2>
         <div className="mt-6 overflow-hidden rounded-2xl border border-line">
           <div className="relative h-52 bg-bg md:h-72">
-            <Image
+            <AssetImage
               src="/tins/five-pack.jpg"
               alt="Hydrate Hit 5-pack"
               fill
               className="object-cover"
-              sizes="100vw"
             />
           </div>
         </div>

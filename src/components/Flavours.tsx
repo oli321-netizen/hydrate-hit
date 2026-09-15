@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { FLAVOURS, PRICE, gbp, subscribePrice } from "@/lib/products";
 import { useCart, useFlavour } from "@/components/Providers";
 import { AccentLine, CrystalMark, FlavourName, ProofStrip } from "@/components/Brand";
 import { AddCanButton, PackCta, SubscribeButton } from "@/components/Ctas";
+import { AssetImage } from "@/components/AssetImage";
 
 export function Flavours() {
   const { add } = useCart();
@@ -34,12 +34,11 @@ export function Flavours() {
                 className="block"
               >
                 <div className="relative aspect-square overflow-hidden rounded-2xl bg-bg">
-                  <Image
+                  <AssetImage
                     src={flavour.heroSrc}
                     alt={`${flavour.name} tin`}
                     fill
                     className="object-contain"
-                    sizes="(max-width: 768px) 80vw, 20vw"
                   />
                   <CrystalMark
                     a={flavour.crystal[0]}
@@ -104,12 +103,11 @@ export function Flavours() {
             </div>
           </div>
           <div className="relative min-h-52 overflow-hidden rounded-2xl bg-zinc-800">
-            <Image
+            <AssetImage
               src="/tins/five-pack.jpg"
               alt="Hydrate Hit 5-pack sleeve"
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, 40vw"
             />
           </div>
           <div className="md:col-span-2">
