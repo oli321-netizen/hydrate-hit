@@ -43,7 +43,7 @@ type FlavourContextValue = {
 const CartContext = createContext<CartContextValue | null>(null);
 const FlavourContext = createContext<FlavourContextValue | null>(null);
 
-const CART_KEY = "hydrate-hit-cart";
+export const flavourSlugRef = { current: DEFAULT_FLAVOUR as FlavourSlug };
 
 export function Providers({ children }: { children: ReactNode }) {
   const [slug, setSlug] = useState<FlavourSlug>(DEFAULT_FLAVOUR);
@@ -106,9 +106,15 @@ export function Providers({ children }: { children: ReactNode }) {
   );
 
   const flavour = FLAVOURS.find((f) => f.slug === slug) ?? FLAVOURS[2];
+  flavourSlugRef.current = flavour.slug;
+
+  const chooseSlug = useCallback((next: FlavourSlug) => {
+    flavourSlugRef.current = next;
+    setSlug(next);
+  }, []);
 
   return (
-    <FlavourContext.Provider value={{ flavour, setSlug }}>
+    <FlavourContext.Provider value={{ flavour, setSlug: chooseSlug }}>
       <CartContext.Provider value={{ lines, add, setQty, remove, clear, count, subtotal }}>
         {children}
       </CartContext.Provider>

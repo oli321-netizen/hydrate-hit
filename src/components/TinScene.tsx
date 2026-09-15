@@ -13,6 +13,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 import { FLAVOURS, type Flavour } from "@/lib/products";
+import { flavourSlugRef } from "@/components/Providers";
 import { asset } from "@/lib/site";
 
 class WebGLGuard extends Component<
@@ -115,14 +116,24 @@ function Tin({
   maps: Record<string, THREE.Texture>;
 }) {
   const group = useRef<THREE.Group>(null);
-  const lidMap = maps[flavour.slug] ?? maps["blue-razz"];
+  const lidMat = useRef<THREE.MeshStandardMaterial>(null);
 
   useFrame((state) => {
     if (!group.current) return;
     const t = state.clock.elapsedTime;
     group.current.rotation.y = Math.sin(t * 0.32) * 0.2 + 0.16;
     group.current.position.y = Math.sin(t * 0.9) * 0.025;
+
+    const slug = flavourSlugRef.current;
+    const mat = lidMat.current;
+    const tex = maps[slug] ?? maps[flavour.slug] ?? maps["blue-razz"];
+    if (mat && tex && mat.map !== tex) {
+      mat.map = tex;
+      mat.needsUpdate = true;
+    }
   });
+
+  const lidMap = maps[flavour.slug] ?? maps["blue-razz"];
 
   return (
     <group ref={group} position={[0, -0.12, 0]}>
@@ -139,7 +150,13 @@ function Tin({
       </mesh>
       <mesh position={[0, 0.232, 0]} rotation={[-Math.PI / 2, 0, 0]} castShadow>
         <circleGeometry args={[1.155, 96]} />
-        <meshStandardMaterial map={lidMap} roughness={0.42} metalness={0.03} />
+        <meshStandardMaterial
+          ref={lidMat}
+          key={flavour.slug}
+          map={lidMap}
+          roughness={0.42}
+          metalness={0.03}
+        />
       </mesh>
       <mesh position={[0, 0.236, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <ringGeometry args={[1.155, 1.22, 96]} />
