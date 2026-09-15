@@ -127,6 +127,10 @@ export function gbp(value: number) {
   }).format(value);
 }
 
+export function gbpPerPouch(price: number, pouches: number) {
+  return gbp(Math.round((price / pouches) * 100) / 100);
+}
+
 export const PRODUCTS: Product[] = [
   ...FLAVOURS.map((flavour) => ({
     sku: flavour.slug,
