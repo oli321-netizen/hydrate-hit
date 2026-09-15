@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   output: isPages ? "export" : "standalone",
+  // Keep pg out of the traced bundle so standalone Docker can load it at runtime.
+  serverExternalPackages: ["pg"],
   basePath: basePath || undefined,
   assetPrefix: basePath || undefined,
   trailingSlash: isPages,

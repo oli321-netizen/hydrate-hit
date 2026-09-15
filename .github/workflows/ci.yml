@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  railway-standalone:
+    name: Railway-mode Next build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Production standalone build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_CUSTOM_DOMAIN: hydrationhit.com
+          NEXT_PUBLIC_SITE_URL: https://hydrationhit.com
+      - name: Standalone server.js exists
+        run: test -f .next/standalone/server.js
+
+  pages-export-guard:
+    name: Pages export basePath guard
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Drop API routes for static export
+        run: rm -rf src/app/api
+      - name: Build
+        run: npm run build
+        env:
+          GITHUB_PAGES: "true"
+          NEXT_PUBLIC_BASE_PATH: /hydrate-hit
+          NEXT_PUBLIC_SITE_URL: https://oli321-netizen.github.io/hydrate-hit
+      - name: Guard backup asset basePath
+        run: |
+          if grep -R --include='*.html' -E 'src="/tins/|src="/og\.jpg|href="/tins/' out; then
+            echo "Bare /tins or /og paths found. Prefix with basePath via asset()."
+            exit 1
+          fi
+          if grep -R --include='*.html' -q '/hydrate-hit/og.jpg' out; then
+            echo "basePath ok: /hydrate-hit/og.jpg in HTML"
+          elif grep -R -q '/hydrate-hit/tins/' out; then
+            echo "basePath ok: /hydrate-hit/tins/ in export"
+          else
+            echo "basePath missing: expected /hydrate-hit/og.jpg in HTML or /hydrate-hit/tins/ under out/"
+            exit 1
+          fi
