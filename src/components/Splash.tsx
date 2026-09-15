@@ -81,6 +81,10 @@ export function Splash() {
     const max = reduced ? 1500 : 2400;
 
     const tick = window.setInterval(() => {
+      if (closed.current) {
+        window.clearInterval(tick);
+        return;
+      }
       const elapsed = Date.now() - started.current;
       if (elapsed >= max || (ready.current && elapsed >= min)) close();
     }, 80);
