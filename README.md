@@ -114,8 +114,8 @@ npm start
 
 ## Site map
 
-- `/` hero with 3D tin, why, stack, shop, how to use, review placeholders, FAQ, waitlist
-- `/shop` cans and packs (register-interest modal)
+- `/` brand home: splash, hero, why, stack, how to use, light flavour preview, FAQ, waitlist
+- `/shop` five tins, bundles, register-interest modals
 - `/flavours/[slug]` flavour detail
 - `/waitlist` priority-delivery list
-- Sticky mobile bar opens the same waitlist modal
+- Nav: Home · Stack · Shop · Waitlist

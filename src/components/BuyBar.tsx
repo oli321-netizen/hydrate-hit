@@ -1,18 +1,44 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FLAVOURS, PRICE, gbp } from "@/lib/products";
 import { useFlavour } from "@/components/Providers";
 import { useInterest } from "@/components/InterestModal";
 import { StickyAddButton } from "@/components/Ctas";
 
+function isHome(path: string) {
+  return path === "/" || path === "";
+}
+
+function isQuiet(path: string) {
+  return (
+    path === "/cart" ||
+    path === "/waitlist" ||
+    path === "/cart/" ||
+    path === "/waitlist/"
+  );
+}
+
 export function BuyBar() {
   const path = usePathname();
   const { flavour, setSlug } = useFlavour();
   const { openInterest } = useInterest();
 
-  if (path === "/cart" || path === "/waitlist" || path === "/cart/" || path === "/waitlist/") {
-    return null;
+  if (isQuiet(path)) return null;
+
+  if (isHome(path)) {
+    return (
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-[color-mix(in_srgb,var(--bg)_92%,white)] px-3 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur-md md:hidden">
+        <Link
+          href="/#waitlist"
+          className="flex h-11 w-full items-center justify-center rounded-2xl text-sm font-semibold"
+          style={{ backgroundColor: "#18181b", color: "#fafafa" }}
+        >
+          Register interest
+        </Link>
+      </div>
+    );
   }
 
   return (

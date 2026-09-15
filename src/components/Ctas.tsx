@@ -35,8 +35,8 @@ export function PackCta({
 }
 
 export function ShopCta({
-  href = "/#shop",
-  children = "Shop the line",
+  href = "/#stack",
+  children = "Learn the stack",
   className,
 }: Base & { href?: string }) {
   return (

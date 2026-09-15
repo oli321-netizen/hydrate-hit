@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { AssetImage } from "@/components/AssetImage";
 import { CAN_LINE, TAGLINE } from "@/lib/site";
-import { FLAVOURS, PRICE, gbp, subscribePrice } from "@/lib/products";
+import { FLAVOURS } from "@/lib/products";
 import { useFlavour } from "@/components/Providers";
 import { usePrefersReducedMotion } from "@/lib/motion";
 import { FlavourName, ProofStrip } from "@/components/Brand";
@@ -32,11 +32,12 @@ export function Hero() {
             {CAN_LINE}. Twenty pouches. No nicotine.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <ShopCta href="/#shop">Shop the line</ShopCta>
-            <WaitlistCta>Join waitlist</WaitlistCta>
+            <ShopCta href="/#stack">Learn the stack</ShopCta>
+            <WaitlistCta href="/#waitlist">Join waitlist</WaitlistCta>
+            <WaitlistCta href="/shop">See flavours</WaitlistCta>
           </div>
           <p className="mt-6 font-mono text-xs text-muted">
-            From {gbp(subscribePrice(PRICE.single))} on subscribe, or {gbp(PRICE.single)} a can.
+            Five flavours. First drop, priced in pounds. No nicotine.
           </p>
         </div>
 

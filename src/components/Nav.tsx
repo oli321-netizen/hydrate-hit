@@ -3,6 +3,13 @@
 import Link from "next/link";
 import { useState } from "react";
 
+const LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/#stack", label: "Stack" },
+  { href: "/shop", label: "Shop" },
+  { href: "/#waitlist", label: "Waitlist" },
+] as const;
+
 export function Nav() {
   const [open, setOpen] = useState(false);
 
@@ -13,18 +20,15 @@ export function Nav() {
           HYDRATE HIT
         </Link>
         <nav className="hidden items-center gap-7 text-sm font-medium text-ink-soft md:flex">
-          <Link href="/#stack" className="hover:text-ink">
-            Stack
-          </Link>
-          <Link href="/#shop" className="hover:text-ink">
-            Flavours
-          </Link>
-          <Link href="/#faq" className="hover:text-ink">
-            FAQ
-          </Link>
-          <Link href="/#waitlist" className="text-ink">
-            Waitlist
-          </Link>
+          {LINKS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={item.label === "Waitlist" ? "text-ink" : "hover:text-ink"}
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
         <button
           type="button"
@@ -40,18 +44,11 @@ export function Nav() {
       {open ? (
         <div className="border-b border-line bg-bg px-4 py-4 md:hidden">
           <div className="flex flex-col gap-3 text-sm font-medium">
-            <Link href="/#stack" onClick={() => setOpen(false)}>
-              Stack
-            </Link>
-            <Link href="/#shop" onClick={() => setOpen(false)}>
-              Flavours
-            </Link>
-            <Link href="/#faq" onClick={() => setOpen(false)}>
-              FAQ
-            </Link>
-            <Link href="/#waitlist" onClick={() => setOpen(false)}>
-              Waitlist
-            </Link>
+            {LINKS.map((item) => (
+              <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
       ) : null}

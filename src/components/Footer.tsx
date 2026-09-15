@@ -14,13 +14,16 @@ export function Footer() {
           <ProofStrip className="mt-2" />
         </div>
         <div className="flex flex-col gap-3 text-sm">
+          <Link href="/" className="hover:underline">
+            Home
+          </Link>
+          <Link href="/#stack" className="hover:underline">
+            Stack
+          </Link>
           <Link href="/shop" className="hover:underline">
             Shop
           </Link>
-          <Link href="/#faq" className="hover:underline">
-            FAQ
-          </Link>
-          <WaitlistCta href="/waitlist" />
+          <WaitlistCta href="/#waitlist" />
         </div>
       </div>
       <p className="mx-auto mt-10 max-w-6xl text-xs text-muted">
