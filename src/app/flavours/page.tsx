@@ -4,7 +4,9 @@ import { ProductLine } from "@/components/ProductLine";
 export const metadata: Metadata = {
   title: "Flavours",
   description:
-    "Hydrate Hit cans and packs in pounds. Five flavours, 3-can variety, 5-pack. Register interest for priority delivery.",
+    "Frost Mint, Citrus Ice, Blue Razz, Peach Ice, Cherry Ice. Hydrate Hit nicotine-free pouches, priced in pounds.",
+  alternates: { canonical: "/shop" },
+  openGraph: { url: "/shop", title: "Flavours · Hydrate Hit" },
 };
 
 export default function FlavoursIndexPage() {

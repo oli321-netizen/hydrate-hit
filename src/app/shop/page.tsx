@@ -4,7 +4,9 @@ import { ProductLine } from "@/components/ProductLine";
 export const metadata: Metadata = {
   title: "Shop",
   description:
-    "Hydrate Hit cans and packs in pounds. Five flavours, 3-can variety, 5-pack. Register interest for priority delivery.",
+    "Buy Hydrate Hit in pounds. Five flavours, 3-can variety, 5-pack. Register interest for priority delivery — not checkout.",
+  alternates: { canonical: "/shop" },
+  openGraph: { url: "/shop", title: "Shop · Hydrate Hit" },
 };
 
 export default function ShopPage() {
