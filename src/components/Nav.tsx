@@ -21,8 +21,8 @@ export function Nav() {
           <Link href="/#shop" className="hover:text-ink">
             Flavours
           </Link>
-          <Link href="/#compare" className="hover:text-ink">
-            Compare
+          <Link href="/#faq" className="hover:text-ink">
+            FAQ
           </Link>
           <Link href="/#waitlist" className="hover:text-ink">
             Waitlist
@@ -51,8 +51,8 @@ export function Nav() {
             <Link href="/#shop" onClick={() => setOpen(false)}>
               Flavours
             </Link>
-            <Link href="/#compare" onClick={() => setOpen(false)}>
-              Compare
+            <Link href="/#faq" onClick={() => setOpen(false)}>
+              FAQ
             </Link>
             <Link href="/#waitlist" onClick={() => setOpen(false)}>
               Waitlist

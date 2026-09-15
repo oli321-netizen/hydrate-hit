@@ -2,7 +2,7 @@ const STEPS = [
   {
     n: "01",
     title: "Tuck one pouch.",
-    body: "Upper lip. Dry fingers. Same ritual as any other oral pouch, minus the nicotine.",
+    body: "Tuck it between gum and lip. Dry fingers. Do not chew.",
   },
   {
     n: "02",

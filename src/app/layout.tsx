@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "electrolyte pouch",
     "Blue Razz",
     "Frost Mint",
-    "energy pouch UK",
+    "caffeine electrolyte pouch UK",
   ],
   authors: [{ name: SITE_NAME }],
   openGraph: {
