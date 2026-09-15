@@ -12,11 +12,14 @@ function isHome(path: string) {
 }
 
 function isQuiet(path: string) {
+  const p = path.replace(/\/$/, "") || "/";
   return (
-    path === "/cart" ||
-    path === "/waitlist" ||
-    path === "/cart/" ||
-    path === "/waitlist/"
+    p === "/cart" ||
+    p === "/waitlist" ||
+    p === "/nicotine-free-pouches" ||
+    p === "/snus-alternative" ||
+    p === "/electrolyte-pouches" ||
+    p.startsWith("/guides")
   );
 }
 

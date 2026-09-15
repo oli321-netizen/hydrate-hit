@@ -1,5 +1,7 @@
 import { CAN_LINE, SITE_NAME, SITE_URL, TAGLINE } from "@/lib/site";
+import { OG_IMAGE_URL } from "@/lib/seo";
 import { DOSE, FLAVOURS, PRICE } from "@/lib/products";
+import { FAQS } from "@/components/FAQ";
 
 export function JsonLd() {
   const data = {
@@ -9,27 +11,31 @@ export function JsonLd() {
         "@type": "Organization",
         name: SITE_NAME,
         url: SITE_URL,
-        description: TAGLINE,
+        description: `${TAGLINE} Nicotine-free caffeine and electrolyte oral pouches. No tobacco. No nicotine.`,
+        logo: OG_IMAGE_URL,
       },
       {
         "@type": "WebSite",
         name: SITE_NAME,
         url: SITE_URL,
         description: TAGLINE,
+        inLanguage: "en-GB",
       },
       {
         "@type": "Product",
-        name: `${SITE_NAME} pouch can`,
-        description: `${TAGLINE} ${CAN_LINE}.`,
+        name: `${SITE_NAME} nicotine-free pouch can`,
+        description: `${TAGLINE} Nicotine-free oral pouch with ${CAN_LINE}. Not snus. Not a nicotine pouch.`,
         brand: { "@type": "Brand", name: SITE_NAME },
         category: "Food supplement",
         countryOfOrigin: "GB",
+        image: OG_IMAGE_URL,
         offers: [
           {
             "@type": "Offer",
             price: PRICE.single,
             priceCurrency: "GBP",
             availability: "https://schema.org/PreOrder",
+            url: `${SITE_URL}/shop`,
             name: "Single can, 20 pouches",
           },
           {
@@ -37,6 +43,7 @@ export function JsonLd() {
             price: PRICE.variety3,
             priceCurrency: "GBP",
             availability: "https://schema.org/PreOrder",
+            url: `${SITE_URL}/shop`,
             name: "3-can variety",
           },
           {
@@ -44,6 +51,7 @@ export function JsonLd() {
             price: PRICE.pack5,
             priceCurrency: "GBP",
             availability: "https://schema.org/PreOrder",
+            url: `${SITE_URL}/shop`,
             name: "5-pack",
           },
         ],
@@ -54,6 +62,8 @@ export function JsonLd() {
             name: "Electrolytes",
             value: `${DOSE.electrolytesMg} mg`,
           },
+          { "@type": "PropertyValue", name: "Nicotine", value: "None" },
+          { "@type": "PropertyValue", name: "Tobacco", value: "None" },
         ],
       },
       {
@@ -68,24 +78,11 @@ export function JsonLd() {
       },
       {
         "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "What is in a pouch?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "80 mg caffeine, 150 mg sodium, 100 mg potassium, 50 mg magnesium, B6 1.7 mg, B12 2.4 µg.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Is there nicotine?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "No.",
-            },
-          },
-        ],
+        mainEntity: FAQS.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
       },
     ],
   };

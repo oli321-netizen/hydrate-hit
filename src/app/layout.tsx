@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, IBM_Plex_Mono } from "next/font/google";
 import { BASE_PATH, CAN_LINE, SITE_NAME, SITE_URL, TAGLINE, asset } from "@/lib/site";
+import { OG_IMAGE, OG_IMAGE_URL } from "@/lib/seo";
 import { Providers } from "@/components/Providers";
 import { InterestProvider } from "@/components/InterestModal";
 import { Nav } from "@/components/Nav";
@@ -23,14 +24,6 @@ const ibm = IBM_Plex_Mono({
   display: "swap",
 });
 
-const OG_IMAGE_URL = `${SITE_URL.replace(/\/$/, "")}/og.jpg`;
-const OG_IMAGE = {
-  url: OG_IMAGE_URL,
-  width: 1200,
-  height: 630,
-  alt: "Hydrate Hit — the pouch that hydrates and hits",
-};
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -44,6 +37,10 @@ export const metadata: Metadata = {
     "caffeine pouch",
     "electrolyte pouch",
     "nicotine-free pouches",
+    "oral pouches",
+    "caffeine pouches",
+    "electrolyte pouches",
+    "snus alternative",
     "Blue Razz",
     "Frost Mint",
     "caffeine electrolyte pouch UK",
@@ -77,7 +74,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="crystal-cursor min-h-full bg-bg text-ink">
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var p=location.pathname.replace(/\\/$/,"")||"/";var home=${JSON.stringify((BASE_PATH || "").replace(/\/$/, "") || "/")};var isHome=p===home||p==="/";if(sessionStorage.getItem("hh-splash-seen")||!isHome)document.documentElement.classList.add("hh-splash-skip");else document.documentElement.classList.add("hh-splash")}catch(e){}`,
+            __html: `try{var p=location.pathname.replace(/\\/$/,"")||"/";var home=${JSON.stringify((BASE_PATH || "").replace(/\/$/, "") || "/")};var isHome=p===home||p==="/";var bot=/googlebot|bingbot|yandex|baiduspider|duckduckbot|slurp|crawler|spider|bot/i.test(navigator.userAgent||"");if(bot||sessionStorage.getItem("hh-splash-seen")||!isHome)document.documentElement.classList.add("hh-splash-skip");else document.documentElement.classList.add("hh-splash")}catch(e){}`,
           }}
         />
         <JsonLd />

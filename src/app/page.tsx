@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: { absolute: `${SITE_NAME} · ${TAGLINE}` },
   description: `${TAGLINE} Nicotine-free caffeine and electrolyte pouches. ${CAN_LINE}. Five flavours. From £12.99. UK.`,
   alternates: { canonical: "/" },
+  openGraph: { url: "/", title: `${SITE_NAME} · ${TAGLINE}` },
 };
 
 export default function HomePage() {

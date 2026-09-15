@@ -16,7 +16,7 @@ export function Flavours() {
     <section id="shop" className="px-4 py-16 md:px-8 md:py-24">
       <div className="mx-auto max-w-6xl">
         <h2 className="text-4xl font-semibold tracking-tighter md:text-6xl">
-          Five tins. One stack.
+          The line.
         </h2>
         <p className="mt-4 max-w-[52ch] text-base leading-relaxed text-ink-soft">
           Dual-tone names, crystal mark, accent-lined tagline. The Blue Razz
@@ -38,7 +38,7 @@ export function Flavours() {
                 <div className="relative aspect-square overflow-hidden rounded-2xl bg-bg">
                   <AssetImage
                     src={flavour.heroSrc}
-                    alt={`${flavour.name} tin`}
+                    alt={`${flavour.name} Hydrate Hit tin`}
                     fill
                     className="object-contain"
                   />
