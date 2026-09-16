@@ -6,7 +6,6 @@ import { useFlavour } from "@/components/Providers";
 import { AssetImage } from "@/components/AssetImage";
 import { FlavourName } from "@/components/Brand";
 import { WaitlistCta } from "@/components/Ctas";
-import { brandAlt } from "@/lib/site";
 
 export function FlavourPreview() {
   const { setSlug } = useFlavour();
@@ -30,7 +29,7 @@ export function FlavourPreview() {
               className="flex w-[5.5rem] flex-col items-center gap-2 sm:w-24"
             >
               <span className="relative h-20 w-20 overflow-hidden rounded-full border border-line bg-paper sm:h-24 sm:w-24">
-                <AssetImage src={flavour.lidSrc} alt={brandAlt(`${flavour.name} lid`)} fill className="object-cover" />
+                <AssetImage src={flavour.lidSrc} alt={`${flavour.name} FluxHit lid`} fill className="object-cover" />
               </span>
               <FlavourName
                 flavour={flavour}
