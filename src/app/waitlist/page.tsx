@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { WaitlistForm } from "@/components/WaitlistForm";
+import { SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Waitlist for priority delivery",
   description:
-    "Join the Hydrate Hit waitlist. Nicotine-free caffeine pouches. Priority delivery on the first UK drop. Pounds only.",
+    `Join the ${SITE_NAME} waitlist. Nicotine-free caffeine pouches with L-theanine and light electrolytes. Priority delivery on the first UK drop. Pounds only.`,
   alternates: { canonical: "/waitlist" },
-  openGraph: { url: "/waitlist", title: "Waitlist · Hydrate Hit" },
+  openGraph: { url: "/waitlist", title: `Waitlist · ${SITE_NAME}` },
 };
 
 export default function WaitlistPage() {

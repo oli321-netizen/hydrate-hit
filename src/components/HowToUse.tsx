@@ -7,7 +7,7 @@ const STEPS = [
   {
     n: "02",
     title: "Leave it there.",
-    body: "Do not chew. The stack is built to sit. Caffeine, salts, B6, B12.",
+    body: "Do not chew. The stack is built to sit. Caffeine, L-theanine, salts, B6, B12.",
   },
   {
     n: "03",

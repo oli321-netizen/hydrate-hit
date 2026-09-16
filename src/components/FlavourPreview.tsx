@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FLAVOURS } from "@/lib/products";
+import { SITE_NAME } from "@/lib/site";
 import { useFlavour } from "@/components/Providers";
 import { AssetImage } from "@/components/AssetImage";
 import { FlavourName } from "@/components/Brand";
@@ -29,7 +30,7 @@ export function FlavourPreview() {
               className="flex w-[5.5rem] flex-col items-center gap-2 sm:w-24"
             >
               <span className="relative h-20 w-20 overflow-hidden rounded-full border border-line bg-paper sm:h-24 sm:w-24">
-                <AssetImage src={flavour.lidSrc} alt={`${flavour.name} Hydrate Hit lid`} fill className="object-cover" />
+                <AssetImage src={flavour.lidSrc} alt={`${flavour.name} ${SITE_NAME} lid`} fill className="object-cover" />
               </span>
               <FlavourName
                 flavour={flavour}

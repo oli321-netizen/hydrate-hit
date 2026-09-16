@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FLAVOURS, PRICE, gbp, subscribePrice } from "@/lib/products";
+import { SITE_NAME } from "@/lib/site";
 import { useFlavour } from "@/components/Providers";
 import { useInterest } from "@/components/InterestModal";
 import { AccentLine, CrystalMark, FlavourName, ProofStrip } from "@/components/Brand";
@@ -38,7 +39,7 @@ export function Flavours() {
                 <div className="relative aspect-square overflow-hidden rounded-2xl bg-bg">
                   <AssetImage
                     src={flavour.heroSrc}
-                    alt={`${flavour.name} Hydrate Hit tin`}
+                    alt={`${flavour.name} ${SITE_NAME} tin`}
                     fill
                     className="object-contain"
                   />
@@ -160,7 +161,7 @@ export function Flavours() {
           <div className="relative min-h-52 overflow-hidden rounded-2xl bg-zinc-800">
             <AssetImage
               src="/tins/five-pack.jpg"
-              alt="Hydrate Hit 5-pack sleeve"
+              alt={`${SITE_NAME} 5-pack sleeve`}
               fill
               className="object-cover"
             />

@@ -14,7 +14,7 @@ import { ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 import { FLAVOURS, type Flavour } from "@/lib/products";
 import { flavourSlugRef } from "@/components/Providers";
-import { asset } from "@/lib/site";
+import { asset, SITE_NAME } from "@/lib/site";
 
 class WebGLGuard extends Component<
   { children: ReactNode; onError: () => void },
@@ -220,7 +220,7 @@ export function TinScene({ flavour }: { flavour: Flavour }) {
           camera.lookAt(0, 0.05, 0);
         }}
         onPointerMissed={undefined}
-        aria-label={`${flavour.name} Hydrate Hit tin`}
+        aria-label={`${flavour.name} ${SITE_NAME} tin`}
       >
         <Suspense fallback={null}>
           <Scene flavour={flavour} onFail={onFail} />

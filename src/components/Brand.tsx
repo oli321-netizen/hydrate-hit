@@ -1,4 +1,5 @@
-import type { Flavour } from "@/lib/products";
+import { PROOF, type Flavour } from "@/lib/products";
+import { TAGLINE } from "@/lib/site";
 
 export function FlavourName({
   flavour,
@@ -19,7 +20,7 @@ export function FlavourName({
 
 export function AccentLine({
   flavour,
-  children = "hydrates and hits",
+  children = TAGLINE,
 }: {
   flavour: Flavour;
   children?: string;
@@ -34,7 +35,7 @@ export function AccentLine({
 }
 
 export function ProofStrip({ className = "" }: { className?: string }) {
-  const items = ["Caffeine", "Na", "K", "Mg", "B6", "B12"];
+  const items = PROOF;
   return (
     <p className={`font-mono text-[11px] uppercase tracking-[0.18em] text-muted ${className}`}>
       {items.map((item, i) => (

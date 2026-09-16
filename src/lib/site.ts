@@ -1,6 +1,9 @@
-export const SITE_NAME = "Hydrate Hit";
-export const TAGLINE = "The pouch that hydrates and hits.";
-export const CAN_LINE = "80mg caffeine · 300mg electrolytes · B6 + B12";
+export const SITE_NAME = "FluxHit";
+/** Bold wordmark in logos and headers. */
+export const SITE_MARK = "FLUXHIT";
+export const TAGLINE = "smooth hit · light electrolytes";
+export const CAN_LINE =
+  "80mg caffeine · 60mg L-theanine · 50mg Na + 50mg K · B6 + B12";
 
 /** Apex custom domain (Railway + Cloudflare). */
 export const CUSTOM_DOMAIN = (

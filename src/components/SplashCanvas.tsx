@@ -9,7 +9,7 @@ import {
 } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { asset } from "@/lib/site";
+import { asset, SITE_MARK, TAGLINE } from "@/lib/site";
 
 const BLUE = "#1F6FE5";
 const PINK = "#D63D8C";
@@ -83,7 +83,7 @@ function drawWrap(ctx: CanvasRenderingContext2D, w: number, h: number) {
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.font = `800 ${Math.round(h * 0.26)}px "Arial Black","Helvetica Neue",Arial,sans-serif`;
-    ctx.fillText("HYDRATE HIT", x + pw / 2, h * 0.48);
+    ctx.fillText(SITE_MARK, x + pw / 2, h * 0.48);
 
     const labelY = h * 0.72;
     ctx.font = `800 ${Math.round(h * 0.18)}px "Arial Black","Helvetica Neue",Arial,sans-serif`;
@@ -115,7 +115,7 @@ function drawFallbackLid(ctx: CanvasRenderingContext2D, w: number, h: number) {
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.font = `800 ${Math.round(w * 0.11)}px "Arial Black","Helvetica Neue",Arial,sans-serif`;
-  ctx.fillText("HYDRATE HIT", cx, cy - w * 0.12);
+  ctx.fillText(SITE_MARK, cx, cy - w * 0.12);
 
   ctx.font = `800 ${Math.round(w * 0.09)}px "Arial Black","Helvetica Neue",Arial,sans-serif`;
   const blueW = ctx.measureText("BLUE").width;
@@ -141,9 +141,9 @@ function drawFallbackLid(ctx: CanvasRenderingContext2D, w: number, h: number) {
   ctx.stroke();
 
   ctx.fillStyle = "#3f3f46";
-  ctx.font = `600 ${Math.round(w * 0.035)}px "Helvetica Neue",Arial,sans-serif`;
+  ctx.font = `600 ${Math.round(w * 0.028)}px "Helvetica Neue",Arial,sans-serif`;
   ctx.textAlign = "center";
-  ctx.fillText("hydrates and hits", cx, cy + w * 0.16);
+  ctx.fillText(TAGLINE, cx, cy + w * 0.16);
 
   ctx.fillStyle = BLUE;
   ctx.beginPath();

@@ -7,7 +7,7 @@ export const OG_IMAGE = {
   url: OG_IMAGE_URL,
   width: 1200,
   height: 630,
-  alt: "Hydrate Hit — the pouch that hydrates and hits. Blue Razz tin.",
+  alt: "FluxHit — smooth hit · light electrolytes. Blue Razz tin.",
 };
 
 export const SEO_PAGES = [
@@ -15,25 +15,25 @@ export const SEO_PAGES = [
     path: "/nicotine-free-pouches",
     title: "Nicotine-free pouches with caffeine",
     description:
-      "Nicotine-free pouches from Hydrate Hit: 80 mg caffeine, named electrolytes, B6 and B12. Tobacco-free lip pouches. UK waitlist. From £12.99.",
+      "Nicotine-free pouches from FluxHit: 80 mg caffeine, 60 mg L-theanine, sodium and potassium electrolytes, B6 and B12. Tobacco-free, sugar-free. UK waitlist. From £12.99.",
   },
   {
     path: "/snus-alternative",
     title: "Snus alternative without nicotine",
     description:
-      "A snus alternative without nicotine or tobacco. Hydrate Hit is a UK caffeine and electrolyte lip pouch — same ritual, named doses, waitlist only.",
+      "A snus alternative without nicotine or tobacco. FluxHit is a UK caffeine pouch with L-theanine and light electrolytes — same ritual, named doses, waitlist only.",
   },
   {
     path: "/electrolyte-pouches",
     title: "Electrolyte pouches with named salts",
     description:
-      "Electrolyte pouches with 150 mg sodium, 100 mg potassium, 50 mg magnesium plus 80 mg caffeine. Nicotine-free. Hydrate Hit, UK.",
+      "Electrolyte pouches with 50 mg sodium and 50 mg potassium plus 80 mg caffeine and 60 mg L-theanine. Nicotine-free. FluxHit, UK.",
   },
   {
     path: "/guides/caffeine-pouch-vs-energy-drink",
     title: "Caffeine pouch vs energy drink",
     description:
-      "Caffeine pouches vs energy drinks: Hydrate Hit is 80 mg caffeine in a lip pouch, named electrolytes, no nicotine, no cup. UK.",
+      "Caffeine pouches vs energy drinks: FluxHit is 80 mg caffeine with 60 mg L-theanine in a lip pouch, light electrolytes, no nicotine, no cup. UK.",
   },
 ] as const;
 

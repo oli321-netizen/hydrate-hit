@@ -8,33 +8,35 @@ export function Why() {
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-end">
         <div>
           <h2 className="max-w-[12ch] text-4xl font-semibold tracking-tighter text-ink md:text-6xl">
-            Hydration first. Then the hit.
+            Smooth hit. Light electrolytes.
           </h2>
           <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-ink-soft">
-            Caffeine for the hit. Sodium, potassium and magnesium for the water
-            work. Named doses, not a mystery blend.
+            Caffeine plus L-theanine for the hit. Sodium and potassium
+            electrolytes. Named doses, not a mystery blend.
           </p>
         </div>
         <ul className="divide-y divide-line text-sm">
           <li className="flex justify-between gap-4 py-4">
             <span className="text-muted">The hit</span>
-            <span className="text-right font-medium">{DOSE.caffeineMg} mg caffeine</span>
+            <span className="text-right font-medium">
+              {DOSE.caffeineMg} mg caffeine + {DOSE.theanineMg} mg L-theanine
+            </span>
           </li>
           <li className="flex justify-between gap-4 py-4">
             <span className="text-muted">The water work</span>
             <span className="text-right font-medium">
-              {DOSE.electrolytesMg} mg electrolytes
+              {DOSE.sodiumMg} mg sodium + {DOSE.potassiumMg} mg potassium
             </span>
           </li>
           <li className="flex justify-between gap-4 py-4">
             <span className="text-muted">The adult extras</span>
             <span className="text-right font-medium">
-              B6 {DOSE.b6Mg} mg, B12 {DOSE.b12Ug} µg
+              B6 {DOSE.b6Mg} mg, B12 {DOSE.b12Ug} µg (100% NRV)
             </span>
           </li>
           <li className="flex justify-between gap-4 py-4">
             <span className="text-muted">Nicotine</span>
-            <span className="text-right font-medium">None. On purpose.</span>
+            <span className="text-right font-medium">None. Sugar-free. Tobacco-free.</span>
           </li>
         </ul>
       </div>

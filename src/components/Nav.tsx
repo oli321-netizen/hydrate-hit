@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { SITE_MARK } from "@/lib/site";
 
 const LINKS = [
   { href: "/", label: "Home" },
@@ -25,7 +26,7 @@ export function Nav() {
     <header className="hh-nav fixed inset-x-0 top-0 z-40 h-16 border-b border-line/70 bg-[color-mix(in_srgb,var(--bg)_88%,white)] backdrop-blur-md md:h-[72px]">
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-4 md:px-8">
         <Link href="/" className="text-[15px] font-extrabold tracking-tight text-ink">
-          HYDRATE HIT
+          {SITE_MARK}
         </Link>
         <nav className="hidden items-center gap-7 text-sm font-medium text-ink-soft md:flex">
           {LINKS.map((item) => (

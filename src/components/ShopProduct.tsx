@@ -14,7 +14,7 @@ import {
   type FlavourSlug,
   type SkuId,
 } from "@/lib/products";
-import { CAN_LINE, TAGLINE } from "@/lib/site";
+import { CAN_LINE, SITE_MARK, SITE_NAME, TAGLINE } from "@/lib/site";
 
 type BundleId = "single" | "variety-3" | "pack-5";
 
@@ -59,10 +59,10 @@ const BUNDLES: Array<{
 ];
 
 const FEATURES = [
-  { title: "Fast hit", body: `${DOSE.caffeineMg} mg caffeine. No cup.` },
-  { title: "Spit-free", body: "Tuck it. Leave it. Do not chew." },
+  { title: "Smooth hit", body: `${DOSE.caffeineMg} mg caffeine + ${DOSE.theanineMg} mg L-theanine.` },
+  { title: "Light electrolytes", body: `${DOSE.sodiumMg} mg sodium + ${DOSE.potassiumMg} mg potassium.` },
   { title: "Pocket tin", body: `${DOSE.pouchesPerCan} pouches. Shut the lid.` },
-  { title: "Zero nicotine", body: "Not snus. Not a nicotine pouch." },
+  { title: "Zero nicotine", body: "Sugar-free. Tobacco-free. Not snus." },
 ];
 
 export function ShopProduct() {
@@ -73,12 +73,12 @@ export function ShopProduct() {
 
   const main = useMemo(() => {
     if (bundle === "pack-5" || shot === "pack") {
-      return { src: "/tins/five-pack.jpg", alt: "Hydrate Hit 5-pack sleeve" };
+      return { src: "/tins/five-pack.jpg", alt: `${SITE_MARK} 5-pack sleeve` };
     }
     if (bundle === "variety-3") {
-      return { src: "/tins/blue-razz.jpg", alt: "Hydrate Hit 3-can variety, Blue Razz tin" };
+      return { src: "/tins/blue-razz.jpg", alt: `${SITE_MARK} 3-can variety, Blue Razz tin` };
     }
-    return { src: flavour.heroSrc, alt: `${flavour.name} Hydrate Hit tin` };
+    return { src: flavour.heroSrc, alt: `${flavour.name} ${SITE_NAME} tin` };
   }, [bundle, flavour, shot]);
 
   function pickFlavour(slug: FlavourSlug) {
@@ -140,17 +140,17 @@ export function ShopProduct() {
                 boxShadow: shot === "pack" ? "0 0 0 2px #18181b" : undefined,
               }}
             >
-              <AssetImage src="/tins/five-pack.jpg" alt="Hydrate Hit 5-pack" fill className="object-cover" />
+              <AssetImage src="/tins/five-pack.jpg" alt={`${SITE_NAME} 5-pack`} fill className="object-cover" />
             </button>
           </div>
         </div>
 
         <div>
           <h1 className="text-4xl font-extrabold leading-[0.95] tracking-tighter md:text-5xl">
-            HYDRATE HIT
+            {SITE_MARK}
           </h1>
           <p className="mt-2 text-lg font-semibold tracking-tight text-ink-soft">
-            Caffeine + electrolyte pouches
+            Caffeine pouches with L-theanine
           </p>
           <p className="mt-3 font-mono text-xs uppercase tracking-[0.16em] text-muted">
             Reviews at first drop
@@ -161,7 +161,8 @@ export function ShopProduct() {
 
           <p className="mt-5 max-w-[46ch] text-base leading-relaxed text-ink-soft">
             {TAGLINE} {CAN_LINE}. Tuck one pouch between gum and lip. Twenty
-            pouches a tin. Not snus. Not a nicotine pouch. Pounds only.
+            pouches a tin. Nicotine-free, sugar-free, tobacco-free. Not snus.
+            Pounds only.
           </p>
 
           <ul className="mt-6 space-y-3 text-sm">
@@ -171,7 +172,7 @@ export function ShopProduct() {
               </span>
               <span>
                 <strong className="text-ink">HIT</strong> — {DOSE.caffeineMg} mg
-                caffeine
+                caffeine + {DOSE.theanineMg} mg L-theanine
               </span>
             </li>
             <li className="flex gap-2">
@@ -179,9 +180,8 @@ export function ShopProduct() {
                 ✓
               </span>
               <span>
-                <strong className="text-ink">HYDRATE</strong> — ~
-                {DOSE.electrolytesMg} mg electrolytes ({DOSE.sodiumMg} Na /{" "}
-                {DOSE.potassiumMg} K / {DOSE.magnesiumMg} Mg)
+                <strong className="text-ink">ELECTROLYTES</strong> —{" "}
+                {DOSE.sodiumMg} mg sodium + {DOSE.potassiumMg} mg potassium
               </span>
             </li>
             <li className="flex gap-2">
@@ -190,7 +190,7 @@ export function ShopProduct() {
               </span>
               <span>
                 <strong className="text-ink">FOCUS</strong> — B6 {DOSE.b6Mg} mg,
-                B12 {DOSE.b12Ug} µg
+                B12 {DOSE.b12Ug} µg (100% NRV)
               </span>
             </li>
             <li className="flex gap-2">
@@ -198,7 +198,7 @@ export function ShopProduct() {
                 ✓
               </span>
               <span>
-                <strong className="text-ink">ZERO NICOTINE</strong> — on purpose
+                <strong className="text-ink">ZERO NICOTINE</strong> — sugar-free, tobacco-free
               </span>
             </li>
           </ul>
@@ -243,7 +243,7 @@ export function ShopProduct() {
                     ) : null}
                     <input
                       type="radio"
-                      name="hydrate-hit-bundle"
+                      name="fluxhit-bundle"
                       className="sr-only"
                       checked={selected}
                       onChange={() => pickBundle(item.id)}

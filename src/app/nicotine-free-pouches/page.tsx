@@ -1,6 +1,7 @@
 import { seoPageMeta } from "@/lib/seo";
 import { SeoDoc } from "@/components/SeoDoc";
 import { DOSE, gbp, PRICE } from "@/lib/products";
+import { SITE_NAME } from "@/lib/site";
 import Link from "next/link";
 
 const PATH = "/nicotine-free-pouches";
@@ -10,15 +11,15 @@ export const metadata = seoPageMeta(PATH);
 const FAQS = [
   {
     q: "What are nicotine-free pouches?",
-    a: "Oral pouches you tuck between gum and lip that do not contain nicotine. Hydrate Hit is one: caffeine, electrolytes, B6 and B12. No tobacco.",
+    a: `Oral pouches you tuck between gum and lip that do not contain nicotine. ${SITE_NAME} is one: caffeine, L-theanine, sodium and potassium electrolytes, B6 and B12. No tobacco. No sugar.`,
   },
   {
-    q: "Is Hydrate Hit tobacco-free as well?",
+    q: `Is ${SITE_NAME} tobacco-free as well?`,
     a: "Yes. No nicotine, no tobacco, not snus. Same lip-pouch format as nicotine pouches, different contents.",
   },
   {
     q: "How much caffeine is in a pouch?",
-    a: "80 mg. High caffeine content. Know your own limit. Not for children, pregnancy, breastfeeding, or anyone sensitive to caffeine.",
+    a: `${DOSE.caffeineMg} mg, with ${DOSE.theanineMg} mg L-theanine. High caffeine content. Know your own limit. Not for children, pregnancy, breastfeeding, or anyone sensitive to caffeine.`,
   },
   {
     q: "Is this a snus alternative?",
@@ -30,7 +31,7 @@ export default function NicotineFreePouchesPage() {
   return (
     <SeoDoc
       title="Nicotine-free pouches with a named stack"
-      lede="Hydrate Hit is a lip pouch with caffeine and electrolytes. It is not snus, not tobacco, and it does not contain nicotine."
+      lede={`${SITE_NAME} is a lip pouch with caffeine, L-theanine and light electrolytes. It is not snus, not tobacco, and it does not contain nicotine.`}
       crumbs={[{ href: PATH, label: "Nicotine-free pouches" }]}
       faqs={FAQS}
     >
@@ -42,19 +43,18 @@ export default function NicotineFreePouchesPage() {
         from something else.
       </p>
       <p>
-        Hydrate Hit uses that format for caffeine and electrolytes. People
-        search for nicotine-free pouches, tobacco-free pouches, caffeine
-        pouches and lip pouches for the same reason: a pocketable hit without
-        a drink, and without nicotine. That is the job.
+        {SITE_NAME} uses that format for caffeine, L-theanine and light
+        electrolytes. People search for nicotine-free pouches, tobacco-free
+        pouches, caffeine pouches and lip pouches for the same reason: a
+        pocketable hit without a drink, and without nicotine. That is the job.
       </p>
 
-      <h2>What is in a Hydrate Hit pouch</h2>
+      <h2>What is in a {SITE_NAME} pouch</h2>
       <p>
-        Each pouch carries {DOSE.caffeineMg} mg caffeine, about{" "}
-        {DOSE.electrolytesMg} mg electrolytes ({DOSE.sodiumMg} mg sodium,{" "}
-        {DOSE.potassiumMg} mg potassium, {DOSE.magnesiumMg} mg magnesium),
-        vitamin B6 {DOSE.b6Mg} mg and vitamin B12 {DOSE.b12Ug} µg. Named
-        doses, not a mystery blend. Full hydration angle on{" "}
+        Each pouch carries {DOSE.caffeineMg} mg caffeine, {DOSE.theanineMg} mg
+        L-theanine, {DOSE.sodiumMg} mg sodium, {DOSE.potassiumMg} mg potassium,
+        vitamin B6 {DOSE.b6Mg} mg and vitamin B12 {DOSE.b12Ug} µg (100% NRV).
+        Named doses, not a mystery blend. Full hydration angle on{" "}
         <Link href="/electrolyte-pouches">electrolyte pouches</Link>.
       </p>
       <p>
@@ -70,8 +70,8 @@ export default function NicotineFreePouchesPage() {
       <p>
         Tuck one pouch. Leave it. Do not chew. The stack is built to sit.
         High caffeine content: one pouch is {DOSE.caffeineMg} mg, in the same
-        ballpark as a small coffee. Know your own limit. You still drink
-        water.
+        ballpark as a small coffee, with {DOSE.theanineMg} mg L-theanine for a
+        smoother hit. Know your own limit. You still drink water.
       </p>
       <p>
         If the comparison you want is a can of drink, read{" "}

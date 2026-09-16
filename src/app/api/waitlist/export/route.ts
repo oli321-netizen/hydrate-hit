@@ -24,7 +24,7 @@ export async function GET(request: Request) {
     status: 200,
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": "attachment; filename=hydrate-hit-waitlist.csv",
+      "Content-Disposition": "attachment; filename=fluxhit-waitlist.csv",
     },
   });
 }

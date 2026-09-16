@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CAN_LINE } from "@/lib/site";
+import { CAN_LINE, SITE_NAME } from "@/lib/site";
 import { DOSE, FLAVOURS, PRICE, flavourBySlug, gbp, subscribePrice } from "@/lib/products";
 import { AccentLine, CrystalMark, FlavourName, ProofStrip } from "@/components/Brand";
 import { FlavourBuy } from "@/components/FlavourBuy";
@@ -18,16 +18,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!flavour) return { title: "Flavour" };
   return {
     title: `${flavour.name} nicotine-free pouch`,
-    description: `${flavour.name} Hydrate Hit. Nicotine-free caffeine and electrolyte oral pouch. ${flavour.blurb} ${CAN_LINE}. ${gbp(PRICE.single)} a can.`,
+    description: `${flavour.name} ${SITE_NAME}. Nicotine-free caffeine pouch with L-theanine and light electrolytes. ${flavour.blurb} ${CAN_LINE}. ${gbp(PRICE.single)} a can.`,
     alternates: { canonical: `/flavours/${flavour.slug}` },
     openGraph: {
       url: `/flavours/${flavour.slug}`,
-      title: `${flavour.name} · Hydrate Hit`,
+      title: `${flavour.name} · ${SITE_NAME}`,
       description: `${flavour.name} nicotine-free pouch. ${flavour.blurb}`,
       images: [
         {
           url: `${flavour.heroSrc}`,
-          alt: `${flavour.name} Hydrate Hit tin`,
+          alt: `${flavour.name} ${SITE_NAME} tin`,
         },
       ],
     },
@@ -45,7 +45,7 @@ export default async function FlavourPage({ params }: Props) {
         <div className="relative aspect-square overflow-hidden rounded-2xl bg-bg-2">
           <AssetImage
             src={flavour.heroSrc}
-            alt={`${flavour.name} Hydrate Hit tin`}
+            alt={`${flavour.name} ${SITE_NAME} tin`}
             fill
             className="object-contain"
           />

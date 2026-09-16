@@ -1,13 +1,17 @@
-# Hydrate Hit
+# FluxHit
 
-Mobile-first marketing and shop site for **Hydrate Hit**, the pouch that hydrates and hits.
+Mobile-first marketing and shop site for **FluxHit**, smooth hit · light electrolytes.
+
+Canonical URLs stay on **hydrationhit.com**. Repo, Railway service hostname, and GitHub Pages path are unchanged so DNS/CNAME keep working.
 
 ## Brand
 
-- Tagline: The pouch that hydrates and hits.
+- Name: FluxHit (wordmark **FLUXHIT**)
+- Tagline: smooth hit · light electrolytes
 - Voice: Sharp, dry, adult. UK English.
-- Per pouch: 80 mg caffeine · 150 mg sodium · 100 mg potassium · 50 mg magnesium (~300 mg electrolytes) · B6 1.7 mg · B12 2.4 µg
-- Can line: `80mg caffeine · 300mg electrolytes · B6 + B12`
+- Per pouch (0.5 g): 80 mg caffeine · 60 mg L-theanine · 50 mg sodium · 50 mg potassium · B6 1.7 mg (100% NRV) · B12 2.4 µg (100% NRV)
+- Can line: `80mg caffeine · 60mg L-theanine · 50mg Na + 50mg K · B6 + B12`
+- Nicotine-free, sugar-free, tobacco-free
 - Flavours: Frost Mint, Citrus Ice, Blue Razz, Peach Ice, Cherry Ice
 
 ## Pricing (GBP only)

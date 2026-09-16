@@ -1,17 +1,19 @@
 import { faqPageLd } from "@/lib/seo";
+import { POUCH_FORMULA } from "@/lib/products";
+import { SITE_NAME } from "@/lib/site";
 
 export const FAQS = [
   {
     q: "What is in a pouch?",
-    a: "80 mg caffeine, 150 mg sodium, 100 mg potassium, 50 mg magnesium (about 300 mg electrolytes), vitamin B6 1.7 mg, vitamin B12 2.4 µg.",
+    a: `${POUCH_FORMULA}. Nicotine-free, sugar-free, tobacco-free.`,
   },
   {
     q: "Is there nicotine?",
-    a: "No. Hydrate Hit is a caffeine and electrolyte pouch. No nicotine. No tobacco.",
+    a: `No. ${SITE_NAME} is a caffeine pouch with L-theanine and light electrolytes. No nicotine. No tobacco. No sugar.`,
   },
   {
     q: "Is this snus or a nicotine pouch?",
-    a: "No. Same lip-pouch format, different contents. Hydrate Hit is a nicotine-free oral pouch, not snus and not a nicotine pouch.",
+    a: `No. Same lip-pouch format, different contents. ${SITE_NAME} is a nicotine-free oral pouch, not snus and not a nicotine pouch.`,
   },
   {
     q: "How many pouches in a can?",
@@ -23,7 +25,7 @@ export const FAQS = [
   },
   {
     q: "How do I use it?",
-    a: "Tuck one pouch between gum and lip. Do not chew. One pouch is 80 mg caffeine. Know your own limit.",
+    a: "Tuck one pouch between gum and lip. Do not chew. One pouch is 80 mg caffeine with 60 mg L-theanine. Know your own limit.",
   },
   {
     q: "When do you ship?",

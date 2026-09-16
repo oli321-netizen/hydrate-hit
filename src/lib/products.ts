@@ -85,14 +85,16 @@ export const DEFAULT_FLAVOUR: FlavourSlug = "blue-razz";
 
 export const DOSE = {
   caffeineMg: 80,
-  sodiumMg: 150,
-  potassiumMg: 100,
-  magnesiumMg: 50,
-  electrolytesMg: 300,
+  theanineMg: 60,
+  sodiumMg: 50,
+  potassiumMg: 50,
   b6Mg: 1.7,
   b12Ug: 2.4,
   pouchesPerCan: 20,
 } as const;
+
+/** Named stack, one pouch (0.5 g). */
+export const POUCH_FORMULA = `${DOSE.caffeineMg} mg caffeine, ${DOSE.theanineMg} mg L-theanine, ${DOSE.sodiumMg} mg sodium, ${DOSE.potassiumMg} mg potassium, vitamin B6 ${DOSE.b6Mg} mg (100% NRV), vitamin B12 ${DOSE.b12Ug} µg (100% NRV)`;
 
 export type SkuId =
   | FlavourSlug
@@ -171,4 +173,4 @@ export function flavourBySlug(slug: string) {
   return FLAVOURS.find((f) => f.slug === slug);
 }
 
-export const PROOF = ["Caffeine", "Na", "K", "Mg", "B6", "B12"] as const;
+export const PROOF = ["Caffeine", "L-theanine", "Na", "K", "B6", "B12"] as const;
