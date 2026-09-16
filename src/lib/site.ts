@@ -3,11 +3,11 @@ export const TAGLINE = "smooth hit · light electrolytes";
 export const CAN_LINE = "80mg caffeine · 60mg theanine · light electrolytes · B6 + B12";
 export const PROOF_LINE = "Caffeine · Theanine · Na · K · B6 · B12";
 
-/** Apex custom domain (Railway + Cloudflare). */
+/** Apex custom domain (Railway + Cloudflare). Alias: hydrationhit.com */
 export const CUSTOM_DOMAIN = (
   process.env.NEXT_PUBLIC_CUSTOM_DOMAIN ??
   process.env.CUSTOM_DOMAIN ??
-  "hydrationhit.com"
+  "getfluxhit.com"
 )
   .replace(/^https?:\/\//, "")
   .replace(/\/$/, "");

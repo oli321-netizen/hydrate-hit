@@ -19,8 +19,8 @@ jobs:
       - name: Production standalone build
         run: npm run build
         env:
-          NEXT_PUBLIC_CUSTOM_DOMAIN: hydrationhit.com
-          NEXT_PUBLIC_SITE_URL: https://hydrationhit.com
+          NEXT_PUBLIC_CUSTOM_DOMAIN: getfluxhit.com
+          NEXT_PUBLIC_SITE_URL: https://getfluxhit.com
       - name: Standalone server.js exists
         run: test -f .next/standalone/server.js
 
