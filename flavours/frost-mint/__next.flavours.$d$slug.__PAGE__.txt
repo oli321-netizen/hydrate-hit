@@ -1,0 +1,37 @@
+1:"$Sreact.fragment"
+2:I[25231,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js","/hydrate-hit/_next/static/chunks/23ychrv-jed45.js"],"FlavourBuy"]
+3:I[97367,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+8:I[97367,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"ViewportBoundary"]
+9:I[97367,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"MetadataBoundary"]
+:HL["/hydrate-hit/tins/frost-mint.jpg","image"]
+7:X
+19:X
+19:C
+0:{"buildId":"XKSqmSZk5ArI9fjJNoyX1","data":[{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"px-4 pb-28 pt-24 md:px-8","children":["$","div",null,{"className":"mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-center","children":[["$","div",null,{"className":"relative aspect-square overflow-hidden rounded-2xl bg-bg-2","children":[["$","img",null,{"src":"/hydrate-hit/tins/frost-mint.jpg","alt":"Frost Mint FluxHit tin","className":"absolute inset-0 h-full w-full object-contain"}],["$","svg",null,{"viewBox":"0 0 64 64","className":"absolute bottom-6 right-6 h-16 w-16","aria-hidden":true,"children":[["$","polygon",null,{"points":"8,28 32,6 40,30 24,58","fill":"#2F86E8"}],["$","polygon",null,{"points":"32,6 56,28 40,58 40,30","fill":"#7EC8F0"}],["$","polyline",null,{"points":"32,6 28,28 24,58","fill":"none","stroke":"white","strokeOpacity":"0.35","strokeWidth":"1"}]]}]]}],["$","div",null,{"children":[null,["$","h1",null,{"className":"text-4xl font-extrabold tracking-tighter md:text-6xl","children":[["$","span",null,{"style":{"color":"#2F86E8"},"children":"FROST"}]," ",["$","span",null,{"style":{"color":"#7EC8F0"},"children":"MINT"}]]}],["$","p",null,{"className":"flex items-center justify-center gap-3 text-sm text-ink-soft","children":[["$","span",null,{"className":"h-px w-8","style":{"background":"#7EC8F0"}}],"smooth hit · light electrolytes",["$","span",null,{"className":"h-px w-8","style":{"background":"#2F86E8"}}]]}],["$","p",null,{"className":"mt-4 max-w-[46ch] text-base leading-relaxed text-ink-soft","children":"Cold mint. Clean hit. No syrupy aftertaste."}],["$","p",null,{"className":"font-mono text-[11px] uppercase tracking-[0.18em] text-muted mt-4","children":[["$","span","Caffeine",{"children":[false,"Caffeine"]}],["$","span","Theanine",{"children":[["$","span",null,{"className":"mx-1.5","style":{"color":"#1f6fe5"},"children":"·"}],"Theanine"]}],["$","span","Na",{"children":[["$","span",null,{"className":"mx-1.5","style":{"color":"#d63d8c"},"children":"·"}],"Na"]}],["$","span","K",{"children":[["$","span",null,{"className":"mx-1.5","style":{"color":"#1f6fe5"},"children":"·"}],"K"]}],["$","span","B6",{"children":[["$","span",null,{"className":"mx-1.5","style":{"color":"#d63d8c"},"children":"·"}],"B6"]}],["$","span","B12",{"children":[["$","span",null,{"className":"mx-1.5","style":{"color":"#1f6fe5"},"children":"·"}],"B12"]}]]}],["$","p",null,{"className":"mt-6 font-mono text-sm text-muted","children":"80mg caffeine · 60mg theanine · light electrolytes · B6 + B12"}],["$","p",null,{"className":"mt-2 text-sm text-ink-soft","children":[20," pouches · ","£12.99"," · subscribe"," ","£10.39",""]}],["$","$L2",null,{"slug":"frost-mint","accent":"#2F86E8"}]]}]]}]}],[["$","script","script-0",{"src":"/hydrate-hit/_next/static/chunks/23ychrv-jed45.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Frost Mint nicotine-free pouch · FluxHit"}],["$","meta","1",{"name":"description","content":"Frost Mint FluxHit. Nicotine-free caffeine and theanine oral pouch with light electrolytes. Cold mint. Clean hit. No syrupy aftertaste. 80mg caffeine · 60mg theanine · light electrolytes · B6 + B12. £12.99 a can."}],["$","meta","2",{"name":"application-name","content":"FluxHit"}],["$","meta","3",{"name":"author","content":"FluxHit"}],["$","link","4",{"rel":"manifest","href":"/hydrate-hit/manifest.webmanifest"}],["$","meta","5",{"name":"keywords","content":"FluxHit,caffeine pouch,theanine pouch,nicotine-free pouches,oral pouches,caffeine pouches,L-theanine,light electrolytes,snus alternative,Blue Razz,Frost Mint,Citrus Ice,caffeine pouch UK"}],["$","meta","6",{"name":"robots","content":"index, follow"}],["$","link","7",{"rel":"canonical","href":"https://oli321-netizen.github.io/hydrate-hit/flavours/frost-mint/"}],["$","meta","8",{"name":"google-site-verification","content":"rEylspFVWx6Bm1dmixQ5pW9s65bFkcrJu0V8mAyxD5M"}],["$","meta","9",{"property":"og:title","content":"Frost Mint · FluxHit"}],["$","meta","10",{"property":"og:description","content":"Frost Mint nicotine-free pouch. Cold mint. Clean hit. No syrupy aftertaste."}],"$La","$Lb","$Lc","$Ld","$Le","$Lf","$L10","$L11","$L12","$L13","$L14"]}]}]}],"$L15"]}],"isPartial":"$@16","staleTime":"$7","varyParams":null},{"rsc":"$L17","isPartial":"$@18","staleTime":"$7","varyParams":"$19"},{"rsc":"$L1a","isPartial":"$@1b","staleTime":"$7","varyParams":"$19"}],"isUpgradeableISRFallback":false,"a":"$@1c","rootVaryParams":null,"needsRuntimeRequest":"$@1d"}
+1e:I[27201,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"IconMark"]
+1f:I[39756,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"default"]
+20:I[37457,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"default"]
+5:null
+a:["$","meta","11",{"property":"og:url","content":"https://oli321-netizen.github.io/hydrate-hit/flavours/frost-mint/"}]
+b:["$","meta","12",{"property":"og:image","content":"https://oli321-netizen.github.io/hydrate-hit/tins/frost-mint.jpg"}]
+c:["$","meta","13",{"property":"og:image:alt","content":"Frost Mint FluxHit tin"}]
+d:["$","meta","14",{"name":"twitter:card","content":"summary_large_image"}]
+e:["$","meta","15",{"name":"twitter:title","content":"FluxHit · smooth hit · light electrolytes"}]
+f:["$","meta","16",{"name":"twitter:description","content":"smooth hit · light electrolytes 80mg caffeine · 60mg theanine · light electrolytes · B6 + B12. No nicotine."}]
+10:["$","meta","17",{"name":"twitter:image","content":"https://getfluxhit.com/og.jpg"}]
+11:["$","link","18",{"rel":"icon","href":"/hydrate-hit/favicon.svg","type":"image/svg+xml"}]
+12:["$","link","19",{"rel":"icon","href":"/hydrate-hit/icon.png"}]
+13:["$","link","20",{"rel":"apple-touch-icon","href":"/hydrate-hit/icon.png"}]
+14:["$","$L1e","21",{}]
+15:["$","meta",null,{"name":"next-size-adjust","content":""}]
+17:["$","$1","c",{"children":[null,["$","$L1f",null,{"parallelRouterKey":"children","template":["$","$L20",null,{}]}]]}]
+1a:["$","$1","c",{"children":[null,["$","$L1f",null,{"parallelRouterKey":"children","template":["$","$L20",null,{}]}]]}]
+1d:true
+7:300
+7:C
+1c:0
+16:"$undefined"
+18:"$undefined"
+1b:"$undefined"
+6:"$undefined"

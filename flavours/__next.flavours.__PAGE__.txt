@@ -1,0 +1,22 @@
+1:"$Sreact.fragment"
+2:I[91910,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js","/hydrate-hit/_next/static/chunks/3-q3jufxm7yok.js"],"ShopProduct"]
+3:I[43400,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js","/hydrate-hit/_next/static/chunks/3-q3jufxm7yok.js"],"WaitlistBand"]
+4:I[97367,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+9:I[97367,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"ViewportBoundary"]
+a:I[97367,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"MetadataBoundary"]
+b:I[27201,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"IconMark"]
+d:I[39756,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"default"]
+e:I[37457,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"default"]
+8:X
+10:X
+10:C
+0:{"buildId":"XKSqmSZk5ArI9fjJNoyX1","data":[{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"pb-16","children":[["$","$L2",null,{}],["$","$L3",null,{}]]}],[["$","script","script-0",{"src":"/hydrate-hit/_next/static/chunks/3-q3jufxm7yok.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":"$@7","staleTime":"$8","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L9",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$La",null,{"children":["$","$5",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Flavours · FluxHit"}],["$","meta","1",{"name":"description","content":"Frost Mint, Citrus Ice, Blue Razz. Peach Ice and Cherry Ice coming soon. FluxHit nicotine-free pouches, priced in pounds."}],["$","meta","2",{"name":"application-name","content":"FluxHit"}],["$","meta","3",{"name":"author","content":"FluxHit"}],["$","link","4",{"rel":"manifest","href":"/hydrate-hit/manifest.webmanifest"}],["$","meta","5",{"name":"keywords","content":"FluxHit,caffeine pouch,theanine pouch,nicotine-free pouches,oral pouches,caffeine pouches,L-theanine,light electrolytes,snus alternative,Blue Razz,Frost Mint,Citrus Ice,caffeine pouch UK"}],["$","meta","6",{"name":"robots","content":"index, follow"}],["$","link","7",{"rel":"canonical","href":"https://oli321-netizen.github.io/hydrate-hit/shop/"}],["$","meta","8",{"name":"google-site-verification","content":"rEylspFVWx6Bm1dmixQ5pW9s65bFkcrJu0V8mAyxD5M"}],["$","meta","9",{"property":"og:title","content":"Flavours · FluxHit"}],["$","meta","10",{"property":"og:description","content":"Frost Mint, Citrus Ice, Blue Razz. Peach Ice and Cherry Ice coming soon. FluxHit nicotine-free pouches, priced in pounds."}],["$","meta","11",{"property":"og:url","content":"https://oli321-netizen.github.io/hydrate-hit/shop/"}],["$","meta","12",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","13",{"name":"twitter:title","content":"FluxHit · smooth hit · light electrolytes"}],["$","meta","14",{"name":"twitter:description","content":"smooth hit · light electrolytes 80mg caffeine · 60mg theanine · light electrolytes · B6 + B12. No nicotine."}],["$","meta","15",{"name":"twitter:image","content":"https://getfluxhit.com/og.jpg"}],["$","link","16",{"rel":"icon","href":"/hydrate-hit/favicon.svg","type":"image/svg+xml"}],["$","link","17",{"rel":"icon","href":"/hydrate-hit/icon.png"}],["$","link","18",{"rel":"apple-touch-icon","href":"/hydrate-hit/icon.png"}],["$","$Lb","19",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":"$@c","staleTime":"$8","varyParams":null},{"rsc":["$","$1","c",{"children":[null,["$","$Ld",null,{"parallelRouterKey":"children","template":["$","$Le",null,{}]}]]}],"isPartial":"$@f","staleTime":"$8","varyParams":"$10"}],"isUpgradeableISRFallback":false,"a":"$@11","rootVaryParams":null,"needsRuntimeRequest":"$@12"}
+6:null
+12:true
+8:300
+8:C
+11:0
+c:"$undefined"
+f:"$undefined"
+7:"$undefined"

@@ -1,0 +1,39 @@
+1:"$Sreact.fragment"
+2:I[25231,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js","/hydrate-hit/_next/static/chunks/23ychrv-jed45.js"],"FlavourBuy"]
+3:I[97367,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+8:I[97367,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"ViewportBoundary"]
+9:I[97367,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"MetadataBoundary"]
+:HL["/hydrate-hit/tins/cherry-ice.jpg","image"]
+7:X
+1b:X
+1b:C
+0:{"buildId":"XKSqmSZk5ArI9fjJNoyX1","data":[{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"px-4 pb-28 pt-24 md:px-8","children":["$","div",null,{"className":"mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-center","children":[["$","div",null,{"className":"relative aspect-square overflow-hidden rounded-2xl bg-bg-2","children":[["$","img",null,{"src":"/hydrate-hit/tins/cherry-ice.jpg","alt":"Cherry Ice FluxHit tin","className":"absolute inset-0 h-full w-full object-contain"}],["$","svg",null,{"viewBox":"0 0 64 64","className":"absolute bottom-6 right-6 h-16 w-16","aria-hidden":true,"children":[["$","polygon",null,{"points":"8,28 32,6 40,30 24,58","fill":"#D11F3C"}],["$","polygon",null,{"points":"32,6 56,28 40,58 40,30","fill":"#F5A3B0"}],["$","polyline",null,{"points":"32,6 28,28 24,58","fill":"none","stroke":"white","strokeOpacity":"0.35","strokeWidth":"1"}]]}]]}],["$","div",null,{"children":[["$","p",null,{"className":"mb-3 font-mono text-[11px] uppercase tracking-[0.22em] text-muted","children":"Coming soon"}],["$","h1",null,{"className":"text-4xl font-extrabold tracking-tighter md:text-6xl","children":[["$","span",null,{"style":{"color":"#D11F3C"},"children":"CHERRY"}]," ",["$","span",null,{"style":{"color":"#2F86E8"},"children":"ICE"}]]}],["$","p",null,{"className":"flex items-center justify-center gap-3 text-sm text-ink-soft","children":[["$","span",null,{"className":"h-px w-8","style":{"background":"#2F86E8"}}],"smooth hit · light electrolytes",["$","span",null,{"className":"h-px w-8","style":{"background":"#D11F3C"}}]]}],["$","p",null,{"className":"mt-4 max-w-[46ch] text-base leading-relaxed text-ink-soft","children":"Dark cherry, iced. Adult, not a sweets aisle."}],["$","p",null,{"className":"font-mono text-[11px] uppercase tracking-[0.18em] text-muted mt-4","children":[["$","span","Caffeine",{"children":[false,"Caffeine"]}],["$","span","Theanine",{"children":[["$","span",null,{"className":"mx-1.5","style":{"color":"#1f6fe5"},"children":"·"}],"Theanine"]}],["$","span","Na",{"children":[["$","span",null,{"className":"mx-1.5","style":{"color":"#d63d8c"},"children":"·"}],"Na"]}],["$","span","K",{"children":[["$","span",null,{"className":"mx-1.5","style":{"color":"#1f6fe5"},"children":"·"}],"K"]}],["$","span","B6",{"children":[["$","span",null,{"className":"mx-1.5","style":{"color":"#d63d8c"},"children":"·"}],"B6"]}],["$","span","B12",{"children":[["$","span",null,{"className":"mx-1.5","style":{"color":"#1f6fe5"},"children":"·"}],"B12"]}]]}],["$","p",null,{"className":"mt-6 font-mono text-sm text-muted","children":"80mg caffeine · 60mg theanine · light electrolytes · B6 + B12"}],["$","p",null,{"className":"mt-2 text-sm text-ink-soft","children":[20," pouches · ","£12.99"," · subscribe"," ","£10.39"," · notify for first drop"]}],["$","$L2",null,{"slug":"cherry-ice","accent":"#D11F3C","comingSoon":true}]]}]]}]}],[["$","script","script-0",{"src":"/hydrate-hit/_next/static/chunks/23ychrv-jed45.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Cherry Ice nicotine-free pouch · FluxHit"}],["$","meta","1",{"name":"description","content":"Cherry Ice FluxHit. Nicotine-free caffeine and theanine oral pouch with light electrolytes. Dark cherry, iced. Adult, not a sweets aisle. 80mg caffeine · 60mg theanine · light electrolytes · B6 + B12. £12.99 a can."}],["$","meta","2",{"name":"application-name","content":"FluxHit"}],["$","meta","3",{"name":"author","content":"FluxHit"}],["$","link","4",{"rel":"manifest","href":"/hydrate-hit/manifest.webmanifest"}],["$","meta","5",{"name":"keywords","content":"FluxHit,caffeine pouch,theanine pouch,nicotine-free pouches,oral pouches,caffeine pouches,L-theanine,light electrolytes,snus alternative,Blue Razz,Frost Mint,Citrus Ice,caffeine pouch UK"}],["$","meta","6",{"name":"robots","content":"index, follow"}],["$","link","7",{"rel":"canonical","href":"https://oli321-netizen.github.io/hydrate-hit/flavours/cherry-ice/"}],["$","meta","8",{"name":"google-site-verification","content":"rEylspFVWx6Bm1dmixQ5pW9s65bFkcrJu0V8mAyxD5M"}],"$La","$Lb","$Lc","$Ld","$Le","$Lf","$L10","$L11","$L12","$L13","$L14","$L15","$L16"]}]}]}],"$L17"]}],"isPartial":"$@18","staleTime":"$7","varyParams":null},{"rsc":"$L19","isPartial":"$@1a","staleTime":"$7","varyParams":"$1b"},{"rsc":"$L1c","isPartial":"$@1d","staleTime":"$7","varyParams":"$1b"}],"isUpgradeableISRFallback":false,"a":"$@1e","rootVaryParams":null,"needsRuntimeRequest":"$@1f"}
+20:I[27201,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"IconMark"]
+21:I[39756,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"default"]
+22:I[37457,["/hydrate-hit/_next/static/chunks/3dtx7qpp33d6i.js","/hydrate-hit/_next/static/chunks/1wdqmhk5k69y2.js"],"default"]
+5:null
+a:["$","meta","9",{"property":"og:title","content":"Cherry Ice · FluxHit"}]
+b:["$","meta","10",{"property":"og:description","content":"Cherry Ice nicotine-free pouch. Dark cherry, iced. Adult, not a sweets aisle."}]
+c:["$","meta","11",{"property":"og:url","content":"https://oli321-netizen.github.io/hydrate-hit/flavours/cherry-ice/"}]
+d:["$","meta","12",{"property":"og:image","content":"https://oli321-netizen.github.io/hydrate-hit/tins/cherry-ice.jpg"}]
+e:["$","meta","13",{"property":"og:image:alt","content":"Cherry Ice FluxHit tin"}]
+f:["$","meta","14",{"name":"twitter:card","content":"summary_large_image"}]
+10:["$","meta","15",{"name":"twitter:title","content":"FluxHit · smooth hit · light electrolytes"}]
+11:["$","meta","16",{"name":"twitter:description","content":"smooth hit · light electrolytes 80mg caffeine · 60mg theanine · light electrolytes · B6 + B12. No nicotine."}]
+12:["$","meta","17",{"name":"twitter:image","content":"https://getfluxhit.com/og.jpg"}]
+13:["$","link","18",{"rel":"icon","href":"/hydrate-hit/favicon.svg","type":"image/svg+xml"}]
+14:["$","link","19",{"rel":"icon","href":"/hydrate-hit/icon.png"}]
+15:["$","link","20",{"rel":"apple-touch-icon","href":"/hydrate-hit/icon.png"}]
+16:["$","$L20","21",{}]
+17:["$","meta",null,{"name":"next-size-adjust","content":""}]
+19:["$","$1","c",{"children":[null,["$","$L21",null,{"parallelRouterKey":"children","template":["$","$L22",null,{}]}]]}]
+1c:["$","$1","c",{"children":[null,["$","$L21",null,{"parallelRouterKey":"children","template":["$","$L22",null,{}]}]]}]
+1f:true
+7:300
+7:C
+1e:0
+18:"$undefined"
+1a:"$undefined"
+1d:"$undefined"
+6:"$undefined"
