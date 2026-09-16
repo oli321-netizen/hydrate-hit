@@ -9,7 +9,9 @@ export function Why() {
         <div>
           <h2 className="max-w-[14ch] text-4xl font-semibold tracking-tighter text-ink md:text-6xl">
             Smooth focus.
+            <br />
             Light salts.
+            <br />
             Daily extras.
           </h2>
           <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-ink-soft">
