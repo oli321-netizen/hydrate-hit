@@ -7,7 +7,7 @@ export const PROOF_LINE = "Caffeine · Theanine · Na · K · B6 · B12";
 export const CUSTOM_DOMAIN = (
   process.env.NEXT_PUBLIC_CUSTOM_DOMAIN ??
   process.env.CUSTOM_DOMAIN ??
-  "hydrationhit.com"
+  "getfluxhit.com"
 )
   .replace(/^https?:\/\//, "")
   .replace(/\/$/, "");

@@ -30,7 +30,8 @@ Shop CTAs register interest. They do not add to cart. Joining now gets **priorit
 
 **Host: Railway** (Next.js Node server + waitlist API)  
 **DNS: Cloudflare** → Railway  
-**Canonical URL: https://hydrationhit.com**  
+**Canonical URL: https://getfluxhit.com**  
+**Legacy:** hydrationhit.com (redirect to the canonical host if still attached)  
 **Backup: GitHub Pages** at https://oli321-netizen.github.io/hydrate-hit/ (static, no waitlist store)
 
 ## Deploy on Railway
@@ -43,7 +44,7 @@ Shop CTAs register interest. They do not add to cart. Joining now gets **priorit
    - Name: `DATABASE_URL`
    - Value: `${{Postgres.DATABASE_URL}}` (use the **exact** Postgres service name if it is not `Postgres`, e.g. `${{PostgreSQL.DATABASE_URL}}`)
    - Save and **redeploy** the web service.
-5. Confirm `GET https://hydrationhit.com/api/waitlist` returns `"storage":"postgres"`. If you see `"file"` plus a `warning`, the URL is present but connect/SSL failed — the app falls back to JSONL so signups still work.
+5. Confirm `GET https://getfluxhit.com/api/waitlist` returns `"storage":"postgres"`. If you see `"file"` plus a `warning`, the URL is present but connect/SSL failed — the app falls back to JSONL so signups still work.
 6. Set remaining env vars (below).
 
 Do **not** set `GITHUB_PAGES=true` on Railway.
@@ -52,8 +53,8 @@ Do **not** set `GITHUB_PAGES=true` on Railway.
 
 | Name | Required | Purpose |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | yes | `https://hydrationhit.com` |
-| `NEXT_PUBLIC_CUSTOM_DOMAIN` | yes | `hydrationhit.com` |
+| `NEXT_PUBLIC_SITE_URL` | yes | `https://getfluxhit.com` |
+| `NEXT_PUBLIC_CUSTOM_DOMAIN` | yes | `getfluxhit.com` |
 | `DATABASE_URL` | yes on Railway | `${{Postgres.DATABASE_URL}}` on the **web** service, then redeploy |
 | `WAITLIST_PATH` | no | JSONL path if no Postgres. Default `data/waitlist.jsonl` |
 | `WAITLIST_EXPORT_SECRET` | yes for export | Bearer / `?key=` for CSV download |
@@ -74,7 +75,7 @@ On Railway → web service → **Variables**: set `MAINTENANCE_BANNER=1` and `MA
 
 ```bash
 curl -L -H "Authorization: Bearer $WAITLIST_EXPORT_SECRET" \
-  https://hydrationhit.com/api/waitlist/export \
+  https://getfluxhit.com/api/waitlist/export \
   -o waitlist.csv
 ```
 
@@ -89,15 +90,15 @@ Point the zone at Railway. Use the hostname Railway shows (`*.up.railway.app`). 
 | Type | Name | Target | Proxy |
 | --- | --- | --- | --- |
 | CNAME | `@` | `hydrate-hit-production.up.railway.app` | **Proxied** (orange cloud) |
-| CNAME | `www` | `hydrationhit.com` | **Proxied** |
+| CNAME | `www` | `getfluxhit.com` | **Proxied** |
 
 Cloudflare flattens the apex CNAME. Do not keep GitHub Pages A records on `@` once this is live.
 
 **SSL/TLS** (Cloudflare → Railway): **Full (strict)**. Railway already serves HTTPS.
 
-Optional: Cloudflare Redirect Rule `www.hydrationhit.com` → `https://hydrationhit.com` if you prefer apex-only.
+Optional: Cloudflare Redirect Rule `www.getfluxhit.com` → `https://getfluxhit.com` if you prefer apex-only.
 
-After DNS is green, in Railway: **Settings → Networking → Custom domain** → `hydrationhit.com` and `www.hydrationhit.com`.
+After DNS is green, in Railway: **Settings → Networking → Custom domain** → `getfluxhit.com` and `www.getfluxhit.com`. Legacy `hydrationhit.com` / `www.hydrationhit.com` can stay attached; the app redirects them to `https://getfluxhit.com`.
 
 ## GitHub Pages backup
 
@@ -105,7 +106,7 @@ The `GitHub Pages` workflow still static-exports the marketing site (API routes 
 
 - Live backup: https://oli321-netizen.github.io/hydrate-hit/
 - Waitlist on Pages only works if you set GitHub secret `WAITLIST_ENDPOINT` to a Formspree/Getform URL.
-- Do not attach `hydrationhit.com` to Pages while Cloudflare points at Railway.
+- Do not attach `getfluxhit.com` (or legacy `hydrationhit.com`) to Pages while Cloudflare points at Railway.
 
 ## Local
 

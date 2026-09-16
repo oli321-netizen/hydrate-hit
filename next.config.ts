@@ -16,6 +16,35 @@ const nextConfig: NextConfig = {
     ? { unoptimized: true }
     : { formats: ["image/avif", "image/webp"] },
   transpilePackages: ["three", "@react-three/fiber", "@react-three/drei"],
+  async redirects() {
+    if (isPages) return [];
+    return [
+      {
+        source: "/",
+        has: [{ type: "host", value: "hydrationhit.com" }],
+        destination: "https://getfluxhit.com/",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "hydrationhit.com" }],
+        destination: "https://getfluxhit.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/",
+        has: [{ type: "host", value: "www.hydrationhit.com" }],
+        destination: "https://getfluxhit.com/",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.hydrationhit.com" }],
+        destination: "https://getfluxhit.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     if (isPages) return [];
     return [

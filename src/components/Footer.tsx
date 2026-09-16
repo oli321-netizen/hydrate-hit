@@ -47,7 +47,7 @@ export function Footer() {
         Food supplement pouch. Nicotine-free. High caffeine content. Adults
         only, 18+. Max 2 pouches per day. Not for children, pregnant or
         breastfeeding people, or those sensitive to caffeine. UK English.
-        Prices in pounds sterling. hydrationhit.com
+        Prices in pounds sterling. getfluxhit.com
       </p>
     </footer>
   );
