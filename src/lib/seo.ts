@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SITE_NAME } from "@/lib/site";
 
 /** Canonical share image. Always the apex URL — never prefix with /hydrate-hit. */
-export const OG_IMAGE_URL = "https://hydrationhit.com/og.jpg";
+export const OG_IMAGE_URL = "https://getfluxhit.com/og.jpg";
 export const OG_IMAGE = {
   url: OG_IMAGE_URL,
   width: 1200,

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CAN_LINE, SITE_NAME, TAGLINE } from "@/lib/site";
+import { CAN_LINE, CUSTOM_DOMAIN, SITE_NAME, TAGLINE } from "@/lib/site";
 import { ProofStrip } from "@/components/Brand";
 import { WaitlistCta } from "@/components/Ctas";
 
@@ -47,7 +47,7 @@ export function Footer() {
         Food supplement pouch. Nicotine-free. High caffeine content. Adults
         only, 18+. Max 2 pouches per day. Not for children, pregnant or
         breastfeeding people, or those sensitive to caffeine. UK English.
-        Prices in pounds sterling. hydrationhit.com
+        Prices in pounds sterling. {CUSTOM_DOMAIN}
       </p>
     </footer>
   );

@@ -268,7 +268,7 @@ def make_side(flavour: dict, w=2048, h=360) -> Image.Image:
         font=f_small,
         fill=(150, 165, 190),
     )
-    draw.text((w - 220, h - 30), "hydrationhit.com", font=f_small, fill=(150, 165, 190))
+    draw.text((w - 220, h - 30), "getfluxhit.com", font=f_small, fill=(150, 165, 190))
     return img
 
 

@@ -14,8 +14,8 @@ FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV NEXT_PUBLIC_CUSTOM_DOMAIN=hydrationhit.com
-ENV NEXT_PUBLIC_SITE_URL=https://hydrationhit.com
+ENV NEXT_PUBLIC_CUSTOM_DOMAIN=getfluxhit.com
+ENV NEXT_PUBLIC_SITE_URL=https://getfluxhit.com
 # Railway is the Node server. Unset so a leaked env cannot flip output to "export".
 ENV GITHUB_PAGES=
 ENV NODE_OPTIONS=--max-old-space-size=4096

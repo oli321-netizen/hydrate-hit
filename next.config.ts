@@ -3,6 +3,13 @@ import type { NextConfig } from "next";
 const isPages = process.env.GITHUB_PAGES === "true";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
+/** Old apex plus www hosts. Canonical is getfluxhit.com (already on Railway). */
+const ALIAS_HOSTS = [
+  "hydrationhit.com",
+  "www.hydrationhit.com",
+  "www.getfluxhit.com",
+];
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -16,6 +23,23 @@ const nextConfig: NextConfig = {
     ? { unoptimized: true }
     : { formats: ["image/avif", "image/webp"] },
   transpilePackages: ["three", "@react-three/fiber", "@react-three/drei"],
+  async redirects() {
+    if (isPages) return [];
+    return ALIAS_HOSTS.flatMap((host) => [
+      {
+        source: "/",
+        has: [{ type: "host" as const, value: host }],
+        destination: "https://getfluxhit.com/",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host" as const, value: host }],
+        destination: "https://getfluxhit.com/:path*",
+        permanent: true,
+      },
+    ]);
+  },
   async headers() {
     if (isPages) return [];
     return [
