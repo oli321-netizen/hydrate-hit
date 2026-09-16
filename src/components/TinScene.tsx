@@ -220,7 +220,7 @@ export function TinScene({ flavour }: { flavour: Flavour }) {
           camera.lookAt(0, 0.05, 0);
         }}
         onPointerMissed={undefined}
-        aria-label={`${flavour.name} Hydrate Hit tin`}
+        aria-label={`${flavour.name} FluxHit tin`}
       >
         <Suspense fallback={null}>
           <Scene flavour={flavour} onFail={onFail} />

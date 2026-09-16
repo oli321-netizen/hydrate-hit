@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CAN_LINE } from "@/lib/site";
+import { CAN_LINE, SITE_NAME, brandAlt } from "@/lib/site";
 import { DOSE, FLAVOURS, PRICE, flavourBySlug, gbp, subscribePrice } from "@/lib/products";
 import { AccentLine, CrystalMark, FlavourName, ProofStrip } from "@/components/Brand";
 import { FlavourBuy } from "@/components/FlavourBuy";
@@ -18,16 +18,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!flavour) return { title: "Flavour" };
   return {
     title: `${flavour.name} nicotine-free pouch`,
-    description: `${flavour.name} Hydrate Hit. Nicotine-free caffeine and electrolyte oral pouch. ${flavour.blurb} ${CAN_LINE}. ${gbp(PRICE.single)} a can.`,
+    description: `${flavour.name} ${SITE_NAME}. Nicotine-free caffeine and theanine oral pouch with light electrolytes. ${flavour.blurb} ${CAN_LINE}. ${gbp(PRICE.single)} a can.`,
     alternates: { canonical: `/flavours/${flavour.slug}` },
     openGraph: {
       url: `/flavours/${flavour.slug}`,
-      title: `${flavour.name} · Hydrate Hit`,
+      title: `${flavour.name} · ${SITE_NAME}`,
       description: `${flavour.name} nicotine-free pouch. ${flavour.blurb}`,
       images: [
         {
           url: `${flavour.heroSrc}`,
-          alt: `${flavour.name} Hydrate Hit tin`,
+          alt: brandAlt(flavour.name),
         },
       ],
     },
@@ -45,7 +45,7 @@ export default async function FlavourPage({ params }: Props) {
         <div className="relative aspect-square overflow-hidden rounded-2xl bg-bg-2">
           <AssetImage
             src={flavour.heroSrc}
-            alt={`${flavour.name} Hydrate Hit tin`}
+            alt={brandAlt(flavour.name)}
             fill
             className="object-contain"
           />
@@ -56,6 +56,11 @@ export default async function FlavourPage({ params }: Props) {
           />
         </div>
         <div>
+          {flavour.comingSoon ? (
+            <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
+              Coming soon
+            </p>
+          ) : null}
           <FlavourName
             flavour={flavour}
             as="h1"
@@ -70,8 +75,9 @@ export default async function FlavourPage({ params }: Props) {
           <p className="mt-2 text-sm text-ink-soft">
             {DOSE.pouchesPerCan} pouches · {gbp(PRICE.single)} · subscribe{" "}
             {gbp(subscribePrice(PRICE.single))}
+            {flavour.comingSoon ? " · notify for first drop" : ""}
           </p>
-          <FlavourBuy slug={flavour.slug} accent={flavour.toneA} />
+          <FlavourBuy slug={flavour.slug} accent={flavour.toneA} comingSoon={flavour.comingSoon} />
         </div>
       </div>
     </main>

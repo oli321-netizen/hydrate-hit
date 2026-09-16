@@ -173,11 +173,11 @@ export function Splash() {
           )}
         </div>
         <p className="text-2xl font-extrabold tracking-tight text-[#18181b] sm:text-3xl">
-          HYDRATE HIT
+          FLUXHIT
         </p>
         <p className="mt-3 flex items-center gap-3 text-sm text-[#3f3f46]">
           <span className="h-px w-8" style={{ background: "#d63d8c" }} />
-          hydrates and hits
+          smooth hit · light electrolytes
           <span className="h-px w-8" style={{ background: "#1f6fe5" }} />
         </p>
       </div>

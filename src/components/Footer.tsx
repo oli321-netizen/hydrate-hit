@@ -36,7 +36,7 @@ export function Footer() {
             Snus alternative
           </Link>
           <Link href="/electrolyte-pouches" className="hover:underline">
-            Electrolyte pouches
+            Light electrolyte pouches
           </Link>
           <Link href="/guides/caffeine-pouch-vs-energy-drink" className="hover:underline">
             Pouch vs energy drink
@@ -44,9 +44,10 @@ export function Footer() {
         </div>
       </div>
       <p className="mx-auto mt-10 max-w-6xl text-xs text-muted">
-        Food supplement pouch. Nicotine-free. High caffeine content. Not for
-        children, pregnant or breastfeeding people, or those sensitive to
-        caffeine. UK English. Prices in pounds sterling. hydrationhit.com
+        Food supplement pouch. Nicotine-free. High caffeine content. Adults
+        only, 18+. Max 2 pouches per day. Not for children, pregnant or
+        breastfeeding people, or those sensitive to caffeine. UK English.
+        Prices in pounds sterling. hydrationhit.com
       </p>
     </footer>
   );

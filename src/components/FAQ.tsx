@@ -1,29 +1,30 @@
 import { faqPageLd } from "@/lib/seo";
+import { DOSE, doseList, gbp, PRICE } from "@/lib/products";
 
 export const FAQS = [
   {
     q: "What is in a pouch?",
-    a: "80 mg caffeine, 150 mg sodium, 100 mg potassium, 50 mg magnesium (about 300 mg electrolytes), vitamin B6 1.7 mg, vitamin B12 2.4 µg.",
+    a: `${doseList()}. One ${DOSE.pouchGrams} g pouch. Food supplement.`,
   },
   {
     q: "Is there nicotine?",
-    a: "No. Hydrate Hit is a caffeine and electrolyte pouch. No nicotine. No tobacco.",
+    a: "No. FluxHit is a caffeine and theanine pouch with light electrolytes. No nicotine. No tobacco.",
   },
   {
     q: "Is this snus or a nicotine pouch?",
-    a: "No. Same lip-pouch format, different contents. Hydrate Hit is a nicotine-free oral pouch, not snus and not a nicotine pouch.",
+    a: "No. Same lip-pouch format, different contents. FluxHit is a nicotine-free oral pouch, not snus and not a nicotine pouch.",
   },
   {
     q: "How many pouches in a can?",
-    a: "20. A 3-can variety is 60. The 5-pack is 100.",
+    a: "20. A 3-can variety is 60. The 5-pack is 100 — Peach Ice and Cherry Ice on that pack are coming soon.",
   },
   {
     q: "What does it cost?",
-    a: "A single can is £12.99. The 3-can variety (Frost Mint, Citrus Ice, Blue Razz) is £34.99. The 5-pack is £54.99. Subscribe and save 20%. Pounds only.",
+    a: `A single can is ${gbp(PRICE.single)}. The 3-can variety (Frost Mint, Citrus Ice, Blue Razz) is ${gbp(PRICE.variety3)}. The 5-pack is ${gbp(PRICE.pack5)}. Subscribe and save 20%. Pounds only.`,
   },
   {
     q: "How do I use it?",
-    a: "Tuck one pouch between gum and lip. Do not chew. One pouch is 80 mg caffeine. Know your own limit.",
+    a: `Place one pouch between upper lip and gum. Do not chew or swallow. Leave it about 20–40 minutes. Adults only: max ${DOSE.maxPouchesPerDay} pouches per day. One pouch is ${DOSE.caffeineMg} mg caffeine. Know your own limit.`,
   },
   {
     q: "When do you ship?",

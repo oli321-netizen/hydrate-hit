@@ -9,34 +9,35 @@ const CELLS = [
     wide: true,
   },
   {
+    key: "theanine",
+    label: "L-Theanine",
+    value: `${DOSE.theanineMg} mg`,
+    note: "The reason the hit stays civil. Caffeine’s adult co-pilot.",
+    wide: true,
+  },
+  {
     key: "na",
     label: "Sodium",
     value: `${DOSE.sodiumMg} mg`,
-    note: "The salt you actually sweat.",
+    note: "Light on purpose. Not a sports-drink dump.",
   },
   {
     key: "k",
     label: "Potassium",
     value: `${DOSE.potassiumMg} mg`,
-    note: "Pairs with sodium. Not a garnish.",
-  },
-  {
-    key: "mg",
-    label: "Magnesium",
-    value: `${DOSE.magnesiumMg} mg`,
-    note: "The quiet third of the ~300 mg electrolyte stack.",
+    note: "Pairs with sodium. Still not a bottle.",
   },
   {
     key: "b6",
     label: "Vitamin B6",
     value: `${DOSE.b6Mg} mg`,
-    note: "Adult daily dose, not a dusting.",
+    note: "100% NRV. Adult daily dose, not a dusting.",
   },
   {
     key: "b12",
     label: "Vitamin B12",
     value: `${DOSE.b12Ug} µg`,
-    note: "2.4 micrograms. The number on the tin is the number in the pouch.",
+    note: "100% NRV. The number on the tin is the number in the pouch.",
   },
 ];
 

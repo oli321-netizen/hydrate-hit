@@ -23,7 +23,7 @@ const pill =
 
 export function PackCta({
   href = "/shop",
-  children = "Shop the 5-pack",
+  children = "See the line",
   className,
 }: Base & { href?: string }) {
   return (

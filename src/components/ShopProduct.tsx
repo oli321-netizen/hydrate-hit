@@ -14,7 +14,7 @@ import {
   type FlavourSlug,
   type SkuId,
 } from "@/lib/products";
-import { CAN_LINE, TAGLINE } from "@/lib/site";
+import { CAN_LINE, SITE_NAME, TAGLINE, brandAlt } from "@/lib/site";
 
 type BundleId = "single" | "variety-3" | "pack-5";
 
@@ -29,16 +29,6 @@ const BUNDLES: Array<{
   popular?: boolean;
 }> = [
   {
-    id: "pack-5",
-    sku: "pack-5",
-    tins: 5,
-    pouches: 100,
-    price: PRICE.pack5,
-    title: "5-pack",
-    detail: "All five flavours",
-    popular: true,
-  },
-  {
     id: "variety-3",
     sku: "variety-3",
     tins: 3,
@@ -46,6 +36,16 @@ const BUNDLES: Array<{
     price: PRICE.variety3,
     title: "3-can variety",
     detail: "Frost Mint, Citrus Ice, Blue Razz",
+    popular: true,
+  },
+  {
+    id: "pack-5",
+    sku: "pack-5",
+    tins: 5,
+    pouches: 100,
+    price: PRICE.pack5,
+    title: "5-pack",
+    detail: "Launch three plus two coming soon",
   },
   {
     id: "single",
@@ -59,32 +59,32 @@ const BUNDLES: Array<{
 ];
 
 const FEATURES = [
-  { title: "Fast hit", body: `${DOSE.caffeineMg} mg caffeine. No cup.` },
-  { title: "Spit-free", body: "Tuck it. Leave it. Do not chew." },
-  { title: "Pocket tin", body: `${DOSE.pouchesPerCan} pouches. Shut the lid.` },
-  { title: "Zero nicotine", body: "Not snus. Not a nicotine pouch." },
+  { title: "Smooth hit", body: `${DOSE.caffeineMg} mg caffeine + ${DOSE.theanineMg} mg theanine.` },
+  { title: "Light electrolytes", body: `${DOSE.sodiumMg} mg Na · ${DOSE.potassiumMg} mg K.` },
+  { title: "Spit-free", body: "Upper lip and gum. Do not chew. 20–40 mins." },
+  { title: "Zero nicotine", body: `Not snus. Max ${DOSE.maxPouchesPerDay} pouches a day.` },
 ];
 
 export function ShopProduct() {
   const { flavour, setSlug } = useFlavour();
   const { openInterest } = useInterest();
-  const [bundle, setBundle] = useState<BundleId>("pack-5");
-  const [shot, setShot] = useState<"flavour" | "pack">("pack");
+  const [bundle, setBundle] = useState<BundleId>("variety-3");
+  const [shot, setShot] = useState<"flavour" | "pack">("flavour");
 
   const main = useMemo(() => {
     if (bundle === "pack-5" || shot === "pack") {
-      return { src: "/tins/five-pack.jpg", alt: "Hydrate Hit 5-pack sleeve" };
+      return { src: "/tins/five-pack.jpg", alt: brandAlt("5-pack") };
     }
     if (bundle === "variety-3") {
-      return { src: "/tins/blue-razz.jpg", alt: "Hydrate Hit 3-can variety, Blue Razz tin" };
+      return { src: "/tins/variety-3.jpg", alt: brandAlt("3-can variety") };
     }
-    return { src: flavour.heroSrc, alt: `${flavour.name} Hydrate Hit tin` };
+    return { src: flavour.heroSrc, alt: brandAlt(flavour.name) };
   }, [bundle, flavour, shot]);
 
   function pickFlavour(slug: FlavourSlug) {
     setSlug(slug);
     setShot("flavour");
-    if (bundle === "pack-5") setBundle("single");
+    if (bundle === "pack-5" || bundle === "variety-3") setBundle("single");
   }
 
   function pickBundle(id: BundleId) {
@@ -111,21 +111,27 @@ export function ShopProduct() {
           </div>
           <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
             {FLAVOURS.map((item) => {
-              const active = shot === "flavour" && flavour.slug === item.slug && bundle !== "pack-5";
+              const active = shot === "flavour" && flavour.slug === item.slug && bundle === "single";
               return (
                 <button
                   key={item.slug}
                   type="button"
                   onClick={() => pickFlavour(item.slug)}
-                  aria-label={item.name}
+                  aria-label={item.comingSoon ? `${item.name} (coming soon)` : item.name}
                   aria-pressed={active}
                   className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border bg-paper"
                   style={{
                     borderColor: active ? item.toneA : "#d4d4d8",
                     boxShadow: active ? `0 0 0 2px ${item.toneA}` : undefined,
+                    opacity: item.comingSoon ? 0.72 : 1,
                   }}
                 >
                   <AssetImage src={item.lidSrc} alt={`${item.name} lid`} fill className="object-cover" />
+                  {item.comingSoon ? (
+                    <span className="absolute inset-x-0 bottom-0 bg-ink/80 py-0.5 text-center font-mono text-[8px] uppercase tracking-wider text-paper">
+                      Soon
+                    </span>
+                  ) : null}
                 </button>
               );
             })}
@@ -140,17 +146,17 @@ export function ShopProduct() {
                 boxShadow: shot === "pack" ? "0 0 0 2px #18181b" : undefined,
               }}
             >
-              <AssetImage src="/tins/five-pack.jpg" alt="Hydrate Hit 5-pack" fill className="object-cover" />
+              <AssetImage src="/tins/five-pack.jpg" alt={brandAlt("5-pack")} fill className="object-cover" />
             </button>
           </div>
         </div>
 
         <div>
           <h1 className="text-4xl font-extrabold leading-[0.95] tracking-tighter md:text-5xl">
-            HYDRATE HIT
+            {SITE_NAME.toUpperCase()}
           </h1>
           <p className="mt-2 text-lg font-semibold tracking-tight text-ink-soft">
-            Caffeine + electrolyte pouches
+            Caffeine + theanine pouches
           </p>
           <p className="mt-3 font-mono text-xs uppercase tracking-[0.16em] text-muted">
             Reviews at first drop
@@ -158,10 +164,16 @@ export function ShopProduct() {
           {bundle === "single" ? (
             <FlavourName flavour={flavour} className="mt-3 block text-xl font-extrabold tracking-tight" />
           ) : null}
+          {bundle === "single" && flavour.comingSoon ? (
+            <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+              Coming soon
+            </p>
+          ) : null}
 
           <p className="mt-5 max-w-[46ch] text-base leading-relaxed text-ink-soft">
-            {TAGLINE} {CAN_LINE}. Tuck one pouch between gum and lip. Twenty
-            pouches a tin. Not snus. Not a nicotine pouch. Pounds only.
+            {TAGLINE} {CAN_LINE}. Place one pouch between upper lip and gum.
+            Twenty pouches a tin. Not snus. Not a nicotine pouch. Max{" "}
+            {DOSE.maxPouchesPerDay} a day. Pounds only.
           </p>
 
           <ul className="mt-6 space-y-3 text-sm">
@@ -179,9 +191,17 @@ export function ShopProduct() {
                 ✓
               </span>
               <span>
-                <strong className="text-ink">HYDRATE</strong> — ~
-                {DOSE.electrolytesMg} mg electrolytes ({DOSE.sodiumMg} Na /{" "}
-                {DOSE.potassiumMg} K / {DOSE.magnesiumMg} Mg)
+                <strong className="text-ink">SMOOTH</strong> — {DOSE.theanineMg}{" "}
+                mg L-theanine
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="mt-0.5 text-accent-2" aria-hidden>
+                ✓
+              </span>
+              <span>
+                <strong className="text-ink">LIGHT SALTS</strong> —{" "}
+                {DOSE.sodiumMg} mg Na / {DOSE.potassiumMg} mg K
               </span>
             </li>
             <li className="flex gap-2">
@@ -243,7 +263,7 @@ export function ShopProduct() {
                     ) : null}
                     <input
                       type="radio"
-                      name="hydrate-hit-bundle"
+                      name="fluxhit-bundle"
                       className="sr-only"
                       checked={selected}
                       onChange={() => pickBundle(item.id)}
@@ -265,7 +285,10 @@ export function ShopProduct() {
                     </span>
                     <span className="mt-3 text-sm font-medium">{item.detail}</span>
                     {item.id === "single" ? (
-                      <span className="mt-1 text-xs text-ink-soft">{flavour.name}</span>
+                      <span className="mt-1 text-xs text-ink-soft">
+                        {flavour.name}
+                        {flavour.comingSoon ? " · coming soon" : ""}
+                      </span>
                     ) : null}
                     <span className="mt-4 rounded-xl bg-bg px-3 py-2 text-center text-sm font-semibold">
                       {gbp(item.price)}

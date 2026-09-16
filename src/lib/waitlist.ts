@@ -39,7 +39,7 @@ export async function submitWaitlist(payload: WaitlistPayload) {
     sku: payload.sku ?? "",
     intent: payload.intent ?? "waitlist",
     source: payload.source ?? "site",
-    _subject: "Hydrate Hit waitlist",
+    _subject: "FluxHit waitlist",
   };
 
   const endpoint = waitlistEndpoint();
