@@ -209,8 +209,8 @@ export function ShopProduct() {
                 ✓
               </span>
               <span>
-                <strong className="text-ink">FOCUS</strong> — B6 {DOSE.b6Mg} mg,
-                B12 {DOSE.b12Ug} µg
+                <strong className="text-ink">DAILY EXTRAS</strong> — B6{" "}
+                {DOSE.b6Mg} mg, B12 {DOSE.b12Ug} µg
               </span>
             </li>
             <li className="flex gap-2">
