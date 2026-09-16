@@ -83,7 +83,7 @@ function drawWrap(ctx: CanvasRenderingContext2D, w: number, h: number) {
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.font = `800 ${Math.round(h * 0.26)}px "Arial Black","Helvetica Neue",Arial,sans-serif`;
-    ctx.fillText("HYDRATE HIT", x + pw / 2, h * 0.48);
+    ctx.fillText("FLUXHIT", x + pw / 2, h * 0.48);
 
     const labelY = h * 0.72;
     ctx.font = `800 ${Math.round(h * 0.18)}px "Arial Black","Helvetica Neue",Arial,sans-serif`;
@@ -115,7 +115,7 @@ function drawFallbackLid(ctx: CanvasRenderingContext2D, w: number, h: number) {
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.font = `800 ${Math.round(w * 0.11)}px "Arial Black","Helvetica Neue",Arial,sans-serif`;
-  ctx.fillText("HYDRATE HIT", cx, cy - w * 0.12);
+  ctx.fillText("FLUXHIT", cx, cy - w * 0.12);
 
   ctx.font = `800 ${Math.round(w * 0.09)}px "Arial Black","Helvetica Neue",Arial,sans-serif`;
   const blueW = ctx.measureText("BLUE").width;
@@ -143,7 +143,7 @@ function drawFallbackLid(ctx: CanvasRenderingContext2D, w: number, h: number) {
   ctx.fillStyle = "#3f3f46";
   ctx.font = `600 ${Math.round(w * 0.035)}px "Helvetica Neue",Arial,sans-serif`;
   ctx.textAlign = "center";
-  ctx.fillText("hydrates and hits", cx, cy + w * 0.16);
+  ctx.fillText("smooth hit · light electrolytes", cx, cy + w * 0.16);
 
   ctx.fillStyle = BLUE;
   ctx.beginPath();
@@ -226,6 +226,7 @@ function Scene({ onReady, onFail }: { onReady: () => void; onFail: () => void })
     return { wrap, lid };
   });
   const [pngLid, setPngLid] = useState<THREE.Texture | null>(null);
+  const [pngWrap, setPngWrap] = useState<THREE.Texture | null>(null);
 
   useEffect(() => {
     if (!brand) {
@@ -235,6 +236,7 @@ function Scene({ onReady, onFail }: { onReady: () => void; onFail: () => void })
 
     let cancelled = false;
     let png: THREE.Texture | null = null;
+    let wrapPng: THREE.Texture | null = null;
     const loader = new THREE.TextureLoader();
     loader.crossOrigin = "anonymous";
     loader.load(
@@ -256,10 +258,27 @@ function Scene({ onReady, onFail }: { onReady: () => void; onFail: () => void })
         /* canvas lid already branded */
       },
     );
+    loader.load(
+      asset("/tins/blue-razz-side.png"),
+      (texture) => {
+        if (cancelled) {
+          texture.dispose();
+          return;
+        }
+        applyMap(texture, true);
+        wrapPng = texture;
+        setPngWrap(texture);
+      },
+      undefined,
+      () => {
+        /* canvas wrap already branded */
+      },
+    );
 
     return () => {
       cancelled = true;
       png?.dispose();
+      wrapPng?.dispose();
       brand.wrap.dispose();
       brand.lid.dispose();
     };
@@ -272,7 +291,7 @@ function Scene({ onReady, onFail }: { onReady: () => void; onFail: () => void })
       <ambientLight intensity={1.15} />
       <directionalLight position={[2.2, 7.2, 3.4]} intensity={1.65} />
       <directionalLight position={[-3.4, 2.2, 1.6]} intensity={0.5} color={PINK} />
-      <SpinningTin lid={pngLid ?? brand.lid} wrap={brand.wrap} onReady={onReady} />
+      <SpinningTin lid={pngLid ?? brand.lid} wrap={pngWrap ?? brand.wrap} onReady={onReady} />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { seoPageMeta } from "@/lib/seo";
 import { SeoDoc } from "@/components/SeoDoc";
-import { DOSE, gbp, PRICE } from "@/lib/products";
+import { DOSE, doseList, gbp, PRICE } from "@/lib/products";
 import Link from "next/link";
 
 const PATH = "/electrolyte-pouches";
@@ -10,14 +10,14 @@ export const metadata = seoPageMeta(PATH);
 const FAQS = [
   {
     q: "What are electrolyte pouches?",
-    a: "Oral pouches that carry named salts instead of putting them in a drink. Hydrate Hit has 150 mg sodium, 100 mg potassium and 50 mg magnesium per pouch, plus 80 mg caffeine.",
+    a: "Oral pouches that carry named salts instead of putting them in a drink. FluxHit has light electrolytes — 50 mg sodium and 50 mg potassium per pouch — plus 80 mg caffeine and 60 mg L-theanine.",
   },
   {
     q: "Does an electrolyte pouch replace water?",
-    a: "No. You still drink water. The pouch does not replace a glass, a bottle, or a drip. It is a food supplement, not a medicine.",
+    a: "No. You still drink water. The pouch does not replace a glass, a bottle, or a drip. It is a food supplement, not a medicine. FluxHit is light on salts on purpose.",
   },
   {
-    q: "Is there nicotine in Hydrate Hit?",
+    q: "Is there nicotine in FluxHit?",
     a: "No. Nicotine-free and tobacco-free. Same lip-pouch format as snus or a nicotine pouch, different contents.",
   },
   {
@@ -29,27 +29,27 @@ const FAQS = [
 export default function ElectrolytePouchesPage() {
   return (
     <SeoDoc
-      title="Electrolyte pouches you can actually count"
-      lede="Hydration first. Then the hit. Hydrate Hit puts named salts in a nicotine-free oral pouch so you do not need another bottle for the water work."
-      crumbs={[{ href: PATH, label: "Electrolyte pouches" }]}
+      title="Light electrolyte pouches you can actually count"
+      lede="Smooth hit. Light electrolytes. FluxHit puts named salts in a nicotine-free oral pouch — not a heavy hydration story, not another bottle."
+      crumbs={[{ href: PATH, label: "Light electrolyte pouches" }]}
       faqs={FAQS}
     >
-      <h2>The water work, in a pouch</h2>
+      <h2>Light salts, in a pouch</h2>
       <p>
-        Most electrolyte products are drinks. Hydrate Hit is an electrolyte
-        pouch: {DOSE.sodiumMg} mg sodium, {DOSE.potassiumMg} mg potassium,{" "}
-        {DOSE.magnesiumMg} mg magnesium — about {DOSE.electrolytesMg} mg in
-        total — plus {DOSE.caffeineMg} mg caffeine, B6 {DOSE.b6Mg} mg and B12{" "}
-        {DOSE.b12Ug} µg. No nicotine. You still drink water. The pouch does
-        not replace a glass.
+        Most electrolyte products are drinks chasing a big milligram number.
+        FluxHit is a caffeine and theanine pouch with light electrolytes:{" "}
+        {DOSE.sodiumMg} mg sodium and {DOSE.potassiumMg} mg potassium, plus{" "}
+        {DOSE.caffeineMg} mg caffeine, {DOSE.theanineMg} mg L-theanine, B6{" "}
+        {DOSE.b6Mg} mg and B12 {DOSE.b12Ug} µg. No nicotine. You still drink
+        water. The pouch does not replace a glass.
       </p>
       <p>
         Named doses, not a mystery blend. The numbers on the tin are the
-        numbers in the pouch. That is the hydration angle: salts you can
-        actually count, in a lip pouch you can actually carry.
+        numbers in the pouch. That is the salts angle: light, countable, in a
+        lip pouch you can actually carry.
       </p>
 
-      <h2>What is in the electrolyte stack</h2>
+      <h2>What is in the salt stack</h2>
       <table>
         <thead>
           <tr>
@@ -66,29 +66,21 @@ export default function ElectrolytePouchesPage() {
             <td>Potassium</td>
             <td>{DOSE.potassiumMg} mg</td>
           </tr>
-          <tr>
-            <td>Magnesium</td>
-            <td>{DOSE.magnesiumMg} mg</td>
-          </tr>
-          <tr>
-            <td>Total electrolytes</td>
-            <td>about {DOSE.electrolytesMg} mg</td>
-          </tr>
         </tbody>
       </table>
       <p>
-        Alongside that: {DOSE.caffeineMg} mg caffeine. High caffeine content.
-        Know your own limit. Not for children, pregnancy, breastfeeding, or
-        anyone sensitive to caffeine. This is a food supplement pouch, not a
-        treatment for dehydration.
+        Alongside that: {doseList()}. High caffeine content. Adults only. Max{" "}
+        {DOSE.maxPouchesPerDay} pouches per day. Know your own limit. Not for
+        children, pregnancy, breastfeeding, or anyone sensitive to caffeine.
+        This is a food supplement pouch, not a treatment for dehydration.
       </p>
 
       <h2>When a pouch beats a bottle</h2>
       <p>
-        When you want the salts without another liquid in your hand. When you
-        already drink water and do not want a second flavoured can. When you
-        like the lip-pouch ritual and do not want nicotine — the longer split
-        is on <Link href="/snus-alternative">snus alternative</Link>.
+        When you want a smooth hit without another liquid in your hand. When
+        you already drink water and do not want a second flavoured can. When
+        you like the lip-pouch ritual and do not want nicotine — the longer
+        split is on <Link href="/snus-alternative">snus alternative</Link>.
       </p>
       <p>
         When a drink is the better tool: you are thirsty. Drink water. For the

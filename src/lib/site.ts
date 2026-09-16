@@ -1,6 +1,7 @@
-export const SITE_NAME = "Hydrate Hit";
-export const TAGLINE = "The pouch that hydrates and hits.";
-export const CAN_LINE = "80mg caffeine · 300mg electrolytes · B6 + B12";
+export const SITE_NAME = "FluxHit";
+export const TAGLINE = "smooth hit · light electrolytes";
+export const CAN_LINE = "80mg caffeine · 60mg theanine · light electrolytes · B6 + B12";
+export const PROOF_LINE = "Caffeine · Theanine · Na · K · B6 · B12";
 
 /** Apex custom domain (Railway + Cloudflare). */
 export const CUSTOM_DOMAIN = (
@@ -24,4 +25,8 @@ export function asset(path: string) {
   if (!BASE_PATH) return clean;
   if (clean === BASE_PATH || clean.startsWith(`${BASE_PATH}/`)) return clean;
   return `${BASE_PATH}${clean}`;
+}
+
+export function brandAlt(subject: string) {
+  return `${subject} ${SITE_NAME} tin`;
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FLAVOURS } from "@/lib/products";
+import { LAUNCH_FLAVOURS, SECONDARY_FLAVOURS } from "@/lib/products";
 import { useFlavour } from "@/components/Providers";
 import { AssetImage } from "@/components/AssetImage";
 import { FlavourName } from "@/components/Brand";
@@ -14,14 +14,14 @@ export function FlavourPreview() {
     <section className="px-4 py-16 md:px-8 md:py-24">
       <div className="mx-auto max-w-6xl">
         <h2 className="text-4xl font-semibold tracking-tighter md:text-6xl">
-          Five tins.
+          Three tins.
         </h2>
         <p className="mt-4 max-w-[46ch] text-base leading-relaxed text-ink-soft">
-          Frost Mint, Citrus Ice, Blue Razz, Peach Ice, Cherry Ice. The line
-          lives on the shop page. This is just a look.
+          Frost Mint, Citrus Ice, Blue Razz. The launch line. Peach Ice and
+          Cherry Ice follow.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4 sm:justify-start">
-          {FLAVOURS.map((flavour) => (
+          {LAUNCH_FLAVOURS.map((flavour) => (
             <Link
               key={flavour.slug}
               href="/shop"
@@ -29,7 +29,7 @@ export function FlavourPreview() {
               className="flex w-[5.5rem] flex-col items-center gap-2 sm:w-24"
             >
               <span className="relative h-20 w-20 overflow-hidden rounded-full border border-line bg-paper sm:h-24 sm:w-24">
-                <AssetImage src={flavour.lidSrc} alt={`${flavour.name} Hydrate Hit lid`} fill className="object-cover" />
+                <AssetImage src={flavour.lidSrc} alt={`${flavour.name} FluxHit lid`} fill className="object-cover" />
               </span>
               <FlavourName
                 flavour={flavour}
@@ -38,7 +38,10 @@ export function FlavourPreview() {
             </Link>
           ))}
         </div>
-        <div className="mt-8">
+        <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+          Coming soon · {SECONDARY_FLAVOURS.map((f) => f.name).join(" · ")}
+        </p>
+        <div className="mt-4">
           <WaitlistCta href="/shop">See flavours</WaitlistCta>
         </div>
       </div>

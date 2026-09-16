@@ -9,16 +9,16 @@ export const metadata = seoPageMeta(PATH);
 
 const FAQS = [
   {
-    q: "How much caffeine is in a Hydrate Hit pouch?",
-    a: "80 mg — in the same ballpark as a small coffee or a typical energy-drink serving, without the cup. High caffeine content. Know your own limit.",
+    q: "How much caffeine is in a FluxHit pouch?",
+    a: "80 mg — in the same ballpark as a small coffee or a typical energy-drink serving, without the cup — plus 60 mg L-theanine. High caffeine content. Adults only. Max 2 pouches per day. Know your own limit.",
   },
   {
     q: "Do caffeine pouches replace an energy drink?",
-    a: "They replace the cup, not the water. Hydrate Hit is a lip pouch: caffeine plus named electrolytes, no nicotine. If you are thirsty, drink water.",
+    a: "They replace the cup, not the water. FluxHit is a lip pouch: caffeine plus theanine, light electrolytes, no nicotine. If you are thirsty, drink water.",
   },
   {
     q: "Is there sugar or nicotine in the pouch?",
-    a: "No nicotine and no tobacco. It is not a nicotine pouch and not snus. It is a food supplement pouch with named doses on the tin.",
+    a: "No nicotine and no tobacco. Sugar-free. It is not a nicotine pouch and not snus. It is a food supplement pouch with named doses on the tin.",
   },
   {
     q: "When is a drink the better tool?",
@@ -30,18 +30,18 @@ export default function CaffeinePouchVsEnergyDrinkPage() {
   return (
     <SeoDoc
       title="Caffeine pouch vs energy drink"
-      lede="An energy drink is a can you finish. A caffeine pouch is a lip pouch you tuck. Hydrate Hit is the second: 80 mg caffeine, named electrolytes, no nicotine."
+      lede="An energy drink is a can you finish. A caffeine pouch is a lip pouch you tuck. FluxHit is the second: 80 mg caffeine, 60 mg L-theanine, light electrolytes, no nicotine."
       crumbs={[{ href: PATH, label: "Pouch vs energy drink" }]}
       faqs={FAQS}
     >
       <h2>What is in a caffeine pouch</h2>
       <p>
-        Hydrate Hit is a nicotine-free caffeine pouch. One pouch is{" "}
+        FluxHit is a nicotine-free caffeine pouch. One pouch is{" "}
         {DOSE.caffeineMg} mg caffeine — in the same ballpark as a small coffee
         or a typical energy-drink serving, without the cup, the sugar theatre,
-        or a second liquid to carry. Alongside that: {DOSE.sodiumMg} mg
-        sodium, {DOSE.potassiumMg} mg potassium, {DOSE.magnesiumMg} mg
-        magnesium, B6 and B12. Full stack on the{" "}
+        or a second liquid to carry. Alongside that: {DOSE.theanineMg} mg
+        L-theanine, {DOSE.sodiumMg} mg sodium, {DOSE.potassiumMg} mg
+        potassium, B6 and B12. Full stack on the{" "}
         <Link href="/#stack">home stack</Link>.
       </p>
       <p>
@@ -71,9 +71,14 @@ export default function CaffeinePouchVsEnergyDrinkPage() {
             <td>Varies by brand</td>
           </tr>
           <tr>
+            <td>Theanine</td>
+            <td>{DOSE.theanineMg} mg L-theanine</td>
+            <td>Rarely named</td>
+          </tr>
+          <tr>
             <td>Electrolytes</td>
             <td>
-              {DOSE.sodiumMg} / {DOSE.potassiumMg} / {DOSE.magnesiumMg} mg
+              {DOSE.sodiumMg} mg Na / {DOSE.potassiumMg} mg K, light
             </td>
             <td>Often a vibe, not milligrams</td>
           </tr>
@@ -90,15 +95,16 @@ export default function CaffeinePouchVsEnergyDrinkPage() {
         </tbody>
       </table>
       <p>
-        High caffeine content either way. Know your own limit. Hydrate Hit is
-        not for children, pregnancy, breastfeeding, or anyone sensitive to
-        caffeine. It is not a medicine.
+        High caffeine content either way. Know your own limit. FluxHit is not
+        for children, pregnancy, breastfeeding, or anyone sensitive to
+        caffeine. Adults only. Max {DOSE.maxPouchesPerDay} pouches per day. It
+        is not a medicine.
       </p>
 
       <h2>When a pouch is the better tool</h2>
       <ul>
         <li>You want caffeine without another drink in your hand.</li>
-        <li>You want electrolytes named in milligrams, not a vibe.</li>
+        <li>You want theanine in the same tuck, not a guess.</li>
         <li>You do not want nicotine. This is not a nicotine pouch.</li>
         <li>
           You like the tuck — see{" "}
@@ -108,17 +114,17 @@ export default function CaffeinePouchVsEnergyDrinkPage() {
       </ul>
       <p>
         When a drink is the better tool: you are thirsty. Drink water. The
-        pouch is not a bottle. Salts in milligrams live on{" "}
-        <Link href="/electrolyte-pouches">electrolyte pouches</Link>. The
+        pouch is not a bottle. Light salts in milligrams live on{" "}
+        <Link href="/electrolyte-pouches">light electrolyte pouches</Link>. The
         no-nicotine position is on{" "}
         <Link href="/nicotine-free-pouches">nicotine-free pouches</Link>.
       </p>
 
       <h2>GBP, flavours, waitlist</h2>
       <p>
-        From {gbp(PRICE.single)} a can. Five flavours on the{" "}
-        <Link href="/shop">shop</Link>.{" "}
-        <Link href="/#waitlist">Join the waitlist</Link> for priority
+        From {gbp(PRICE.single)} a can. Frost Mint, Citrus Ice and Blue Razz on
+        the <Link href="/shop">shop</Link>. Peach Ice and Cherry Ice coming
+        soon. <Link href="/#waitlist">Join the waitlist</Link> for priority
         delivery — this is not checkout yet.
       </p>
     </SeoDoc>

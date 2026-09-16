@@ -19,7 +19,7 @@ async function forwardOptional(payload: WaitlistPayload) {
       sku: payload.sku ?? "",
       intent: payload.intent ?? "waitlist",
       source: payload.source ?? "api",
-      _subject: "Hydrate Hit waitlist",
+      _subject: "FluxHit waitlist",
     }),
   }).catch(() => undefined);
 }

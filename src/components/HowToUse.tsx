@@ -1,18 +1,20 @@
+import { DOSE } from "@/lib/products";
+
 const STEPS = [
   {
     n: "01",
-    title: "Tuck one pouch.",
-    body: "Tuck it between gum and lip. Dry fingers. Do not chew.",
+    title: "Place one pouch.",
+    body: "Between upper lip and gum. Dry fingers. Do not chew or swallow.",
   },
   {
     n: "02",
-    title: "Leave it there.",
-    body: "Do not chew. The stack is built to sit. Caffeine, salts, B6, B12.",
+    title: "Leave it 20–40 minutes.",
+    body: "Do not chew. The stack is built to sit. Caffeine, theanine, light salts, B6, B12.",
   },
   {
     n: "03",
     title: "Get on with it.",
-    body: "One pouch is 80 mg caffeine. Know your own limit. Water still counts.",
+    body: `Max ${DOSE.maxPouchesPerDay} pouches a day. One pouch is ${DOSE.caffeineMg} mg caffeine. Know your own limit. Water still counts.`,
   },
 ];
 

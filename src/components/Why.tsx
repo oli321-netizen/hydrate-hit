@@ -8,11 +8,11 @@ export function Why() {
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-end">
         <div>
           <h2 className="max-w-[12ch] text-4xl font-semibold tracking-tighter text-ink md:text-6xl">
-            Hydration first. Then the hit.
+            Smooth focus. Light salts.
           </h2>
           <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-ink-soft">
-            Caffeine for the hit. Sodium, potassium and magnesium for the water
-            work. Named doses, not a mystery blend.
+            Caffeine plus L-theanine for a hit that does not shout. Sodium and
+            potassium, light on purpose. Named doses, not a mystery blend.
           </p>
         </div>
         <ul className="divide-y divide-line text-sm">
@@ -21,9 +21,13 @@ export function Why() {
             <span className="text-right font-medium">{DOSE.caffeineMg} mg caffeine</span>
           </li>
           <li className="flex justify-between gap-4 py-4">
-            <span className="text-muted">The water work</span>
+            <span className="text-muted">The smooth</span>
+            <span className="text-right font-medium">{DOSE.theanineMg} mg L-theanine</span>
+          </li>
+          <li className="flex justify-between gap-4 py-4">
+            <span className="text-muted">The light salts</span>
             <span className="text-right font-medium">
-              {DOSE.electrolytesMg} mg electrolytes
+              {DOSE.sodiumMg} mg Na · {DOSE.potassiumMg} mg K
             </span>
           </li>
           <li className="flex justify-between gap-4 py-4">
@@ -52,7 +56,7 @@ export function Why() {
         </Link>
         ,{" "}
         <Link href="/electrolyte-pouches" className="font-semibold underline">
-          electrolyte pouches
+          light electrolyte pouches
         </Link>
         . Or the{" "}
         <Link href="/guides/caffeine-pouch-vs-energy-drink" className="font-semibold underline">

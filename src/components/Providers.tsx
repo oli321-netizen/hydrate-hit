@@ -44,7 +44,7 @@ const CartContext = createContext<CartContextValue | null>(null);
 const FlavourContext = createContext<FlavourContextValue | null>(null);
 
 export const flavourSlugRef = { current: DEFAULT_FLAVOUR as FlavourSlug };
-const CART_KEY = "hydrate-hit-cart";
+const CART_KEY = "fluxhit-cart";
 
 export function Providers({ children }: { children: ReactNode }) {
   const [slug, setSlug] = useState<FlavourSlug>(DEFAULT_FLAVOUR);

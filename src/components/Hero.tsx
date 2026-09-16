@@ -19,8 +19,8 @@ export function Hero() {
           {TAGLINE}
         </h1>
         <p className="mt-6 max-w-[38ch] text-lg leading-relaxed text-ink-soft">
-          A nicotine-free oral pouch. Caffeine for the hit. Electrolytes for
-          the water work. {CAN_LINE}.
+          A nicotine-free oral pouch. Caffeine plus theanine for a smooth hit.
+          Light electrolytes — not another bottle. {CAN_LINE}.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
           <ShopCta href="/#stack">Learn the stack</ShopCta>

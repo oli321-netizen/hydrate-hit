@@ -6,7 +6,15 @@ import { useInterest } from "@/components/InterestModal";
 import { AddCanButton, SubscribeButton } from "@/components/Ctas";
 import { useEffect } from "react";
 
-export function FlavourBuy({ slug, accent }: { slug: FlavourSlug; accent: string }) {
+export function FlavourBuy({
+  slug,
+  accent,
+  comingSoon = false,
+}: {
+  slug: FlavourSlug;
+  accent: string;
+  comingSoon?: boolean;
+}) {
   const { setSlug } = useFlavour();
   const { openInterest } = useInterest();
 
@@ -23,6 +31,7 @@ export function FlavourBuy({ slug, accent }: { slug: FlavourSlug; accent: string
         }
       >
         Add can · {gbp(PRICE.single)}
+        {comingSoon ? " · notify" : ""}
       </AddCanButton>
       <SubscribeButton
         onClick={() =>

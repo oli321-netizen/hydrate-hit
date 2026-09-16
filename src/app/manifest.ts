@@ -6,7 +6,7 @@ export const dynamic = "force-static";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: SITE_NAME,
-    short_name: "Hydrate Hit",
+    short_name: "FluxHit",
     description: TAGLINE,
     start_url: asset("/"),
     display: "standalone",

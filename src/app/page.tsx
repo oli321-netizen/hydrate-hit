@@ -11,7 +11,7 @@ import { Hero } from "@/components/Hero";
 
 export const metadata: Metadata = {
   title: { absolute: `${SITE_NAME} · ${TAGLINE}` },
-  description: `${TAGLINE} Nicotine-free caffeine and electrolyte pouches. ${CAN_LINE}. Five flavours. From £12.99. UK.`,
+  description: `${TAGLINE} Nicotine-free caffeine and theanine pouches with light electrolytes. ${CAN_LINE}. Frost Mint, Citrus Ice, Blue Razz. From £12.99. UK.`,
   alternates: { canonical: "/" },
   openGraph: { url: "/", title: `${SITE_NAME} · ${TAGLINE}` },
 };

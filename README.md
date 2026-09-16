@@ -1,14 +1,20 @@
-# Hydrate Hit
+# FluxHit
 
-Mobile-first marketing and shop site for **Hydrate Hit**, the pouch that hydrates and hits.
+Mobile-first marketing and shop site for **FluxHit**.
 
 ## Brand
 
-- Tagline: The pouch that hydrates and hits.
-- Voice: Sharp, dry, adult. UK English.
-- Per pouch: 80 mg caffeine · 150 mg sodium · 100 mg potassium · 50 mg magnesium (~300 mg electrolytes) · B6 1.7 mg · B12 2.4 µg
-- Can line: `80mg caffeine · 300mg electrolytes · B6 + B12`
-- Flavours: Frost Mint, Citrus Ice, Blue Razz, Peach Ice, Cherry Ice
+- Name: FluxHit (one word, capital F and H)
+- Tagline: smooth hit · light electrolytes
+- Voice: Sharp, dry, adult. UK English. Functional swagger — not TikTok-bro, not wellness brochure.
+- Per pouch (0.5 g): 80 mg caffeine · 60 mg L-theanine · 50 mg sodium · 50 mg potassium · B6 1.7 mg (100% NRV) · B12 2.4 µg (100% NRV)
+- Proof strip: `Caffeine · Theanine · Na · K · B6 · B12`
+- Can line: `80mg caffeine · 60mg theanine · light electrolytes · B6 + B12`
+- Launch flavours: Frost Mint, Citrus Ice, Blue Razz
+- Coming soon: Peach Ice, Cherry Ice
+- Use: place between upper lip and gum; do not chew or swallow; ~20–40 mins; adults 18+; max 2 pouches per day
+- Food supplement. Nicotine-free, tobacco-free, sugar-free, spit-free oral pouches.
+- Tin artwork: `python3 scripts/generate-brand-assets.py` (needs Pillow + Archivo Black at `/tmp/ArchivoBlack-Regular.ttf`)
 
 ## Pricing (GBP only)
 
@@ -16,7 +22,7 @@ Mobile-first marketing and shop site for **Hydrate Hit**, the pouch that hydrate
 | --- | ---: | ---: |
 | Single can, 20 pouches | £12.99 | £10.39 |
 | 3-can variety (Frost Mint + Citrus Ice + Blue Razz) | £34.99 | £27.99 |
-| 5-pack (all five) | £54.99 | £43.99 |
+| 5-pack (launch three plus Peach Ice & Cherry Ice, coming soon) | £54.99 | £43.99 |
 
 Shop CTAs register interest. They do not add to cart. Joining now gets **priority delivery** when the first drop ships.
 
@@ -123,7 +129,7 @@ npm start
 ## Site map
 
 - `/` brand home: splash, hero, why, stack, how to use, light flavour preview, FAQ, waitlist
-- `/shop` (also `/flavours`) five tins, bundles, register-interest modals
+- `/shop` (also `/flavours`) launch tins, bundles, register-interest modals
 - `/flavours/[slug]` flavour detail
 - `/waitlist` priority-delivery list
 - Nav: Home · Stack · Shop · Waitlist

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FLAVOURS, PRICE, gbp, subscribePrice } from "@/lib/products";
+import { FLAVOURS, LAUNCH_FLAVOURS, PRICE, gbp, subscribePrice } from "@/lib/products";
+import { brandAlt } from "@/lib/site";
 import { useFlavour } from "@/components/Providers";
 import { useInterest } from "@/components/InterestModal";
 import { AccentLine, CrystalMark, FlavourName, ProofStrip } from "@/components/Brand";
@@ -19,13 +20,13 @@ export function Flavours() {
           The line.
         </h2>
         <p className="mt-4 max-w-[52ch] text-base leading-relaxed text-ink-soft">
-          Dual-tone names, crystal mark, accent-lined tagline. The Blue Razz
-          system, applied across the line. Register interest for priority
-          delivery on the first drop.
+          Dual-tone names, crystal mark, accent-lined tagline. Frost Mint,
+          Citrus Ice, Blue Razz on the first drop. Register interest for
+          priority delivery.
         </p>
 
-        <div className="-mx-4 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-5 md:overflow-visible md:px-0">
-          {FLAVOURS.map((flavour) => (
+        <div className="-mx-4 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
+          {LAUNCH_FLAVOURS.map((flavour) => (
             <article
               key={flavour.slug}
               className="min-w-[78%] snap-start rounded-2xl border border-line bg-paper p-4 sm:min-w-[18rem] md:min-w-0"
@@ -38,7 +39,7 @@ export function Flavours() {
                 <div className="relative aspect-square overflow-hidden rounded-2xl bg-bg">
                   <AssetImage
                     src={flavour.heroSrc}
-                    alt={`${flavour.name} Hydrate Hit tin`}
+                    alt={brandAlt(flavour.name)}
                     fill
                     className="object-contain"
                   />
@@ -89,13 +90,18 @@ export function Flavours() {
           ))}
         </div>
 
+        <p className="mt-8 text-sm text-ink-soft">
+          Coming soon: {FLAVOURS.filter((f) => f.comingSoon).map((f) => f.name).join(" · ")}.
+          Same FluxHit stack. Join the waitlist to be told first.
+        </p>
+
         <div className="mt-12 grid gap-6 rounded-2xl bg-ink px-5 py-8 text-paper md:grid-cols-[1.2fr_1fr] md:items-center md:px-10">
           <div>
             <h3 className="text-3xl font-semibold tracking-tight">Bundles, priced in pounds.</h3>
             <ul className="mt-4 space-y-2 text-sm text-zinc-300">
               <li>Single can, 20 pouches: {gbp(PRICE.single)}</li>
               <li>3-can variety (Frost Mint, Citrus Ice, Blue Razz): {gbp(PRICE.variety3)}</li>
-              <li>5-pack, all five: {gbp(PRICE.pack5)}</li>
+              <li>5-pack, launch three plus two coming soon: {gbp(PRICE.pack5)}</li>
               <li>Subscribe and save 20% on any of the above.</li>
             </ul>
             <div className="mt-6 flex flex-col gap-3">
@@ -159,8 +165,8 @@ export function Flavours() {
           </div>
           <div className="relative min-h-52 overflow-hidden rounded-2xl bg-zinc-800">
             <AssetImage
-              src="/tins/five-pack.jpg"
-              alt="Hydrate Hit 5-pack sleeve"
+              src="/tins/variety-3.jpg"
+              alt={brandAlt("3-can variety")}
               fill
               className="object-cover"
             />

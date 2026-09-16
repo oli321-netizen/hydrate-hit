@@ -1,6 +1,6 @@
 import { CAN_LINE, SITE_NAME, SITE_URL, TAGLINE } from "@/lib/site";
 import { OG_IMAGE_URL } from "@/lib/seo";
-import { DOSE, FLAVOURS, PRICE } from "@/lib/products";
+import { DOSE, LAUNCH_FLAVOURS, PRICE } from "@/lib/products";
 
 export function JsonLd() {
   const data = {
@@ -10,7 +10,7 @@ export function JsonLd() {
         "@type": "Organization",
         name: SITE_NAME,
         url: SITE_URL,
-        description: `${TAGLINE} Nicotine-free caffeine and electrolyte oral pouches. No tobacco. No nicotine.`,
+        description: `${TAGLINE} Nicotine-free caffeine and theanine oral pouches with light electrolytes. No tobacco. No nicotine.`,
         logo: OG_IMAGE_URL,
       },
       {
@@ -56,19 +56,19 @@ export function JsonLd() {
         ],
         additionalProperty: [
           { "@type": "PropertyValue", name: "Caffeine", value: `${DOSE.caffeineMg} mg` },
-          {
-            "@type": "PropertyValue",
-            name: "Electrolytes",
-            value: `${DOSE.electrolytesMg} mg`,
-          },
+          { "@type": "PropertyValue", name: "L-Theanine", value: `${DOSE.theanineMg} mg` },
+          { "@type": "PropertyValue", name: "Sodium", value: `${DOSE.sodiumMg} mg` },
+          { "@type": "PropertyValue", name: "Potassium", value: `${DOSE.potassiumMg} mg` },
+          { "@type": "PropertyValue", name: "Vitamin B6", value: `${DOSE.b6Mg} mg` },
+          { "@type": "PropertyValue", name: "Vitamin B12", value: `${DOSE.b12Ug} µg` },
           { "@type": "PropertyValue", name: "Nicotine", value: "None" },
           { "@type": "PropertyValue", name: "Tobacco", value: "None" },
         ],
       },
       {
         "@type": "ItemList",
-        name: "Hydrate Hit flavours",
-        itemListElement: FLAVOURS.map((flavour, i) => ({
+        name: `${SITE_NAME} launch flavours`,
+        itemListElement: LAUNCH_FLAVOURS.map((flavour, i) => ({
           "@type": "ListItem",
           position: i + 1,
           name: flavour.name,
